@@ -1,12 +1,14 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class Options : MonoBehaviour
 {
     public Keys keys;
+
+    public static float playerMouseSens;
+    public float mouseSensDebug;
 
     void Start()
     {
@@ -15,7 +17,12 @@ public class Options : MonoBehaviour
 
     void Update()
     {
+        DebugTemporary();
+    }
 
+    void DebugTemporary()
+    {
+        playerMouseSens = mouseSensDebug;
     }
 
     void InitializeKeys()
@@ -24,6 +31,7 @@ public class Options : MonoBehaviour
         Keys.backwards = keys.backwardsKey;
         Keys.left = keys.leftKey;
         Keys.right = keys.rightKey;
+        Keys.jump = keys.jumpKey;
     }
 
     //void OnGUI()
@@ -51,4 +59,7 @@ public class Keys
 
     public KeyCode rightKey;
     public static KeyCode right;
+
+    public KeyCode jumpKey;
+    public static KeyCode jump;
 }
