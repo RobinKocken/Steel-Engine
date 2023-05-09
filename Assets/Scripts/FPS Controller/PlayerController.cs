@@ -16,6 +16,8 @@ public class PlayerController : MonoBehaviour
     // Value for direction of Player //
     int moveZ, moveX;
 
+    public bool jump;
+
     void Awake()
     {
         rb = GetComponent<Rigidbody>();
@@ -23,7 +25,7 @@ public class PlayerController : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
+        rb.drag = drag;
     }
 
     void Update()
@@ -52,16 +54,22 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(moveZ * playerSpeed * transform.forward.normalized, ForceMode.VelocityChange);
         rb.AddForce(moveX * playerSpeed * transform.right.normalized, ForceMode.VelocityChange);
 
-        rb.drag = drag;
+        
     }
 
     void Jump()
     {
-        if(iJump == 1)
+        if(iJump == 1 && jump)
         {
+            Debug.Log("Jump");
+            rb.drag = 0;
+
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
             rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+
+            iJump = 0;
+            jump = false;
         }
     }
 
@@ -80,5 +88,11 @@ public class PlayerController : MonoBehaviour
     {
         moveZ = iForward + iBackwards;
         moveX = iLeft + iRight;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        rb.drag = drag;
+        jump = true;
     }
 }
