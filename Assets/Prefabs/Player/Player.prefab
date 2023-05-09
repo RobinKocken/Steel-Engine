@@ -275,7 +275,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerSpeed: 5
   drag: 10
-  jumpForce: 0
+  jumpForce: 12
+  jump: 0
 --- !u!33 &6561028067468424488
 MeshFilter:
   m_ObjectHideFlags: 0
