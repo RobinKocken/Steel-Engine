@@ -9,6 +9,8 @@ public class BuildManager : MonoBehaviour
     [Header("Objects")]
     public GameObject[] objects;
     public GameObject pendingObj;
+    public float rotateAmount;
+    public bool canPlace;
 
     [Header("Grid Stuff")]
     public float gridSize;
@@ -25,6 +27,10 @@ public class BuildManager : MonoBehaviour
         pendingObj = Instantiate(objects[index], pos, transform.rotation);
     }
 
+    void RotateObject()
+    {
+        pendingObj.transform.Rotate(Vector3.up, rotateAmount);
+    }
     public void Update()
     {
         if(pendingObj != null)
@@ -45,12 +51,16 @@ public class BuildManager : MonoBehaviour
             {
                 yPos++;
             }
-            if(Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                RotateObject();
+            }
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 yPos--;
             }    
             
-            if(Input.GetMouseButton(0))
+            if(Input.GetMouseButton(0) && canPlace)
             {
                 PlaceObject();
             }
