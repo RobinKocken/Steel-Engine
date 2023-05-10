@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2161.8174, g: 2265.7695, b: 3289.004, a: 1}
+  m_IndirectSpecularColor: {r: 2186.4941, g: 2335.1973, b: 3515.5156, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -392,6 +392,7 @@ MonoBehaviour:
   itemType: 0
   inventorySlotHolder: {fileID: 0}
   hotbarSlotHolder: {fileID: 0}
+  slots: []
   inventorySlots: []
   hotbarSlots: []
 --- !u!1 &301801013
@@ -529,7 +530,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &575845296
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,6 +1056,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemType: 0
+  slotID: 0
   item: {fileID: 0}
   amount: 0
   iconRenderer: {fileID: 0}
