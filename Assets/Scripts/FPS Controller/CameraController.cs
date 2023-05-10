@@ -21,14 +21,10 @@ public class CameraController : MonoBehaviour
 
     void Update()
     {
-        
-    }
-
-    void LateUpdate()
-    {
         FPSCamera();
     }
 
+    // FPS Camera Player //
     void FPSCamera()
     {
         mouseX = Input.GetAxis("Mouse X") * Options.playerMouseSens * 100 * Time.deltaTime;
@@ -39,7 +35,7 @@ public class CameraController : MonoBehaviour
 
         xRotation = Mathf.Clamp(xRotation, -90, 90);
 
-        transform.localRotation = Quaternion.Euler(xRotation, 0, 0);
+        transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
     }
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
+    public Transform orientation;
 
     [Header("Player Variables")]
     public int playerSpeed;
@@ -64,13 +65,13 @@ public class PlayerController : MonoBehaviour
     {
         if(grounded)
         {
-            rb.AddForce(moveZ * playerSpeed * transform.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerSpeed * transform.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * playerSpeed * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * playerSpeed * orientation.right.normalized, ForceMode.VelocityChange);
         }
         else if(!grounded)
         {
-            rb.AddForce(moveZ * playerSpeed * airMultiplier * transform.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerSpeed * airMultiplier * transform.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * playerSpeed * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * playerSpeed * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
         }
     }
 
@@ -78,8 +79,6 @@ public class PlayerController : MonoBehaviour
     {
         if(iJump == 1 && grounded && readyToJump)
         {
-            Debug.Log("Jump");
-
             Jump();
         }
         else if(iJump == 0 && grounded && !readyToJump)
@@ -94,13 +93,12 @@ public class PlayerController : MonoBehaviour
 
         rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        rb.AddForce(orientation.up * jumpForce, ForceMode.Impulse);
     }
 
     void ResetJump()
     {
         readyToJump = true;
-        Debug.Log("ResetJump");
     }
 
     void SpeedControl()
