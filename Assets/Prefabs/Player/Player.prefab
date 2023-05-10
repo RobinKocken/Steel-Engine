@@ -276,7 +276,9 @@ MonoBehaviour:
   playerSpeed: 5
   drag: 10
   jumpForce: 12
-  jump: 0
+  airMultiplier: 0.6
+  sphereRadius: 0.5
+  rayDistance: 0.52
 --- !u!33 &6561028067468424488
 MeshFilter:
   m_ObjectHideFlags: 0

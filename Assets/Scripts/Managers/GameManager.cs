@@ -26,7 +26,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        CursorModeLocked();
     }
 
     void Update()
@@ -60,6 +60,18 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    public static void CursorModeLocked()
+    { 
+        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.visible = false;
+    }
+
+    public static void CursorModeConfined()
+    {
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.Confined;
     }
 
     // Getting Input from Keyboard //
