@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -25,13 +24,18 @@ public class Options : MonoBehaviour
         playerMouseSens = mouseSensDebug;
     }
 
+    // Assigning Keys //
     void InitializeKeys()
     {
-        Keys.forward =keys.forwardKey;
+        // Player Keys assigned //
+        Keys.forward = keys.forwardKey;
         Keys.backwards = keys.backwardsKey;
         Keys.left = keys.leftKey;
         Keys.right = keys.rightKey;
         Keys.jump = keys.jumpKey;
+
+        // Inventory Keys assigned //
+        Keys.inventory = keys.inventorykey;
     }
 
     //void OnGUI()
@@ -48,6 +52,7 @@ public class Options : MonoBehaviour
 [System.Serializable]
 public class Keys
 {
+    [Header("Player Keys")]
     public KeyCode forwardKey;
     public static KeyCode forward;
 
@@ -62,4 +67,8 @@ public class Keys
 
     public KeyCode jumpKey;
     public static KeyCode jump;
+
+    [Header("Inventory Keys")]
+    public KeyCode inventorykey;
+    public static KeyCode inventory;
 }
