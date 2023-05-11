@@ -46,7 +46,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
+  raycastController: {fileID: 0}
   state: 0
+  testKey: 
 --- !u!114 &4963027607019267320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -65,4 +67,6 @@ MonoBehaviour:
     leftKey: 97
     rightKey: 100
     jumpKey: 32
+    inventorykey: 101
+    interactionKey: 102
   mouseSensDebug: 1

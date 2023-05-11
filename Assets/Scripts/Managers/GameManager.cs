@@ -5,6 +5,7 @@ using UnityEngine;
 public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
+    public RaycastController raycastController;
 
     // Possible States for the Player //
     public enum PlayerState
@@ -18,6 +19,10 @@ public class GameManager : MonoBehaviour
 
     // Input Value Player Movement //
     int iForward, iBackwards, iLeft, iRight, iJump;
+    // Input Value Inventory //
+    int iInventory;
+    // Input Value Interaction //
+    int iInteraction;
 
     void Awake()
     {
@@ -29,22 +34,29 @@ public class GameManager : MonoBehaviour
         CursorModeLocked();
     }
 
+    public string testKey;
+
     void Update()
     {
         State();
+
+        if(Input.anyKeyDown)
+        {
+            testKey = Input.inputString;
+        }
     }
 
     // State of the Player //
     void State()
     {
-        var(tForward, tBackwards, tLeft, tRight, tJump) = CheckKeyInput();
+        var(tForward, tBackwards, tLeft, tRight, tJump, tInventory, tInteraction) = CheckKeyInput();
 
         switch(state)
         {
             case PlayerState.player:
             {
                 playerController.GetKeyInput(tForward, tBackwards, tLeft, tRight, tJump);
-
+                raycastController.GetKeyInput(tInteraction);
                 break;
             }
             case PlayerState.station:
@@ -64,7 +76,7 @@ public class GameManager : MonoBehaviour
 
     public static void CursorModeLocked()
     { 
-        Cursor.lockState = CursorLockMode.Confined;
+        Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
     }
 
@@ -75,7 +87,7 @@ public class GameManager : MonoBehaviour
     }
 
     // Getting Input from Keyboard //
-    (int tForward, int tBackwards, int tLeft, int tRight, int tJump) CheckKeyInput()
+    (int tForward, int tBackwards, int tLeft, int tRight, int tJump, int tInventory, int tInteraction) CheckKeyInput()
     {
         // Forward Key PLayer //
         if(Input.GetKeyDown(Keys.forward))
@@ -101,11 +113,24 @@ public class GameManager : MonoBehaviour
         else if(Input.GetKeyUp(Keys.right))
             iRight = 0;
 
+        // Jump Key Player
         if(Input.GetKeyDown(Keys.jump))
             iJump = 1;
         else if(Input.GetKeyUp(Keys.jump))
             iJump = 0;
 
-        return (iForward, iBackwards, iLeft, iRight, iJump);
+        // Inventory Key Player //
+        if(Input.GetKeyDown(Keys.inventory))
+            iInventory = 1;
+        else if(Input.GetKeyUp(Keys.inventory))
+            iInventory = 0;
+
+        // Interaction Key Player //
+        if(Input.GetKeyDown(Keys.interaction))
+            iInteraction = 1;
+        else if(Input.GetKeyUp(Keys.interaction))
+            iInteraction = 0;
+
+        return (iForward, iBackwards, iLeft, iRight, iJump, iInventory, iInteraction);
     }
 }

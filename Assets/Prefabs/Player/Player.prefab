@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6561028065969245544}
   - component: {fileID: 6561028065969245550}
+  - component: {fileID: 3663772453147258122}
   - component: {fileID: 6561028065969245545}
   - component: {fileID: 6561028065969245546}
   - component: {fileID: 6561028065969245551}
@@ -48,6 +49,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1341215676613248772}
+--- !u!114 &3663772453147258122
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6561028065969245547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02c0ec7d52f3804f98dc0f3f2793348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rayDistance: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!20 &6561028065969245545
 Camera:
   m_ObjectHideFlags: 0
@@ -279,8 +296,8 @@ MonoBehaviour:
   drag: 10
   jumpForce: 12
   airMultiplier: 0.6
-  sphereRadius: 0.5
-  rayDistance: 0.52
+  sphereRadius: 0.42
+  rayDistance: 0.6
 --- !u!33 &6561028067468424488
 MeshFilter:
   m_ObjectHideFlags: 0

@@ -13,8 +13,8 @@ public class PlayerController : MonoBehaviour
     public float jumpForce;
     public float airMultiplier;
 
-    // Input Value from Keys //
-    int iForward, iBackwards, iLeft, iRight, iJump;
+    // Input Value for Keys //
+    int kForward, kBackwards, kLeft, kRight, kJump;
 
     // Value for direction of Player //
     int moveZ, moveX;
@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
     {
         CheckIfJump();
         SpeedControl();
-        CalculateDirection();
+        CalculateInputDirection();
         CheckIfGrounded();
     }
 
@@ -54,11 +54,11 @@ public class PlayerController : MonoBehaviour
 
     public void GetKeyInput(int tForward, int tBackwards, int tLeft, int tRight, int tJump)
     {
-        iForward = tForward;
-        iBackwards = -tBackwards;
-        iLeft = -tLeft;
-        iRight = tRight;
-        iJump = tJump;
+        kForward = tForward;
+        kBackwards = -tBackwards;
+        kLeft = -tLeft;
+        kRight = tRight;
+        kJump = tJump;
     }
 
     void Movement()
@@ -77,11 +77,11 @@ public class PlayerController : MonoBehaviour
 
     void CheckIfJump()
     {
-        if(iJump == 1 && grounded && readyToJump)
+        if(kJump == 1 && grounded && readyToJump)
         {
             Jump();
         }
-        else if(iJump == 0 && grounded && !readyToJump)
+        else if(kJump == 0 && grounded && !readyToJump)
         {
             ResetJump();
         }
@@ -112,10 +112,10 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CalculateDirection()
+    void CalculateInputDirection()
     {
-        moveZ = iForward + iBackwards;
-        moveX = iLeft + iRight;
+        moveZ = kForward + kBackwards;
+        moveX = kLeft + kRight;
     }
 
     void InitializePlayer()

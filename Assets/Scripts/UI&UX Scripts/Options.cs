@@ -34,8 +34,11 @@ public class Options : MonoBehaviour
         Keys.right = keys.rightKey;
         Keys.jump = keys.jumpKey;
 
-        // Inventory Keys assigned //
+        // Inventory Key assigned //
         Keys.inventory = keys.inventorykey;
+
+        // Interaction Key assigned //
+        Keys.interaction = keys.interactionKey;
     }
 
     //void OnGUI()
@@ -68,7 +71,11 @@ public class Keys
     public KeyCode jumpKey;
     public static KeyCode jump;
 
-    [Header("Inventory Keys")]
+    [Header("Inventory Key")]
     public KeyCode inventorykey;
     public static KeyCode inventory;
+
+    [Header("Interaction Key")]
+    public KeyCode interactionKey;
+    public static KeyCode interaction;
 }
