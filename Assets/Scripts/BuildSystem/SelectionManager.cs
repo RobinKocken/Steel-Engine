@@ -36,6 +36,7 @@ public class SelectionManager : MonoBehaviour
     //Selecting the Object for further input
     void Select(GameObject target)
     {
+        if (selectedObj == null) return;
         if(target == selectedObj)
         {
             return;
@@ -65,9 +66,13 @@ public class SelectionManager : MonoBehaviour
     //Deselecting the selected object
     void Deselect()
     {
-        selectedObj.GetComponent<Outline>().enabled = false;
-        selectedObj = null;
-        selectUI.SetActive(false);
+        if(selectedObj != null)
+        {
+            selectedObj.GetComponent<Outline>().enabled = false;
+            selectedObj = null;
+            selectUI.SetActive(false);
+        }
+        
     }
     public void Delete()
     {

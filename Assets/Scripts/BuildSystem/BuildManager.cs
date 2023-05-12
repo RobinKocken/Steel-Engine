@@ -29,7 +29,7 @@ public class BuildManager : MonoBehaviour
     public void SelectObject(int index)
     {
         pendingObj = Instantiate(objects[index], pos, transform.rotation);
-        gameObject.GetComponent<SelectionManager>().selectedObj = pendingObj;
+        this.GetComponent<SelectionManager>().selectedObj = pendingObj;
     }
 
     void RotateObject()
