@@ -4,13 +4,18 @@ using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
+    GameManager gameManager;
     public GameObject selectedObj;
 
+    private void Start()
+    {
+        gameManager =  GetComponent<BuildManager>().gameManager;
+    }
     private void Update()
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            Ray ray = gameManager.buildCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 1000))
             {
@@ -20,6 +25,10 @@ public class SelectionManager : MonoBehaviour
                 }
             }
         }
+        if(Input.GetMouseButtonDown(1))
+        {
+            Deselect();
+        }
     }
 
     void Select(GameObject target)
@@ -27,6 +36,10 @@ public class SelectionManager : MonoBehaviour
         if(target == selectedObj)
         {
             return;
+        }
+        if(selectedObj != null)
+        {
+            Deselect();
         }
         Outline outline = target.GetComponent<Outline>();
         if(outline == null)
@@ -38,5 +51,11 @@ public class SelectionManager : MonoBehaviour
             outline.enabled = true;
             selectedObj = target;
         }
+    }
+
+    void Deselect()
+    {
+        selectedObj.GetComponent<Outline>().enabled = false;
+        selectedObj = null;
     }
 }

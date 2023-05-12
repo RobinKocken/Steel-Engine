@@ -14,6 +14,10 @@ public class FreeCam : MonoBehaviour
     [SerializeField] private float pitch = 0f;
     [SerializeField] private float distance = 5f;
 
+    private void Start()
+    {
+        GameManager.CursorModeConfined();
+    }
     private void Update()
     {
         // Rotate the camera with A and D keys

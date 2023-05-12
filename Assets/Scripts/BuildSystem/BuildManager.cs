@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildManager : MonoBehaviour
 {
+
+    public GameManager gameManager;
+
     [SerializeField] private LayerMask layerMask;
     [Header("Objects")]
     public GameObject[] objects;
@@ -75,7 +78,7 @@ public class BuildManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = gameManager.buildCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         if(Physics.Raycast(ray, out hit, 1000, layerMask))
         {
