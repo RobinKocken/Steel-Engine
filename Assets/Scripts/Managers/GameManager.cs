@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public RaycastController raycastController;
 
-    public BuildManager buildManager;
+    public GameObject buildManager;
 
     public GameObject playerCamera;
     public GameObject buildCamera;
@@ -64,6 +64,8 @@ public class GameManager : MonoBehaviour
                 SwitchCamera(playerCamera, buildCamera);
                 playerController.GetKeyInput(tForward, tBackwards, tLeft, tRight, tJump);
                 raycastController.GetKeyInput(tInteraction);
+
+                buildManager.SetActive(false);
                 break;
             }
             case PlayerState.station:
@@ -74,7 +76,7 @@ public class GameManager : MonoBehaviour
             {
                 CursorModeConfined();
                 SwitchCamera(buildCamera, playerCamera);
-                buildManager.Temp();
+                buildManager.SetActive(true);
                 break;
             }
             case PlayerState.option:
