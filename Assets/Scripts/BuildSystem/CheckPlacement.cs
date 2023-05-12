@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CheckPlacement : MonoBehaviour
 {
-    private BuildManager buildManager;
+    [SerializeField] private BuildManager buildManager;
     // Start is called before the first frame update
     void Start()
     {

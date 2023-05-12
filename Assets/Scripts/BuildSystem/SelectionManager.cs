@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class SelectionManager : MonoBehaviour
 {
     GameManager gameManager;
     public GameObject selectedObj;
+    public TextMeshProUGUI objText;
+    public GameObject selectUI;
 
     private void Start()
     {
@@ -49,13 +52,27 @@ public class SelectionManager : MonoBehaviour
         else
         {
             outline.enabled = true;
+            objText.text = target.name;
             selectedObj = target;
+            selectUI.SetActive(true);
         }
+    }
+
+    public void Move()
+    {
+        gameObject.GetComponent<BuildManager>().pendingObj = selectedObj;
     }
     //Deselecting the selected object
     void Deselect()
     {
         selectedObj.GetComponent<Outline>().enabled = false;
         selectedObj = null;
+        selectUI.SetActive(false);
+    }
+    public void Delete()
+    {
+        GameObject objToDestroy = selectedObj;
+        Deselect();
+        Destroy(objToDestroy);
     }
 }
