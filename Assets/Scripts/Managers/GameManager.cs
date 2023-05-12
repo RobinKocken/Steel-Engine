@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public RaycastController raycastController;
 
+    public GameObject playerCamera;
+    public GameObject buildCamera;
+
     // Possible States for the Player //
     public enum PlayerState
     {
@@ -55,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.player:
             {
+                SwitchCamera(playerCamera, buildCamera);
                 playerController.GetKeyInput(tForward, tBackwards, tLeft, tRight, tJump);
                 raycastController.GetKeyInput(tInteraction);
                 break;
@@ -65,6 +69,7 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
+                SwitchCamera(buildCamera, playerCamera);
                 break;
             }
             case PlayerState.option:
@@ -72,6 +77,12 @@ public class GameManager : MonoBehaviour
                 break;
             }
         }
+    }
+
+    void SwitchCamera(GameObject camEnable, GameObject camDisable)
+    {
+        camEnable.SetActive(true);
+        camDisable.SetActive(false);
     }
 
     public static void CursorModeLocked()

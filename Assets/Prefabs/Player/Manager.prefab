@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
+  playerCamera: {fileID: 0}
+  buildCamera: {fileID: 0}
   state: 0
   testKey: 
 --- !u!114 &4963027607019267320
