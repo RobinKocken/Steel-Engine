@@ -39,6 +39,7 @@ public class BuildManager : MonoBehaviour
     {
         if(pendingObj != null)
         {
+            //check if grid is on, and snap objects if its on
             if(gridOn)
             {
                 pendingObj.transform.position = new Vector3(
@@ -78,6 +79,7 @@ public class BuildManager : MonoBehaviour
     }
     private void FixedUpdate()
     {
+        //update objects position to screenpoint posistion
         Ray ray = gameManager.buildCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
 
         if(Physics.Raycast(ray, out hit, 1000, layerMask))
@@ -93,6 +95,8 @@ public class BuildManager : MonoBehaviour
         }
         else {  gridOn = false; }
     }
+
+    //snap cords of object to nearest int
     float RoundToNearestGrid(float pos)
     {
         //Changeable grid system

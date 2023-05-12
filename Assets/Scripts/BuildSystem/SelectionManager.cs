@@ -30,7 +30,7 @@ public class SelectionManager : MonoBehaviour
             Deselect();
         }
     }
-
+    //Selecting the Object for further input
     void Select(GameObject target)
     {
         if(target == selectedObj)
@@ -52,7 +52,7 @@ public class SelectionManager : MonoBehaviour
             selectedObj = target;
         }
     }
-
+    //Deselecting the selected object
     void Deselect()
     {
         selectedObj.GetComponent<Outline>().enabled = false;

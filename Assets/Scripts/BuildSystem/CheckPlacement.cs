@@ -10,7 +10,7 @@ public class CheckPlacement : MonoBehaviour
     {
         buildManager = GameObject.Find("BuildManager").GetComponent<BuildManager>();
     }
-
+    //If the Object colides with another object, make it unable to be placed
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject.CompareTag("Building"))   
@@ -18,7 +18,7 @@ public class CheckPlacement : MonoBehaviour
             buildManager.canPlace = false;
         }    
     }
-
+    //If the Object does not colide with another object, make it able to be placed
     private void OnTriggerExit(Collider other)
     {
         if (other.gameObject.CompareTag("Building"))
