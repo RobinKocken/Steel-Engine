@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public RaycastController raycastController;
 
+    public BuildManager buildManager;
+
     public GameObject playerCamera;
     public GameObject buildCamera;
 
@@ -72,6 +74,7 @@ public class GameManager : MonoBehaviour
             {
                 CursorModeConfined();
                 SwitchCamera(buildCamera, playerCamera);
+                buildManager.Temp();
                 break;
             }
             case PlayerState.option:

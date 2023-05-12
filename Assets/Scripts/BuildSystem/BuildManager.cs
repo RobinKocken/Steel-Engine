@@ -36,7 +36,8 @@ public class BuildManager : MonoBehaviour
     {
         pendingObj.transform.Rotate(Vector3.up, rotateAmount);
     }
-    public void Update()
+
+    public void Temp()
     {
         if(pendingObj != null)
         {
@@ -48,24 +49,24 @@ public class BuildManager : MonoBehaviour
                 yPos + offset,
                 RoundToNearestGrid(pos.z));
             }
-            else 
-            { 
+            else
+            {
                 pendingObj.transform.position = new Vector3(pos.x, yPos + offset, pos.z);
             }
-            
+
             if(Input.GetKeyDown(KeyCode.Q))
             {
                 yPos++;
             }
-            if (Input.GetKeyDown(KeyCode.R))
+            if(Input.GetKeyDown(KeyCode.R))
             {
                 RotateObject();
             }
-            if (Input.GetKeyDown(KeyCode.E))
+            if(Input.GetKeyDown(KeyCode.E))
             {
                 yPos--;
-            }    
-            
+            }
+
             if(Input.GetMouseButton(0) && canPlace)
             {
                 PlaceObject();
