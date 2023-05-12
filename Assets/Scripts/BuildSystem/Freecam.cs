@@ -2,32 +2,39 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Freecam : MonoBehaviour
+public class FreeCam : MonoBehaviour
 {
-
-    [SerializeField] private float speed = 5f;
     [SerializeField] private float sensitivity = 1f;
+    [SerializeField] private float zoomSpeed = 10f;
+    [SerializeField] private float minDistance = 2f;
+    [SerializeField] private float maxDistance = 20f;
+    [SerializeField] private Vector3 targetOffset = Vector3.zero;
 
-    private float yaw = 0f;
-    private float pitch = 0f;
+    [SerializeField] private float yaw = 0f;
+    [SerializeField] private float pitch = 0f;
+    [SerializeField] private float distance = 5f;
 
     private void Update()
     {
-        // Move the camera with WSAD keys
-        float x = Input.GetAxis("Horizontal");
-        float z = Input.GetAxis("Vertical");
+        // Rotate the camera with A and D keys
+        float rotation = Input.GetAxis("Horizontal") * sensitivity;
+        yaw += rotation;
 
-        Vector3 move = transform.right * x + transform.forward * z;
-        transform.position += move * speed * Time.deltaTime;
+        // Zoom in and out with W and S keys
+        float zoom = Input.GetAxis("Vertical") * zoomSpeed;
+        distance = Mathf.Clamp(distance - zoom, minDistance, maxDistance);
 
-        // Look around with the mouse
-        float mouseX = Input.GetAxis("Mouse X") * sensitivity;
-        float mouseY = Input.GetAxis("Mouse Y") * sensitivity;
+        // Position the camera using polar coordinates
+        float radYaw = Mathf.Deg2Rad * yaw;
+        float radPitch = Mathf.Deg2Rad * pitch;
+        float x = distance * Mathf.Sin(radYaw) * Mathf.Cos(radPitch);
+        float y = distance * Mathf.Sin(radPitch);
+        float z = distance * Mathf.Cos(radYaw) * Mathf.Cos(radPitch);
 
-        yaw += mouseX;
-        pitch -= mouseY;
-        pitch = Mathf.Clamp(pitch, -85f, 85f);
+        Vector3 position = new Vector3(x, y, z) + targetOffset;
+        transform.position = position;
 
-        transform.eulerAngles = new Vector3(pitch, yaw, 0f);
+        // Look at the central point
+        transform.LookAt(targetOffset);
     }
 }

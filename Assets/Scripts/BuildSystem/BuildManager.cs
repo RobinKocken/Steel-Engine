@@ -13,6 +13,7 @@ public class BuildManager : MonoBehaviour
     public bool canPlace;
 
     [Header("Grid Stuff")]
+    public float offset;
     public float gridSize;
     public int yPos;
     bool gridOn = true;
@@ -39,12 +40,12 @@ public class BuildManager : MonoBehaviour
             {
                 pendingObj.transform.position = new Vector3(
                 RoundToNearestGrid(pos.x),
-                RoundToNearestGrid(yPos),
+                yPos + offset,
                 RoundToNearestGrid(pos.z));
             }
             else 
             { 
-                pendingObj.transform.position = new Vector3(pos.x, yPos,pos.z);
+                pendingObj.transform.position = new Vector3(pos.x, yPos + offset, pos.z);
             }
             
             if(Input.GetKeyDown(KeyCode.Q))
@@ -78,7 +79,7 @@ public class BuildManager : MonoBehaviour
 
         if(Physics.Raycast(ray, out hit, 1000, layerMask))
         {
-            pos = hit.point;
+            pos = new Vector3(hit.point.x, hit.point.y + offset , hit.point.z);
         }
     }
 
