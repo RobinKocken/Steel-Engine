@@ -34,7 +34,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        CursorModeLocked();
+        
     }
 
     public string testKey;
@@ -58,6 +58,7 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.player:
             {
+                CursorModeLocked();
                 SwitchCamera(playerCamera, buildCamera);
                 playerController.GetKeyInput(tForward, tBackwards, tLeft, tRight, tJump);
                 raycastController.GetKeyInput(tInteraction);
@@ -69,6 +70,7 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
+                CursorModeConfined();
                 SwitchCamera(buildCamera, playerCamera);
                 break;
             }
