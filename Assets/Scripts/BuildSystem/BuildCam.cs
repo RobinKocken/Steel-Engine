@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class FreeCam : MonoBehaviour
+public class BuildCam : MonoBehaviour
 {
     [SerializeField] private float sensitivity = 1f;
     [SerializeField] private float zoomSpeed = 10f;
