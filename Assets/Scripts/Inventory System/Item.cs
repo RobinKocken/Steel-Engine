@@ -9,5 +9,6 @@ public class Item : ScriptableObject
 
     public Sprite icon;
     public int maxStack;
+
     public GameObject prefab;
 }

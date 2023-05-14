@@ -6,6 +6,8 @@ using TMPro;
 
 public class Slot : MonoBehaviour
 {
+    public InventoryManager inventoryManager;
+
     public Item item;
     public int amount;
 
@@ -13,4 +15,37 @@ public class Slot : MonoBehaviour
 
     public Image iconRenderer;
     public TMP_Text currentAmountText;
+
+    public int AddAmountToItem
+    {
+        set
+        {
+            amount += value;
+        }
+    }
+
+    public int SubtractAmountFromItem
+    {
+        set
+        {
+            amount -= value;
+        }        
+    }
+
+    public void SelectSlot()
+    {
+        inventoryManager.PickUpDropItems(slotID);
+    }
+
+    public void SetItem(Item item, int amount)
+    {
+        this.item = item;
+        this.amount = amount;
+    }
+
+    public void DeleteItem()
+    {
+        item = null;
+        amount = 0;
+    }
 }

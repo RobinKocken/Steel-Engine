@@ -1,14 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UI;
+using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
     public enum ItemType
     {
         none,
-        // Materials //
         wood,
         stone, 
         metal,
@@ -29,7 +29,11 @@ public class InventoryManager : MonoBehaviour
     [Header("Mouse")]
     public Transform cursor;
     public Vector3 offset;
-    public Vector3 stuff;
+    public Item itemHolder;
+    public int amountHolder;
+    public Image iconHolder;
+    public TMP_Text amountTextHolder;
+
 
     void Start()
     {
@@ -75,6 +79,7 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Add Funtion If Inventory is Full //
+    // Add Function If Slot got filled and there is still an amount to set in Inventory then repeat Function //
     public void AddItem(Item item, int itemAmount)
     { 
         // Check if Item can be added to already existing Slot with the same Item //
@@ -86,10 +91,19 @@ public class InventoryManager : MonoBehaviour
                 {
                     if(currentSlot.item.itemType == item.itemType)
                     {
+                        // Full Amount is Added to Slot with the Same Item //
                         if(itemAmount <= currentSlot.item.maxStack - currentSlot.amount)
                         {
                             currentSlot.amount += itemAmount;
                             return;
+                        }
+                        // Partial Amount is Add to Slot because Max Stack is archieved // 
+                        else if(itemAmount > currentSlot.item.maxStack - currentSlot.amount)
+                        {
+                            int maxAmount = currentSlot.item.maxStack - currentSlot.amount;
+                            itemAmount -= maxAmount;
+                            currentSlot.AddAmountToItem = maxAmount;
+                            continue;
                         }
                     }
                 }
@@ -129,6 +143,74 @@ public class InventoryManager : MonoBehaviour
                     }
                 }
             }
+        }
+    }
+
+    public void PickUpDropItems(int slotID)
+    {
+        if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
+        {
+            // Put Selected Slot Item in Cursor and Empty Slot //
+            if(currentSlot.item != null && itemHolder == null)
+            {
+                SetItemInCursorHolder(currentSlot.item, currentSlot.amount);
+                currentSlot.DeleteItem();
+            }
+            // Set Item in Selected Slot and Empty Cursor //
+            else if(currentSlot.item == null && itemHolder != null)
+            {
+                currentSlot.SetItem(itemHolder, amountHolder);
+                DeleteItemInCursorHolder();
+            }
+            // Add an amount to an Item from the same Type //
+            else if(currentSlot.item != null && itemHolder != null)
+            {
+                if(currentSlot.item.itemType == itemHolder.itemType)
+                {
+                    // Full Amount is Added to Selected Slot //
+                    if(amountHolder <= currentSlot.item.maxStack - currentSlot.amount)
+                    {
+                        currentSlot.AddAmountToItem = amountHolder;
+                        DeleteItemInCursorHolder();
+                    }
+                    // Only the Max Avaible Amount is Added to Selected Slot //
+                    else if(amountHolder > currentSlot.item.maxStack - currentSlot.amount)
+                    {
+                        int maxAmount = currentSlot.item.maxStack - currentSlot.amount;
+
+                        SubAmountCursor = maxAmount;
+                        currentSlot.AddAmountToItem = amountHolder;
+                    }
+                }
+            }
+        }
+    }
+
+    void SetItemInCursorHolder(Item item, int amount)
+    {
+        itemHolder = item;
+        amountHolder = amount;
+    }
+
+    void DeleteItemInCursorHolder()
+    {
+        itemHolder = null;
+        amountHolder = 0;
+    }
+
+    int AddAmountCursor
+    {
+        set
+        {
+            amountHolder += value;
+        }        
+    }
+
+    int SubAmountCursor
+    {
+        set
+        {
+            amountHolder -= value;
         }
     }
 }
