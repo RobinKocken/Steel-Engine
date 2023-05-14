@@ -10,7 +10,7 @@ public class InventoryManager : MonoBehaviour
     {
         none,
         wood,
-        stone, 
+        stone,
         metal,
     }
     public ItemType itemType;

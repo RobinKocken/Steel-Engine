@@ -4,15 +4,33 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public GameObject inventoryUI;
+
+    public bool uiIsReady;
+
+    public bool uiActive;
+    public bool inventoryActive;
+    public bool optionsActive;    
+
+    public void Inventory()
     {
-        
+        uiIsReady = false;
+        uiActive = !uiActive;
+        inventoryActive = !inventoryActive;
+
+        inventoryUI.SetActive(inventoryActive);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void OptionsUI()
     {
-        
+
+    }
+
+    public void ResetUIInput(int input)
+    {
+        if(input == 0)
+        {
+            uiIsReady = true;
+        }
     }
 }

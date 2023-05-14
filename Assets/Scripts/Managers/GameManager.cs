@@ -7,6 +7,9 @@ public class GameManager : MonoBehaviour
     public PlayerController playerController;
     public RaycastController raycastController;
 
+    public Options options;
+    public UIManager uiManager;
+
     public GameObject buildManager;
 
     public GameObject playerCamera;
@@ -18,7 +21,7 @@ public class GameManager : MonoBehaviour
         player,
         station,
         build,
-        option,
+        ui,
     }
     public PlayerState state;
 
@@ -43,6 +46,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
+        CheckKeyInput();
+        SwitchState();
         State();
 
         if(Input.anyKeyDown)
@@ -54,18 +59,16 @@ public class GameManager : MonoBehaviour
     // State of the Player //
     void State()
     {
-        var(tForward, tBackwards, tLeft, tRight, tJump, tInventory, tInteraction) = CheckKeyInput();
-
         switch(state)
         {
             case PlayerState.player:
             {
                 CursorModeLocked();
                 SwitchCamera(playerCamera, buildCamera);
-                playerController.GetKeyInput(tForward, tBackwards, tLeft, tRight, tJump);
-                raycastController.GetKeyInput(tInteraction);
+                playerController.GetKeyInput(iForward, iBackwards, iLeft, iRight, iJump);
+                raycastController.GetKeyInput(iInteraction);
 
-                buildManager.SetActive(false);
+                //buildManager.SetActive(false);
                 break;
             }
             case PlayerState.station:
@@ -79,11 +82,37 @@ public class GameManager : MonoBehaviour
                 buildManager.SetActive(true);
                 break;
             }
-            case PlayerState.option:
+            case PlayerState.ui:
             {
+                CursorModeConfined();
                 break;
             }
         }
+    }
+
+    void SwitchState()
+    {
+        uiManager.ResetUIInput(iInventory);
+
+        if(iInventory == 1 && uiManager.uiIsReady) 
+        {
+            switch(state)
+            {
+                case PlayerState.player:
+                {
+                    ResetPlayerMovement();
+                    state = PlayerState.ui;
+                    break;
+                }
+                case PlayerState.ui:
+                {
+                    state = PlayerState.player;
+                    break;
+                }
+            }
+
+            uiManager.Inventory();
+        }        
     }
 
     void SwitchCamera(GameObject camEnable, GameObject camDisable)
@@ -92,16 +121,25 @@ public class GameManager : MonoBehaviour
         camDisable.SetActive(false);
     }
 
-    public static void CursorModeLocked()
+    void CursorModeLocked()
     { 
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
+
+        Options.playerMouseSens = options.mouseSens;
     }
 
-    public static void CursorModeConfined()
+    void CursorModeConfined()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
+
+        Options.playerMouseSens = 0;
+    }
+
+    void ResetPlayerMovement()
+    {
+        playerController.GetKeyInput(0, 0, 0, 0, 0);
     }
 
     // Getting Input from Keyboard //

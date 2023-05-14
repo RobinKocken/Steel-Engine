@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4963027607019267270}
   - component: {fileID: 4963027607019267320}
   m_Layer: 0
-  m_Name: Manager
+  m_Name: Game Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -47,6 +47,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
+  options: {fileID: 4963027607019267320}
+  uiManager: {fileID: 0}
+  buildManager: {fileID: 0}
   playerCamera: {fileID: 0}
   buildCamera: {fileID: 0}
   state: 0
@@ -71,4 +74,4 @@ MonoBehaviour:
     jumpKey: 32
     inventorykey: 101
     interactionKey: 102
-  mouseSensDebug: 1
+  mouseSens: 1

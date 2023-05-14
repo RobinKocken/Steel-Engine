@@ -24,7 +24,7 @@ public class Slot : MonoBehaviour
         }
     }
 
-    public int SubtractAmountFromItem
+    public int SubAmountFromItem
     {
         set
         {

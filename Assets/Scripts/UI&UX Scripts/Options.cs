@@ -7,7 +7,7 @@ public class Options : MonoBehaviour
     public Keys keys;
 
     public static float playerMouseSens;
-    public float mouseSensDebug;
+    public float mouseSens;
 
     void Start()
     {
@@ -16,12 +16,7 @@ public class Options : MonoBehaviour
 
     void Update()
     {
-        DebugTemporary();
-    }
 
-    void DebugTemporary()
-    {
-        playerMouseSens = mouseSensDebug;
     }
 
     // Assigning Keys //
