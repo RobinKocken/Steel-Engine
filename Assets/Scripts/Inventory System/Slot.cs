@@ -13,7 +13,6 @@ public class Slot : MonoBehaviour
 
     public int slotID;
 
-    public GameObject icon;
     public Image iconRenderer;
     public TMP_Text currentAmountText;
 
@@ -22,6 +21,7 @@ public class Slot : MonoBehaviour
         set
         {
             amount += value;
+            currentAmountText.text = amount.ToString();
         }
     }
 
@@ -30,6 +30,7 @@ public class Slot : MonoBehaviour
         set
         {
             amount -= value;
+            currentAmountText.text = amount.ToString();
         }        
     }
 
@@ -48,8 +49,11 @@ public class Slot : MonoBehaviour
         this.item = item;
         this.amount = amount;
 
-        icon.SetActive(true);
+        iconRenderer.gameObject.SetActive(true);
         iconRenderer.sprite = item.icon;
+
+        currentAmountText.gameObject.SetActive(true);
+        currentAmountText.text = this.amount.ToString();
     }
 
     public void DeleteItem()
@@ -58,6 +62,9 @@ public class Slot : MonoBehaviour
         amount = 0;
 
         iconRenderer.sprite = null;
-        icon.SetActive(false);
+        iconRenderer.gameObject.SetActive(false);
+
+        currentAmountText.text = "0";
+        currentAmountText.gameObject.SetActive(false);
     }
 }
