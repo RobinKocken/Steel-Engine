@@ -36,7 +36,6 @@ public class SelectionManager : MonoBehaviour
     //Selecting the Object for further input
     void Select(GameObject target)
     {
-        Debug.Log("Selecting Object");
         if (target == selectedObj)
         {
             return;
