@@ -28,11 +28,12 @@ public class InventoryManager : MonoBehaviour
 
     [Header("Mouse")]
     public Transform cursor;
+    public Image iconHolder;
+    public TMP_Text amountTextHolder;
     public Vector3 offset;
     public Item itemHolder;
     public int amountHolder;
-    public Image iconHolder;
-    public TMP_Text amountTextHolder;
+    public bool cursorActive;
 
 
     void Start()
@@ -43,7 +44,18 @@ public class InventoryManager : MonoBehaviour
 
     void Update()
     {
+        if(cursorActive)
+        {
+            Vector3 worldPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
+            cursor.position = Input.mousePosition + offset;
+        }
+    }
 
+    void Cursor()
+    {
+        cursorActive = !cursorActive;
+        iconHolder.sprite = itemHolder.icon;
+        cursor.gameObject.SetActive(cursorActive);
     }
 
     void InitializeInventory()
@@ -94,7 +106,7 @@ public class InventoryManager : MonoBehaviour
                         // Full Amount is Added to Slot with the Same Item //
                         if(itemAmount <= currentSlot.item.maxStack - currentSlot.amount)
                         {
-                            currentSlot.amount += itemAmount;
+                            currentSlot.AddAmountToItem = itemAmount;
                             return;
                         }
                         // Partial Amount is Add to Slot because Max Stack is archieved // 
@@ -117,8 +129,8 @@ public class InventoryManager : MonoBehaviour
             {
                 if(currentSlot.item == null)
                 {
-                    currentSlot.item = item;
-                    currentSlot.amount = itemAmount;
+                    currentSlot.SetItem(item, itemAmount);
+
                     return;
                 }
             }
@@ -154,12 +166,14 @@ public class InventoryManager : MonoBehaviour
             if(currentSlot.item != null && itemHolder == null)
             {
                 SetItemInCursorHolder(currentSlot.item, currentSlot.amount);
+                Cursor();
                 currentSlot.DeleteItem();
             }
             // Set Item in Selected Slot and Empty Cursor //
             else if(currentSlot.item == null && itemHolder != null)
             {
                 currentSlot.SetItem(itemHolder, amountHolder);
+                Cursor();
                 DeleteItemInCursorHolder();
             }
             // Add an amount to an Item from the same Type //
@@ -171,6 +185,7 @@ public class InventoryManager : MonoBehaviour
                     if(amountHolder <= currentSlot.item.maxStack - currentSlot.amount)
                     {
                         currentSlot.AddAmountToItem = amountHolder;
+                        Cursor();
                         DeleteItemInCursorHolder();
                     }
                     // Only the Max Avaible Amount is Added to Selected Slot //

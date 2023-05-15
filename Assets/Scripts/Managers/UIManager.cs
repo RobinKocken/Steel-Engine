@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public GameObject ui;
     public GameObject inventoryUI;
     public GameObject buildUI;
 
@@ -32,6 +33,7 @@ public class UIManager : MonoBehaviour
             uiActive = !uiActive;
             inventoryActive = !inventoryActive;
 
+            ui.SetActive(uiActive);
             inventoryUI.SetActive(inventoryActive);
         }
     }
@@ -44,6 +46,7 @@ public class UIManager : MonoBehaviour
             uiActive = !uiActive;
             buildActive = !buildActive;
 
+            ui.SetActive(uiActive);
             buildUI.SetActive(buildActive);
         }
     }
@@ -57,7 +60,7 @@ public class UIManager : MonoBehaviour
     {
         if(!uiIsReady)
         {
-            if(inventoryInput == 0 && inventoryActive && !buildActive || buildInput == 0 && buildActive && !inventoryActive || inventoryInput == 0 && buildInput == 0 && !uiIsReady)
+            if(inventoryInput == 0 && buildInput == 0 && !uiIsReady)
             {
                 uiIsReady = true;
             }

@@ -76,7 +76,11 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
-                buildManager.BuildInput();
+                // Delete Later //
+                if(buildManager != null)
+                {
+                    buildManager.BuildInput();
+                }
                 break;
             }
             case PlayerState.ui:

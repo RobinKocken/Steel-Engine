@@ -27,8 +27,11 @@ public class CameraController : MonoBehaviour
     // FPS Camera Player //
     void FPSCamera()
     {
-        mouseX = Input.GetAxis("Mouse X") * Options.playerMouseSens * 100 * Time.deltaTime;
-        mouseY = Input.GetAxis("Mouse Y") * Options.playerMouseSens * 100 * Time.deltaTime;
+        //mouseX = Input.GetAxis("Mouse X") * Options.playerMouseSens * 100 * Time.deltaTime;
+        //mouseY = Input.GetAxis("Mouse Y") * Options.playerMouseSens * 100 * Time.deltaTime;        
+        
+        mouseX = Input.GetAxis("Mouse X") * Options.playerMouseSens;
+        mouseY = Input.GetAxis("Mouse Y") * Options.playerMouseSens;
 
         xRotation += -mouseY;
         yRotation += mouseX;

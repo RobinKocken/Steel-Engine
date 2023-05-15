@@ -9,9 +9,12 @@ public class Options : MonoBehaviour
     public static float playerMouseSens;
     public float mouseSens;
 
+    public Texture2D tex;
+
     void Start()
     {
         InitializeKeys();
+        Cursor.SetCursor(null, Vector2.zero, CursorMode.Auto);
     }
 
     void Update()
