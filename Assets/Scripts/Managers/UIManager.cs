@@ -1,5 +1,7 @@
+using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class UIManager : MonoBehaviour
@@ -18,6 +20,15 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         InitializeUI();
+    }
+
+    public TMP_Text fpsCounter;
+
+    void Update()
+    {
+        float fpsRaw = 1 / Time.deltaTime;
+        int fps = (int)fpsRaw;
+        fpsCounter.text = fps.ToString();
     }
 
     void InitializeUI()
