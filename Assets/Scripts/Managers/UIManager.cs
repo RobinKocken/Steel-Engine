@@ -23,12 +23,18 @@ public class UIManager : MonoBehaviour
     }
 
     public TMP_Text fpsCounter;
+    float fps;
+    float updateTimer = 0.2f;
 
     void Update()
     {
-        float fpsRaw = 1 / Time.deltaTime;
-        int fps = (int)fpsRaw;
-        fpsCounter.text = fps.ToString();
+        updateTimer -= Time.deltaTime;
+        if(updateTimer <= 0)
+        {
+            fps = 1 / Time.unscaledDeltaTime;
+            fpsCounter.text = $"FPS: {Mathf.Round(fps)}";
+            updateTimer = 0.2f;
+        }
     }
 
     void InitializeUI()
