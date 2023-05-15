@@ -12,7 +12,7 @@ public class SelectionManager : MonoBehaviour
 
     private void Start()
     {
-        gameManager =  GetComponent<BuildManager>().gameManager;
+        gameManager =  gameObject.GetComponent<BuildManager>().gameManager;
     }
     private void Update()
     {
@@ -22,13 +22,13 @@ public class SelectionManager : MonoBehaviour
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 1000))
             {
-                if(hit.collider.gameObject.CompareTag("Building"))
+                if(hit.collider.gameObject.CompareTag("Building") && gameObject.GetComponent<BuildManager>().pendingObj == null)
                 {
                     Select(hit.collider.gameObject);
                 }
             }
         }
-        if(Input.GetMouseButtonDown(1))
+        if(Input.GetMouseButtonDown(1) && selectedObj != null)
         {
             Deselect();
         }
@@ -41,24 +41,30 @@ public class SelectionManager : MonoBehaviour
         {
             return;
         }
-        if (selectedObj == null)
-        {
-            return;
-        }
         if (selectedObj != null)
         {
             Deselect();
         }
+        
         Outline outline = target.GetComponent<Outline>();
         if(outline == null)
         {
             target.AddComponent<Outline>();
+            outline = target.GetComponent<Outline>();
+            outline.enabled = true;
+            objText.text = target.name;
+            selectedObj = target;
+            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(0.99f, 0.99f, 0.99f);
+            selectUI.SetActive(true);
         }
         else
         {
             outline.enabled = true;
             objText.text = target.name;
             selectedObj = target;
+            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = true;
+            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(0.99f, 0.99f, 0.99f);
             selectUI.SetActive(true);
         }
     }
@@ -72,6 +78,8 @@ public class SelectionManager : MonoBehaviour
     {
         if(selectedObj != null)
         {
+            selectedObj.gameObject.GetComponent<BoxCollider>().isTrigger = false;
+            selectedObj.gameObject.GetComponent<BoxCollider>().size = new Vector3(1, 1, 1);
             selectedObj.GetComponent<Outline>().enabled = false;
             selectedObj = null;
             selectUI.SetActive(false);

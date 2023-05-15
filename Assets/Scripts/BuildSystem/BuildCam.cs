@@ -16,7 +16,7 @@ public class BuildCam : MonoBehaviour
     private void Update()
     {
         // Rotate the camera with A and D keys
-        float rotation = Input.GetAxis("Horizontal") * sensitivity;
+        float rotation = Input.GetAxis("Horizontal") * -sensitivity;
         yaw += rotation;
 
         // Zoom in and out with W and S keys
