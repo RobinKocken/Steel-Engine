@@ -10,18 +10,27 @@ public class UIManager : MonoBehaviour
     public bool uiIsReady;
 
     public bool uiActive;
-
     public bool inventoryActive;
     public bool buildActive;
-    public bool optionsActive;    
+    public bool optionsActive;
+
+    void Start()
+    {
+        InitializeUI();
+    }
+
+    void InitializeUI()
+    {
+        uiIsReady = true;
+    }
 
     public void Inventory()
     {
-        if(!uiActive)
+        if(!uiActive || uiActive && inventoryActive)
         {
             uiIsReady = false;
             uiActive = !uiActive;
-            //inventoryActive = !inventoryActive;
+            inventoryActive = !inventoryActive;
 
             inventoryUI.SetActive(inventoryActive);
         }
@@ -29,11 +38,11 @@ public class UIManager : MonoBehaviour
 
     public void Build()
     {
-        if(!uiActive)
+        if(!uiActive || uiActive && buildActive)
         {
             uiIsReady = false;
             uiActive = !uiActive;
-            //buildActive = !buildActive;
+            buildActive = !buildActive;
 
             buildUI.SetActive(buildActive);
         }
@@ -44,11 +53,14 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ResetUIInput(int input)
+    public void ResetUIInput(int inventoryInput, int buildInput)
     {
-        if(input == 0)
+        if(!uiIsReady)
         {
-            uiIsReady = true;
+            if(inventoryInput == 0 && inventoryActive && !buildActive || buildInput == 0 && buildActive && !inventoryActive || inventoryInput == 0 && buildInput == 0 && !uiIsReady)
+            {
+                uiIsReady = true;
+            }
         }
     }
 }

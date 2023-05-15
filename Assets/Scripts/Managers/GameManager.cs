@@ -41,7 +41,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        CursorModeLocked();
     }
 
     public string testKey;
@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
-                buildManager.BuildInput();
+                //buildManager.BuildInput();
                 break;
             }
             case PlayerState.ui:
@@ -88,18 +88,15 @@ public class GameManager : MonoBehaviour
 
     void SwitchState()
     {
-        if(!uiManager.uiIsReady)
-        {
-            uiManager.ResetUIInput(iInventory);
-        }
+        uiManager.ResetUIInput(iInventory, iBuild);
 
-        if(iInventory == 1 && uiManager.uiIsReady) 
+        if(iInventory == 1 && uiManager.uiIsReady)
         {
             switch(state)
             {
                 case PlayerState.player:
                 {
-                    CursorModeLocked();
+                    CursorModeConfined();
                     ResetPlayerMovement();
 
                     state = PlayerState.ui;
@@ -107,7 +104,7 @@ public class GameManager : MonoBehaviour
                 }
                 case PlayerState.ui:
                 {
-                    CursorModeConfined();
+                    CursorModeLocked();
 
                     state = PlayerState.player;
                     break;
@@ -123,17 +120,17 @@ public class GameManager : MonoBehaviour
             {
                 case PlayerState.player:
                 {
-                    CursorModeLocked();
+                    CursorModeConfined();
                     ResetPlayerMovement();
-                    SwitchCamera(playerCamera, buildCamera);
+                    SwitchCamera(buildCamera, playerCamera);
 
                     state = PlayerState.build;
                     break;
                 }
                 case PlayerState.build:
                 {
-                    CursorModeConfined();
-                    SwitchCamera(buildCamera, playerCamera);
+                    CursorModeLocked();
+                    SwitchCamera(playerCamera, buildCamera);
 
                     state = PlayerState.player;
                     break;

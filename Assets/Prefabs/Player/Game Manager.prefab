@@ -74,4 +74,5 @@ MonoBehaviour:
     jumpKey: 32
     inventorykey: 101
     interactionKey: 102
+    buildKey: 98
   mouseSens: 1
