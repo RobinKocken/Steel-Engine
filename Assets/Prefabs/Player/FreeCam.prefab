@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4642579617711423678}
   - component: {fileID: 4642579617711423677}
   - component: {fileID: 4642579617711423672}
-  - component: {fileID: 6548963484781722277}
+  - component: {fileID: 3486279076953657191}
   m_Layer: 0
   m_Name: FreeCam
   m_TagString: Untagged
@@ -211,7 +211,7 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
---- !u!114 &6548963484781722277
+--- !u!114 &3486279076953657191
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -220,13 +220,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4642579617711423676}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9f4e13cfb28829149bf7bce2c6bb65c5, type: 3}
+  m_Script: {fileID: 11500000, guid: b672166bd48e6a946b406bb48b4ec7e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1
   zoomSpeed: 10
   minDistance: 2
-  maxDistance: 100
+  maxDistance: 50
   targetOffset: {x: 0, y: 0, z: 0}
   yaw: 0
   pitch: 34.75

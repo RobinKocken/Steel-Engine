@@ -37,7 +37,7 @@ public class BuildManager : MonoBehaviour
         pendingObj.transform.Rotate(Vector3.up, rotateAmount);
     }
 
-    public void Temp()
+    public void Update()
     {
         if(pendingObj != null)
         {
