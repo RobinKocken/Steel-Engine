@@ -10,7 +10,7 @@ public class GameManager : MonoBehaviour
     public Options options;
     public UIManager uiManager;
 
-    public GameObject buildManager;
+    public BuildManager buildManager;
 
     public GameObject playerCamera;
     public GameObject buildCamera;
@@ -31,6 +31,8 @@ public class GameManager : MonoBehaviour
     int iInventory;
     // Input Value Interaction //
     int iInteraction;
+
+    int iBuild;
 
     void Awake()
     {
@@ -63,12 +65,9 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.player:
             {
-                CursorModeLocked();
-                SwitchCamera(playerCamera, buildCamera);
                 playerController.GetKeyInput(iForward, iBackwards, iLeft, iRight, iJump);
                 raycastController.GetKeyInput(iInteraction);
 
-                buildManager.SetActive(false);
                 break;
             }
             case PlayerState.station:
@@ -77,14 +76,11 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
-                CursorModeConfined();
-                SwitchCamera(buildCamera, playerCamera);
-                buildManager.SetActive(true);
+                buildManager.BuildInput();
                 break;
             }
             case PlayerState.ui:
             {
-                CursorModeConfined();
                 break;
             }
         }
@@ -92,7 +88,10 @@ public class GameManager : MonoBehaviour
 
     void SwitchState()
     {
-        uiManager.ResetUIInput(iInventory);
+        if(!uiManager.uiIsReady)
+        {
+            uiManager.ResetUIInput(iInventory);
+        }
 
         if(iInventory == 1 && uiManager.uiIsReady) 
         {
@@ -100,19 +99,49 @@ public class GameManager : MonoBehaviour
             {
                 case PlayerState.player:
                 {
+                    CursorModeLocked();
                     ResetPlayerMovement();
+
                     state = PlayerState.ui;
                     break;
                 }
                 case PlayerState.ui:
                 {
+                    CursorModeConfined();
+
                     state = PlayerState.player;
                     break;
                 }
             }
 
             uiManager.Inventory();
-        }        
+        }
+        
+        if(iBuild == 1 && uiManager.uiIsReady)
+        {
+            switch(state)
+            {
+                case PlayerState.player:
+                {
+                    CursorModeLocked();
+                    ResetPlayerMovement();
+                    SwitchCamera(playerCamera, buildCamera);
+
+                    state = PlayerState.build;
+                    break;
+                }
+                case PlayerState.build:
+                {
+                    CursorModeConfined();
+                    SwitchCamera(buildCamera, playerCamera);
+
+                    state = PlayerState.player;
+                    break;
+                }                
+            }
+
+            uiManager.Build();
+        }
     }
 
     void SwitchCamera(GameObject camEnable, GameObject camDisable)
@@ -186,6 +215,12 @@ public class GameManager : MonoBehaviour
             iInteraction = 1;
         else if(Input.GetKeyUp(Keys.interaction))
             iInteraction = 0;
+
+        // Build Key Player //
+        if(Input.GetKeyDown(Keys.build))
+            iBuild = 1;
+        else if(Input.GetKeyUp(Keys.build))
+            iBuild = 0;
 
         return (iForward, iBackwards, iLeft, iRight, iJump, iInventory, iInteraction);
     }

@@ -34,6 +34,9 @@ public class Options : MonoBehaviour
 
         // Interaction Key assigned //
         Keys.interaction = keys.interactionKey;
+
+        // Build Key assigned //
+        Keys.build = keys.buildKey;
     }
 
     //void OnGUI()
@@ -73,4 +76,8 @@ public class Keys
     [Header("Interaction Key")]
     public KeyCode interactionKey;
     public static KeyCode interaction;
+
+    [Header("Build")]
+    public KeyCode buildKey;
+    public static KeyCode build;
 }

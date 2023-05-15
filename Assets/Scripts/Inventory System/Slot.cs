@@ -32,6 +32,11 @@ public class Slot : MonoBehaviour
         }        
     }
 
+    public void SelectButton()
+    {
+        inventoryManager.PickUpDropItems(slotID);
+    }
+
     public void SelectSlot()
     {
         inventoryManager.PickUpDropItems(slotID);

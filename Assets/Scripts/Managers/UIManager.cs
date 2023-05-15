@@ -5,20 +5,38 @@ using UnityEngine;
 public class UIManager : MonoBehaviour
 {
     public GameObject inventoryUI;
+    public GameObject buildUI;
 
     public bool uiIsReady;
 
     public bool uiActive;
+
     public bool inventoryActive;
+    public bool buildActive;
     public bool optionsActive;    
 
     public void Inventory()
     {
-        uiIsReady = false;
-        uiActive = !uiActive;
-        inventoryActive = !inventoryActive;
+        if(!uiActive)
+        {
+            uiIsReady = false;
+            uiActive = !uiActive;
+            //inventoryActive = !inventoryActive;
 
-        inventoryUI.SetActive(inventoryActive);
+            inventoryUI.SetActive(inventoryActive);
+        }
+    }
+
+    public void Build()
+    {
+        if(!uiActive)
+        {
+            uiIsReady = false;
+            uiActive = !uiActive;
+            //buildActive = !buildActive;
+
+            buildUI.SetActive(buildActive);
+        }
     }
 
     public void OptionsUI()

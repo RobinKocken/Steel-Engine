@@ -24,7 +24,6 @@ public class BuildManager : MonoBehaviour
     private Vector3 pos;
 
     private RaycastHit hit;
-    
 
     public void SelectObject(int index)
     {
@@ -37,7 +36,7 @@ public class BuildManager : MonoBehaviour
         pendingObj.transform.Rotate(Vector3.up, rotateAmount);
     }
 
-    public void Update()
+    public void BuildInput()
     {
         if(pendingObj != null)
         {
