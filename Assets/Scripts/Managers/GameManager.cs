@@ -76,7 +76,7 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.build:
             {
-                //buildManager.BuildInput();
+                buildManager.BuildInput();
                 break;
             }
             case PlayerState.ui:
