@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
                 playerController.GetKeyInput(iForward, iBackwards, iLeft, iRight, iJump);
                 raycastController.GetKeyInput(iInteraction);
 
-                //buildManager.SetActive(false);
+                buildManager.SetActive(false);
                 break;
             }
             case PlayerState.station:
