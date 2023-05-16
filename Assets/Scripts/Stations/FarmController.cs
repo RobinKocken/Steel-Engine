@@ -20,6 +20,11 @@ public class FarmController : MonoBehaviour
         }
     }
 
+    public void PlantCrop(int _cropToGrow)
+    {
+        cropToGrow = _cropToGrow;
+        GrowCrop();
+    }
     private void GrowCrop()
     {
         currentCrop = crops[cropToGrow];
