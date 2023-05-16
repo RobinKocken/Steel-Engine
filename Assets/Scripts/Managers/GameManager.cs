@@ -27,12 +27,8 @@ public class GameManager : MonoBehaviour
 
     // Input Value Player Movement //
     int iForward, iBackwards, iLeft, iRight, iJump;
-    // Input Value Inventory //
-    int iInventory;
-    // Input Value Interaction //
-    int iInteraction;
-
-    int iBuild;
+    // Input Value Inventory, Interaction, build //
+    int iInventory, iInteraction, iBuild;
 
     void Awake()
     {
@@ -49,8 +45,7 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         CheckKeyInput();
-        SwitchState();
-        State();
+        SwitchStatePlayer();
 
         if(Input.anyKeyDown)
         {
@@ -59,7 +54,7 @@ public class GameManager : MonoBehaviour
     }
 
     // State of the Player //
-    void State()
+    void StatePlayer()
     {
         switch(state)
         {
@@ -90,7 +85,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    void SwitchState()
+    void SwitchStatePlayer()
     {
         uiManager.ResetUIInput(iInventory, iBuild);
 
@@ -101,7 +96,7 @@ public class GameManager : MonoBehaviour
                 case PlayerState.player:
                 {
                     CursorModeConfined();
-                    ResetPlayerMovement();
+                    FreezePlayerMovement();
 
                     state = PlayerState.ui;
                     break;
@@ -125,7 +120,7 @@ public class GameManager : MonoBehaviour
                 case PlayerState.player:
                 {
                     CursorModeConfined();
-                    ResetPlayerMovement();
+                    FreezePlayerMovement();
                     SwitchCamera(buildCamera, playerCamera);
 
                     state = PlayerState.build;
@@ -143,6 +138,8 @@ public class GameManager : MonoBehaviour
 
             uiManager.Build();
         }
+
+        StatePlayer();
     }
 
     void SwitchCamera(GameObject camEnable, GameObject camDisable)
@@ -167,7 +164,7 @@ public class GameManager : MonoBehaviour
         Options.playerMouseSens = 0;
     }
 
-    void ResetPlayerMovement()
+    void FreezePlayerMovement()
     {
         playerController.GetKeyInput(0, 0, 0, 0, 0);
     }

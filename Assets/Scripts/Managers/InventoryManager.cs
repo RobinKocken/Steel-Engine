@@ -42,11 +42,15 @@ public class InventoryManager : MonoBehaviour
         SetSlotID();
     }
 
-    void Update()
+    void InventoryUpdate()
+    {
+        MouseItemTracking();
+    }
+
+    void MouseItemTracking()
     {
         if(cursorActive)
         {
-            Vector3 worldPos = Camera.main.ScreenToViewportPoint(Input.mousePosition);
             cursor.position = Input.mousePosition + offset;
         }
     }
@@ -91,7 +95,6 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Add Funtion If Inventory is Full //
-    // Add Function If Slot got filled and there is still an amount to set in Inventory then repeat Function //
     public void AddItem(Item item, int itemAmount)
     { 
         // Check if Item can be added to already existing Slot with the same Item //

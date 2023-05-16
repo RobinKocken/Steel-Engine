@@ -6,6 +6,14 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public enum UIState
+    {
+        inventory,
+        option,
+        map,
+    }
+    public UIState uiState;
+
     public GameObject ui;
     public GameObject inventoryUI;
     public GameObject buildUI;
@@ -35,6 +43,31 @@ public class UIManager : MonoBehaviour
             fpsCounter.text = $"FPS: {Mathf.Round(fps)}";
             updateTimer = 0.2f;
         }
+    }
+
+    void StateUI()
+    {
+        switch(uiState)
+        {
+            case UIState.inventory:
+            {
+                break;
+            }
+            case UIState.map:
+            {
+                break;
+            }
+            case UIState.option:
+            {
+                break;
+            }
+        }
+    }
+
+    void SwitchStateUI()
+    {
+
+        StateUI();
     }
 
     void InitializeUI()
