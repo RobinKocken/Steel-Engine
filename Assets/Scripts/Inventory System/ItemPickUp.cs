@@ -8,7 +8,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
     public int currentAmount;
     public bool destroyThisObject;
 
-    public void Interact(InventoryManager inventoryManager)
+    public void Interact(GameManager gameManager,InventoryManager inventoryManager)
     {
         if(inventoryManager != null)
             PickUp(inventoryManager);

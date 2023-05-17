@@ -52,7 +52,7 @@ MonoBehaviour:
   buildManager: {fileID: 0}
   playerCamera: {fileID: 0}
   buildCamera: {fileID: 0}
-  state: 0
+  playerState: 0
   testKey: 
 --- !u!114 &4963027607019267320
 MonoBehaviour:

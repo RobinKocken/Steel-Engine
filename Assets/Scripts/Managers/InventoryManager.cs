@@ -43,7 +43,7 @@ public class InventoryManager : MonoBehaviour
         SetSlotID();
     }
 
-    void InventoryUpdate()
+    public void InventoryUpdate()
     {
         MouseItemTracking();
     }
@@ -183,7 +183,7 @@ public class InventoryManager : MonoBehaviour
             // Add an amount to an Item from the same Type //
             else if(currentSlot.item != null && itemHolder != null)
             {
-                if(currentSlot.item.itemName == itemHolder.itemName)
+                if(currentSlot.item.itemName == itemHolder.itemName && currentSlot.amount != currentSlot.item.maxStack)
                 {
                     // Full Amount is Added to Selected Slot //
                     if(amountHolder <= currentSlot.item.maxStack - currentSlot.amount)
@@ -192,14 +192,15 @@ public class InventoryManager : MonoBehaviour
                         Cursor();
                         DeleteItemInCursorHolder();
                     }
-                    // Only the Max Avaible Amount is Added to Selected Slot //
-                    else if(amountHolder > currentSlot.item.maxStack - currentSlot.amount)
+                    // Only the Max Avaible Amount is Added to Selected Slot //                    
+                    if(amountHolder > currentSlot.item.maxStack - currentSlot.amount)
                     {
                         int maxAmount = currentSlot.item.maxStack - currentSlot.amount;
 
                         SubAmountCursor = maxAmount;
                         currentSlot.AddAmountToItem = amountHolder;
                     }
+                    
                 }
             }
         }

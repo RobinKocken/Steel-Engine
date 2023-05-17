@@ -197,7 +197,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 6961967188029615509}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6867828233734283010}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Test
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Inv
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &2525218387063869330
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,7 +225,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &4597621440404539769
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1062,11 +1074,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8826d785fdeb46f43acf6fdfdb49306f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  uiState: 0
+  inventoryManager: {fileID: 6867828233734283009}
+  uiState: 1
   ui: {fileID: 2525218387063869330}
   inventoryUI: {fileID: 6867828234428501880}
   buildUI: {fileID: 6867828234085030866}
-  uiIsReady: 0
   uiActive: 0
   inventoryActive: 0
   buildActive: 0
@@ -1084,7 +1096,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7afabe50d816a94285f25bdd77abd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemType: 0
+  itemName: 0
   inventorySlotHolder: {fileID: 6867828234553886375}
   hotbarSlotHolder: {fileID: 6867828234232073601}
   slots: []
@@ -1224,7 +1236,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &6867828234428501881
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1685,7 +1697,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 3435546372053515077}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6867828233734283010}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Test
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Map
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1 &8535881905770420550
 GameObject:
   m_ObjectHideFlags: 0
@@ -1807,7 +1831,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 855194201634872302}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6867828233734283010}
+        m_TargetAssemblyTypeName: UIManager, Assembly-CSharp
+        m_MethodName: Test
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Quest
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &920758468124724117
 PrefabInstance:
   m_ObjectHideFlags: 0

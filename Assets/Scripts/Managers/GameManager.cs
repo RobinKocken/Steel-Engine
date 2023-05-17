@@ -1,11 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class GameManager : MonoBehaviour
 {
     public PlayerController playerController;
     public RaycastController raycastController;
+    public InventoryManager inventoryManager;
+
 
     public Options options;
     public UIManager uiManager;
@@ -21,14 +24,10 @@ public class GameManager : MonoBehaviour
         player,
         station,
         build,
-        ui,
+        internalUI,
+        externalUI,
     }
-    public PlayerState state;
-
-    // Input Value Player Movement //
-    int iForward, iBackwards, iLeft, iRight, iJump;
-    // Input Value Inventory, Interaction, build //
-    int iInventory, iInteraction, iBuild;
+    public PlayerState playerState;
 
     void Awake()
     {
@@ -44,8 +43,8 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        CheckKeyInput();
-        SwitchStatePlayer();
+        GetSwitchStateKeyInput(Keys.inventory, Keys.inventory, Keys.inventory, Keys.inventory, Keys.build, Keys.interaction);
+        StatePlayer();
 
         if(Input.anyKeyDown)
         {
@@ -56,13 +55,12 @@ public class GameManager : MonoBehaviour
     // State of the Player //
     void StatePlayer()
     {
-        switch(state)
+        switch(playerState)
         {
             case PlayerState.player:
             {
-                playerController.GetKeyInput(iForward, iBackwards, iLeft, iRight, iJump);
-                raycastController.GetKeyInput(iInteraction);
-
+                playerController.GetPlayerKeyInput(Keys.forward, Keys.backwards, Keys.left, Keys.right, Keys.jump);
+                raycastController.GetInteractionKeyInput(Keys.interaction);
                 break;
             }
             case PlayerState.station:
@@ -78,68 +76,108 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             }
-            case PlayerState.ui:
+            case PlayerState.internalUI:
+            {
+                uiManager.StateUI();
+                break;
+            }
+            case PlayerState.externalUI:
             {
                 break;
             }
         }
     }
 
-    void SwitchStatePlayer()
+    void GetSwitchStateKeyInput(KeyCode quests, KeyCode kInventory, KeyCode kMap, KeyCode kOptions, KeyCode kBuild, KeyCode kInteraction)
     {
-        uiManager.ResetUIInput(iInventory, iBuild);
-
-        if(iInventory == 1 && uiManager.uiIsReady)
+        // That should be cleaner //
+        if(Input.GetKeyDown(quests) || Input.GetKeyDown(kInventory) || Input.GetKeyDown(kMap) || Input.GetKeyDown(kOptions))
         {
-            switch(state)
+            switch(playerState)
             {
                 case PlayerState.player:
                 {
-                    CursorModeConfined();
-                    FreezePlayerMovement();
-
-                    state = PlayerState.ui;
+                    SwitchStatePlayer(PlayerState.internalUI);
                     break;
                 }
-                case PlayerState.ui:
+                case PlayerState.internalUI:
                 {
-                    CursorModeLocked();
-
-                    state = PlayerState.player;
+                    SwitchStatePlayer(PlayerState.player);
                     break;
                 }
             }
-
-            uiManager.Inventory();
         }
-        
-        if(iBuild == 1 && uiManager.uiIsReady)
+
+        if(Input.GetKeyDown(kBuild))
         {
-            switch(state)
+            switch(playerState)
             {
                 case PlayerState.player:
                 {
-                    CursorModeConfined();
-                    FreezePlayerMovement();
-                    SwitchCamera(buildCamera, playerCamera);
-
-                    state = PlayerState.build;
+                    SwitchStatePlayer(PlayerState.build);
                     break;
                 }
                 case PlayerState.build:
                 {
-                    CursorModeLocked();
-                    SwitchCamera(playerCamera, buildCamera);
-
-                    state = PlayerState.player;
+                    SwitchStatePlayer(PlayerState.player);
                     break;
-                }                
+                }
             }
-
-            uiManager.Build();
         }
 
-        StatePlayer();
+        if(raycastController.GetCanInteract == true)
+        {
+            if(Input.GetKeyDown(kInteraction))
+            {
+                //raycastController.Interactable.Interact(GameManager, inventoryManager);
+
+            }
+
+        }
+    }
+
+    // Make from this a cleaner Version //
+    void SwitchStatePlayer(PlayerState pPlayerState)
+    {
+        playerState = pPlayerState;
+
+        switch(playerState)
+        {
+            case PlayerState.player:
+            {
+                CursorModeLocked();
+                uiManager.Inventory(false);
+                SwitchCamera(playerCamera, buildCamera);
+                break;
+            }
+            case PlayerState.station:
+            {
+                CursorModeLocked();
+                playerController.StopMovement();
+                break;
+            }
+            case PlayerState.build:
+            {
+                CursorModeConfined();
+                playerController.StopMovement();
+                SwitchCamera(buildCamera, playerCamera);
+                break;
+            }
+            case PlayerState.internalUI:
+            {
+                CursorModeConfined();
+                playerController.StopMovement();
+                uiManager.Inventory(true);
+                break;
+            }
+            case PlayerState.externalUI:
+            {
+                CursorModeConfined();
+                playerController.StopMovement();
+
+                break;
+            }
+        }
     }
 
     void SwitchCamera(GameObject camEnable, GameObject camDisable)
@@ -162,64 +200,5 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Confined;
 
         Options.playerMouseSens = 0;
-    }
-
-    void FreezePlayerMovement()
-    {
-        playerController.GetKeyInput(0, 0, 0, 0, 0);
-    }
-
-    // Getting Input from Keyboard //
-    (int tForward, int tBackwards, int tLeft, int tRight, int tJump, int tInventory, int tInteraction) CheckKeyInput()
-    {
-        // Forward Key PLayer //
-        if(Input.GetKeyDown(Keys.forward))
-            iForward = 1;             
-        else if(Input.GetKeyUp(Keys.forward))
-            iForward = 0;         
-
-        // Backwards Key Player //
-        if(Input.GetKeyDown(Keys.backwards))
-            iBackwards = 1;
-        else if(Input.GetKeyUp(Keys.backwards))
-            iBackwards = 0;
-
-        // Left Key Player //
-        if(Input.GetKeyDown(Keys.left))
-            iLeft = 1;
-        else if(Input.GetKeyUp(Keys.left))
-            iLeft = 0;
-
-        // Right Key Player //
-        if(Input.GetKeyDown(Keys.right))
-            iRight = 1;
-        else if(Input.GetKeyUp(Keys.right))
-            iRight = 0;
-
-        // Jump Key Player
-        if(Input.GetKeyDown(Keys.jump))
-            iJump = 1;
-        else if(Input.GetKeyUp(Keys.jump))
-            iJump = 0;
-
-        // Inventory Key Player //
-        if(Input.GetKeyDown(Keys.inventory))
-            iInventory = 1;
-        else if(Input.GetKeyUp(Keys.inventory))
-            iInventory = 0;
-
-        // Interaction Key Player //
-        if(Input.GetKeyDown(Keys.interaction))
-            iInteraction = 1;
-        else if(Input.GetKeyUp(Keys.interaction))
-            iInteraction = 0;
-
-        // Build Key Player //
-        if(Input.GetKeyDown(Keys.build))
-            iBuild = 1;
-        else if(Input.GetKeyUp(Keys.build))
-            iBuild = 0;
-
-        return (iForward, iBackwards, iLeft, iRight, iJump, iInventory, iInteraction);
     }
 }

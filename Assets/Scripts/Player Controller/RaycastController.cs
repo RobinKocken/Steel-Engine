@@ -4,59 +4,54 @@ using UnityEngine;
 
 public class RaycastController : MonoBehaviour
 {
+    public GameManager gameManager;
     public InventoryManager inventoryManager;
 
     public float rayDistance;
     public LayerMask layerMask;
 
-    // Input value for Interaction Key //
-    int kInteraction;
-    bool readyToInteract;
+    IInteractable iInteractable;
+    bool canInteract;
 
-    void Start()
+    public bool GetCanInteract
     {
-        
+        get
+        {
+            return canInteract;
+        }
     }
 
-    void Update()
+    public IInteractable Interactable
     {
-        CheckIfInteract();
-        PlayerRaycast();
+        get
+        {
+            return iInteractable;
+        }
     }
 
-    void PlayerRaycast()
+    public void GetInteractionKeyInput(KeyCode kInteraction)
+    {
+        PlayerRaycast(kInteraction);
+    }
+
+    void PlayerRaycast(KeyCode kInteraction)
     {
         Ray ray = new Ray(transform.position, transform.forward);
         Debug.DrawRay(transform.position, transform.forward * rayDistance, Color.red);
 
         if(Physics.Raycast(ray, out RaycastHit hit, rayDistance, layerMask))
         {
-            Debug.Log("Ray");
             if(hit.transform.TryGetComponent<IInteractable>(out IInteractable iInteractable))
             {
-                Debug.Log("Comp");
+                canInteract = true;
+                this.iInteractable = iInteractable;
+            }
 
-                if(kInteraction == 1 && readyToInteract)
-                {
-                    readyToInteract = false;
-
-                    Debug.Log("Interact");
-                    iInteractable.Interact(inventoryManager);
-                }
+            else
+            {
+                canInteract = false;
+                this.iInteractable = null;
             }
         }
-    }
-
-    void CheckIfInteract()
-    {
-        if(kInteraction == 0 && !readyToInteract)
-        {
-            readyToInteract = true;
-        }
-    }
-
-    public void GetKeyInput(int tInteraction)
-    {
-        kInteraction = tInteraction;
     }
 }

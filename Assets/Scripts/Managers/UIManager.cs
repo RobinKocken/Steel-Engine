@@ -6,19 +6,20 @@ using UnityEngine;
 
 public class UIManager : MonoBehaviour
 {
+    public InventoryManager inventoryManager;
+
     public enum UIState
     {
+        quests,
         inventory,
-        option,
         map,
+        option,
     }
     public UIState uiState;
 
     public GameObject ui;
     public GameObject inventoryUI;
     public GameObject buildUI;
-
-    public bool uiIsReady;
 
     public bool uiActive;
     public bool inventoryActive;
@@ -45,12 +46,17 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void StateUI()
+    public void StateUI()
     {
         switch(uiState)
         {
+            case UIState.quests:
+            {
+                break;
+            }
             case UIState.inventory:
             {
+                inventoryManager.InventoryUpdate();
                 break;
             }
             case UIState.map:
@@ -70,34 +76,37 @@ public class UIManager : MonoBehaviour
         StateUI();
     }
 
-    void InitializeUI()
+    public void GetUIInput()
     {
-        uiIsReady = true;
+
     }
 
-    public void Inventory()
+    void InitializeUI()
+    {
+        
+    }
+
+    public void Inventory(bool active)
     {
         if(!uiActive || uiActive && inventoryActive)
         {
-            uiIsReady = false;
-            uiActive = !uiActive;
-            inventoryActive = !inventoryActive;
+            uiActive = active;
+            inventoryActive = active;
 
-            ui.SetActive(uiActive);
-            inventoryUI.SetActive(inventoryActive);
+            ui.SetActive(active);
+            inventoryUI.SetActive(active);
         }
     }
 
-    public void Build()
+    public void Build(bool active)
     {
         if(!uiActive || uiActive && buildActive)
         {
-            uiIsReady = false;
-            uiActive = !uiActive;
-            buildActive = !buildActive;
+            uiActive = active;
+            buildActive = active;
 
-            ui.SetActive(uiActive);
-            buildUI.SetActive(buildActive);
+            ui.SetActive(active);
+            buildUI.SetActive(active);
         }
     }
 
@@ -106,14 +115,8 @@ public class UIManager : MonoBehaviour
 
     }
 
-    public void ResetUIInput(int inventoryInput, int buildInput)
+    public void ChangeUIStateButton(UIState uiState)
     {
-        if(!uiIsReady)
-        {
-            if(inventoryInput == 0 && buildInput == 0 && !uiIsReady)
-            {
-                uiIsReady = true;
-            }
-        }
+        
     }
 }

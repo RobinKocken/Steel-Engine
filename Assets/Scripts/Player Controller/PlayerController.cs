@@ -14,7 +14,7 @@ public class PlayerController : MonoBehaviour
     public float airMultiplier;
 
     // Input Value for Keys //
-    int kForward, kBackwards, kLeft, kRight, kJump;
+    int iForward, iBackwards, iLeft, iRight;
 
     // Value for direction of Player //
     int moveZ, moveX;
@@ -39,26 +39,43 @@ public class PlayerController : MonoBehaviour
         InitializePlayer();
     }
 
-    void Update()
-    {
-        CheckIfJump();
-        SpeedControl();
-        CalculateInputDirection();
-        CheckIfGrounded();
-    }
-
     void FixedUpdate()
     {
         Movement();
     }
 
-    public void GetKeyInput(int tForward, int tBackwards, int tLeft, int tRight, int tJump)
+    public void GetPlayerKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kJump)
     {
-        kForward = tForward;
-        kBackwards = -tBackwards;
-        kLeft = -tLeft;
-        kRight = tRight;
-        kJump = tJump;
+        if(Input.GetKeyDown(kForward))
+            iForward = 1;
+        else if(Input.GetKeyUp(kForward))
+            iForward = 0;
+
+        if(Input.GetKeyDown(kBackwards))
+            iBackwards = -1;
+        else if(Input.GetKeyUp(kBackwards))
+            iBackwards = 0;
+
+        if(Input.GetKeyDown(kLeft))
+            iLeft = -1;
+        else if(Input.GetKeyUp(kLeft))
+            iLeft = 0;
+
+        if(Input.GetKeyDown(kRight))
+            iRight = 1;
+        else if(Input.GetKeyUp(kRight))
+            iRight = 0;
+
+        CalculateInputDirection();
+        CheckIfJump(kJump);
+        SpeedControl();
+        CheckIfGrounded();
+    }
+
+    void CalculateInputDirection()
+    {
+        moveZ = iForward + iBackwards;
+        moveX = iLeft + iRight;
     }
 
     void Movement()
@@ -75,15 +92,15 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    void CheckIfJump()
+    void CheckIfJump(KeyCode jump)
     {
-        if(kJump == 1 && grounded && readyToJump)
+        if(Input.GetKeyDown(jump) && grounded && readyToJump)
         {
             Jump();
         }
-        else if(kJump == 0 && grounded && !readyToJump)
+        else if(grounded && !readyToJump)
         {
-            ResetJump();
+            readyToJump = true;
         }
     }
 
@@ -96,11 +113,6 @@ public class PlayerController : MonoBehaviour
         rb.AddForce(orientation.up * jumpForce, ForceMode.Impulse);
     }
 
-    void ResetJump()
-    {
-        readyToJump = true;
-    }
-
     void SpeedControl()
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
@@ -110,12 +122,6 @@ public class PlayerController : MonoBehaviour
             Vector3 limitedVel = flatVel.normalized * playerSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
-    }
-
-    void CalculateInputDirection()
-    {
-        moveZ = kForward + kBackwards;
-        moveX = kLeft + kRight;
     }
 
     void InitializePlayer()
@@ -135,6 +141,16 @@ public class PlayerController : MonoBehaviour
             grounded = false;
             rb.drag = 0;
         }
+    }
+
+    public void StopMovement()
+    {
+        moveZ = 0;
+        moveX = 0;
+        iForward = 0;
+        iBackwards = 0;
+        iLeft = 0;
+        iRight = 0;
     }
 
     private void OnDrawGizmosSelected()
