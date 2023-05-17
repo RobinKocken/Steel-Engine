@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class RaycastController : MonoBehaviour
 {
+    public InventoryManager inventoryManager;
+
     public float rayDistance;
     public LayerMask layerMask;
 
@@ -39,7 +41,7 @@ public class RaycastController : MonoBehaviour
                     readyToInteract = false;
 
                     Debug.Log("Interact");
-                    iInteractable.Interact();
+                    iInteractable.Interact(inventoryManager);
                 }
             }
         }

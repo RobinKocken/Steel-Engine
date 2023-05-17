@@ -4,19 +4,24 @@ using UnityEngine;
 
 public class ItemPickUp : MonoBehaviour, IInteractable
 {
-    public InventoryManager inventoryManager;
-
     public Item item;
     public int currentAmount;
+    public bool destroyThisObject;
 
-    public void Interact()
+    public void Interact(InventoryManager inventoryManager)
     {
-        PickUp();
+        if(inventoryManager != null)
+            PickUp(inventoryManager);
     }
 
-    void PickUp()
+    void PickUp(InventoryManager inventoryManager)
     {
         inventoryManager.AddItem(item, currentAmount);
-        Destroy(gameObject);
+
+        item = null;
+        currentAmount = 0;
+
+        if(destroyThisObject)
+            Destroy(gameObject);
     }
 }

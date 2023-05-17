@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2158.4453, g: 2262.0781, b: 3284.4766, a: 1}
+  m_IndirectSpecularColor: {r: 2187.041, g: 2335.2598, b: 3515.0312, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -130,6 +130,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3663772453147258122, guid: d620a98ddd688f64190ae584ef11e5b3,
+        type: 3}
+      propertyPath: inventoryManager
+      value: 
+      objectReference: {fileID: 6867828233638200785}
     - target: {fileID: 6561028067468424491, guid: d620a98ddd688f64190ae584ef11e5b3,
         type: 3}
       propertyPath: m_Name
@@ -959,10 +964,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6867828233131652706, guid: b064c28e59fa8ad479bedee6470a0160,
+    - target: {fileID: 2525218387063869330, guid: b064c28e59fa8ad479bedee6470a0160,
         type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6867828233131652707, guid: b064c28e59fa8ad479bedee6470a0160,
         type: 3}
@@ -1074,5 +1079,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 6867828234428501880, guid: b064c28e59fa8ad479bedee6470a0160,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b064c28e59fa8ad479bedee6470a0160, type: 3}
+--- !u!114 &6867828233638200785 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6867828233734283009, guid: b064c28e59fa8ad479bedee6470a0160,
+    type: 3}
+  m_PrefabInstance: {fileID: 6867828233638200784}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7afabe50d816a94285f25bdd77abd36, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -61,6 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02c0ec7d52f3804f98dc0f3f2793348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventoryManager: {fileID: 0}
   rayDistance: 3
   layerMask:
     serializedVersion: 2

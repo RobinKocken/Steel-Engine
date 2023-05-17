@@ -6,7 +6,7 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    public enum ItemType
+    public enum ItemName
     {
         none,
         wood,
@@ -14,7 +14,7 @@ public class InventoryManager : MonoBehaviour
         metal,
         corn,
     }
-    public ItemType itemType;
+    public ItemName itemName;
 
     // Parent Holder of the Slots //
     [Header("Slot Holder")]
@@ -105,7 +105,7 @@ public class InventoryManager : MonoBehaviour
             {
                 if(currentSlot.item != null)
                 {
-                    if(currentSlot.item.itemType == item.itemType)
+                    if(currentSlot.item.itemName == item.itemName)
                     {
                         // Full Amount is Added to Slot with the Same Item //
                         if(itemAmount <= currentSlot.item.maxStack - currentSlot.amount)
@@ -149,7 +149,7 @@ public class InventoryManager : MonoBehaviour
             {
                 if(currentSlot.item != null)
                 {
-                    if(currentSlot.item.itemType == item.itemType)
+                    if(currentSlot.item.itemName == item.itemName)
                     {
                         if(itemAmount <= currentSlot.amount)
                         {
@@ -183,7 +183,7 @@ public class InventoryManager : MonoBehaviour
             // Add an amount to an Item from the same Type //
             else if(currentSlot.item != null && itemHolder != null)
             {
-                if(currentSlot.item.itemType == itemHolder.itemType)
+                if(currentSlot.item.itemName == itemHolder.itemName)
                 {
                     // Full Amount is Added to Selected Slot //
                     if(amountHolder <= currentSlot.item.maxStack - currentSlot.amount)
