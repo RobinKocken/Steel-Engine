@@ -1,11 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class FarmController : MonoBehaviour
 {
-    [SerializeField] private Crop[] crops;
-    public Crop currentCrop;
+    [SerializeField] private CropData[] crops;
+    public CropData currentCrop;
     private int cropToGrow;
     public void OpenFarmUI()
     {
@@ -31,14 +32,16 @@ public class FarmController : MonoBehaviour
         StartCoroutine(GrowCrop(crops[cropToGrow]));
     }
 
-    public IEnumerator GrowCrop(Crop _cropToGrow)
+    public IEnumerator GrowCrop(CropData _cropToGrow)
     {
-        yield return new WaitForSeconds(_cropToGrow.timeToGrow / 4);
-        
-        if (_cropToGrow.GrowthStage == 3)
+        if (_cropToGrow.GrowthStage == _cropToGrow.GrowthStages.Length)
         {
             StopCoroutine(GrowCrop(null));
         }
+        yield return new WaitForSeconds(_cropToGrow.timeToGrow / 4);
+
+        _cropToGrow.GrowthStage++;
+        _cropToGrow.GetComponent<CropData>().Grow();
 
     }
 

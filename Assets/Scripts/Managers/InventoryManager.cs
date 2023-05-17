@@ -12,6 +12,7 @@ public class InventoryManager : MonoBehaviour
         wood,
         stone,
         metal,
+        corn,
     }
     public ItemType itemType;
 
