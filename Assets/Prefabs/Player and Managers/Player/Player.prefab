@@ -61,7 +61,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c02c0ec7d52f3804f98dc0f3f2793348, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
+  gameManager: {fileID: 0}
   rayDistance: 3
   layerMask:
     serializedVersion: 2
@@ -79,7 +79,7 @@ Camera:
   m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
-  m_FOVAxisMode: 1
+  m_FOVAxisMode: 0
   m_SensorSize: {x: 36, y: 24}
   m_LensShift: {x: 0, y: 0}
   m_FocalLength: 50
@@ -91,7 +91,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 10000
-  field of view: 58.715508
+  field of view: 90
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -293,12 +293,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1341215676613248772}
-  playerSpeed: 5
-  drag: 10
-  jumpForce: 12
-  airMultiplier: 0.6
-  sphereRadius: 0.42
-  rayDistance: 0.6
+  playerMaxSpeed: 0
+  playerMoveSpeed: 2.5
+  playerRunSpeed: 4.5
+  drag: 15
+  jumpForce: 10.5
+  airMultiplier: 0.1
+  sphereRadius: 0.48
+  rayDistance: 0.53
+  grounded: 0
 --- !u!33 &6561028067468424488
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -356,7 +359,7 @@ CapsuleCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6561028067468424491}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 0ae7b3102c01e904ea6b0ee6127ed20f, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   m_Radius: 0.5

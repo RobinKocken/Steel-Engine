@@ -45,15 +45,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be141a9946e40024fba4f1faea7094e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  keys:
+    forwardKey: 119
+    backwardsKey: 115
+    leftKey: 97
+    rightKey: 100
+    runKey: 304
+    jumpKey: 32
+    journalKey: 106
+    menuKey: 9
+    mapKey: 109
+    optionKey: 27
+    interactionKey: 102
+    buildKey: 98
+  playerState: 2
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
-  options: {fileID: 4963027607019267320}
+  optionManager: {fileID: 4963027607019267320}
   uiManager: {fileID: 0}
+  inventoryManager: {fileID: 0}
   buildManager: {fileID: 0}
   playerCamera: {fileID: 0}
   buildCamera: {fileID: 0}
-  playerState: 0
-  testKey: 
 --- !u!114 &4963027607019267320
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -66,14 +79,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3a88f438de27e6a48a9d314d62c806db, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-    forwardKey: 119
-    backwardsKey: 115
-    leftKey: 97
-    rightKey: 100
-    jumpKey: 32
-    inventorykey: 101
-    interactionKey: 102
-    buildKey: 98
   mouseSens: 1
   tex: {fileID: 2800000, guid: 423b42cd4fb045745bfe70645fad9b03, type: 3}

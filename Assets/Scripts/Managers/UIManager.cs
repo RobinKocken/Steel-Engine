@@ -1,34 +1,47 @@
-using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 public class UIManager : MonoBehaviour
 {
+    public GameManager gameManager;
+    public Keys keys;
     public InventoryManager inventoryManager;
 
-    public enum UIState
+    public enum InternalUIState
     {
-        quests,
+        none,
+        quest,
         inventory,
         map,
         option,
     }
-    public UIState uiState;
+    public InternalUIState internalUIState;
 
-    public GameObject ui;
-    public GameObject inventoryUI;
-    public GameObject buildUI;
+    public GameObject uiInternal;
+    public GameObject uiQuest;
+    public GameObject uiInventory;
+    public GameObject uiMap;
+    public GameObject uiOption;
 
-    public bool uiActive;
-    public bool inventoryActive;
-    public bool buildActive;
-    public bool optionsActive;
+    public enum ExternalUIState
+    {
+        none,
+        build,
+        craft,
+        farm,
+    }
+    public ExternalUIState externalUIState;
+
+    public GameObject uiExternal;
+    public GameObject uiBuild;
+    public GameObject uiCraft;
+    public GameObject uiFarm;
 
     void Start()
     {
-        InitializeUI();
+        StateUI(InternalUIState.none, ExternalUIState.none);
     }
 
     public TMP_Text fpsCounter;
@@ -46,77 +59,97 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void StateUI()
+    public void InternalUIUpdate(KeyCode inventoryKey)
     {
-        switch(uiState)
+        if(Input.GetKeyDown(inventoryKey))
         {
-            case UIState.quests:
+            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+        }
+
+        inventoryManager.InventoryUpdate();
+    }
+
+    public void StateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState)
+    {
+        internalUIState = iInternalUIState;
+        externalUIState = eExternalUIState;
+
+        if(internalUIState != InternalUIState.none)
+        {
+            switch(internalUIState)
             {
-                break;
+                case InternalUIState.quest:
+                {
+                    Internal(true, false, false, false);
+                    break;
+                }
+                case InternalUIState.inventory:
+                {
+                    Internal(false, true, false, false);
+                    break;
+                }
+                case InternalUIState.map:
+                {
+                    Internal(false, false, true, false);
+                    break;
+                }
+                case InternalUIState.option:
+                {
+                    Internal(false, false, false, true);
+                    break;
+                }
             }
-            case UIState.inventory:
+        }
+        else if(externalUIState != ExternalUIState.none)
+        {
+            switch(externalUIState)
             {
-                inventoryManager.InventoryUpdate();
-                break;
+                case ExternalUIState.build:
+                {
+                    External(true, false, false);
+                    break;
+                }
+                case ExternalUIState.craft:
+                {
+                    External(false, true, false);
+                    break;
+                }
+                case ExternalUIState.farm:
+                {
+                    External(false, false, true);
+                    break;
+                }
             }
-            case UIState.map:
-            {
-                break;
-            }
-            case UIState.option:
-            {
-                break;
-            }
+        }
+        else
+        {
+            Internal(false, false, false, false);
+            External(false, false, false);
         }
     }
 
-    void SwitchStateUI()
+    void Internal(bool questActive, bool inventoryActive, bool mapActive, bool optionActive)
     {
+        if(questActive || inventoryActive || mapActive || optionActive)
+            uiInternal.SetActive(true);
+        else
+            uiInternal.SetActive(false);
 
-        StateUI();
+        uiQuest.SetActive(questActive);
+        uiInventory.SetActive(inventoryActive);
+        uiMap.SetActive(mapActive);
+        uiOption.SetActive(optionActive);
     }
 
-    public void GetUIInput()
+    void External(bool builActive, bool craftActive, bool farmActive)
     {
+        if(builActive || craftActive || farmActive)
+            uiExternal.SetActive(true);
+        else
+            uiExternal.SetActive(false);
 
-    }
-
-    void InitializeUI()
-    {
-        
-    }
-
-    public void Inventory(bool active)
-    {
-        if(!uiActive || uiActive && inventoryActive)
-        {
-            uiActive = active;
-            inventoryActive = active;
-
-            ui.SetActive(active);
-            inventoryUI.SetActive(active);
-        }
-    }
-
-    public void Build(bool active)
-    {
-        if(!uiActive || uiActive && buildActive)
-        {
-            uiActive = active;
-            buildActive = active;
-
-            ui.SetActive(active);
-            buildUI.SetActive(active);
-        }
-    }
-
-    public void OptionsUI()
-    {
-
-    }
-
-    public void ChangeUIStateButton(UIState uiState)
-    {
-        
+        uiBuild.SetActive(builActive);
+        uiCraft.SetActive(craftActive);
+        uiFarm.SetActive(farmActive);
     }
 }

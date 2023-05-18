@@ -8,15 +8,14 @@ public class ItemPickUp : MonoBehaviour, IInteractable
     public int currentAmount;
     public bool destroyThisObject;
 
-    public void Interact(GameManager gameManager,InventoryManager inventoryManager)
+    public void Interact(GameManager gameManager)
     {
-        if(inventoryManager != null)
-            PickUp(inventoryManager);
+        PickUp(gameManager);
     }
 
-    void PickUp(InventoryManager inventoryManager)
+    void PickUp(GameManager gameManager)
     {
-        inventoryManager.AddItem(item, currentAmount);
+        gameManager.inventoryManager.AddItem(item, currentAmount);
 
         item = null;
         currentAmount = 0;

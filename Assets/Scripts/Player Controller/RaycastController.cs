@@ -5,7 +5,6 @@ using UnityEngine;
 public class RaycastController : MonoBehaviour
 {
     public GameManager gameManager;
-    public InventoryManager inventoryManager;
 
     public float rayDistance;
     public LayerMask layerMask;
@@ -43,10 +42,11 @@ public class RaycastController : MonoBehaviour
         {
             if(hit.transform.TryGetComponent<IInteractable>(out IInteractable iInteractable))
             {
-                canInteract = true;
-                this.iInteractable = iInteractable;
+                if(Input.GetKeyDown(kInteraction))
+                {
+                    iInteractable.Interact(gameManager);
+                }
             }
-
             else
             {
                 canInteract = false;

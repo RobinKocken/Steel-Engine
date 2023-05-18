@@ -1,33 +1,33 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
+using static UIManager;
 
 public class GameManager : MonoBehaviour
 {
-    public PlayerController playerController;
-    public RaycastController raycastController;
-    public InventoryManager inventoryManager;
-
-
-    public Options options;
-    public UIManager uiManager;
-
-    public BuildManager buildManager;
-
-    public GameObject playerCamera;
-    public GameObject buildCamera;
+    public Keys keys;
 
     // Possible States for the Player //
     public enum PlayerState
     {
         player,
         station,
+        menu,
         build,
-        internalUI,
-        externalUI,
     }
     public PlayerState playerState;
+
+    public PlayerController playerController;
+    public RaycastController raycastController;
+
+    public OptionManager optionManager;
+    public UIManager uiManager;
+    public InventoryManager inventoryManager;
+    public BuildManager buildManager;
+
+    public GameObject playerCamera;
+    public GameObject buildCamera;
 
     void Awake()
     {
@@ -36,20 +36,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        CursorModeLocked();
+        SwitchStatePlayer(PlayerState.player);
     }
-
-    public string testKey;
 
     void Update()
     {
-        GetSwitchStateKeyInput(Keys.inventory, Keys.inventory, Keys.inventory, Keys.inventory, Keys.build, Keys.interaction);
         StatePlayer();
-
-        if(Input.anyKeyDown)
-        {
-            testKey = Input.inputString;
-        }
     }
 
     // State of the Player //
@@ -59,16 +51,23 @@ public class GameManager : MonoBehaviour
         {
             case PlayerState.player:
             {
-                playerController.GetPlayerKeyInput(Keys.forward, Keys.backwards, Keys.left, Keys.right, Keys.jump);
-                raycastController.GetInteractionKeyInput(Keys.interaction);
+                InputForSwitchStatePlayer();
+                playerController.GetPlayerKeyInput(keys.forwardKey, keys.backwardsKey, keys.leftKey, keys.rightKey, keys.runKey, keys.jumpKey);
+                raycastController.GetInteractionKeyInput(keys.interactionKey);
                 break;
             }
             case PlayerState.station:
             {
                 break;
             }
+            case PlayerState.menu:
+            {
+                uiManager.InternalUIUpdate(keys.menuKey);
+                break;
+            }
             case PlayerState.build:
             {
+                InputForSwitchStatePlayer();
                 // Delete Later //
                 if(buildManager != null)
                 {
@@ -76,68 +75,11 @@ public class GameManager : MonoBehaviour
                 }
                 break;
             }
-            case PlayerState.internalUI:
-            {
-                uiManager.StateUI();
-                break;
-            }
-            case PlayerState.externalUI:
-            {
-                break;
-            }
-        }
-    }
-
-    void GetSwitchStateKeyInput(KeyCode quests, KeyCode kInventory, KeyCode kMap, KeyCode kOptions, KeyCode kBuild, KeyCode kInteraction)
-    {
-        // That should be cleaner //
-        if(Input.GetKeyDown(quests) || Input.GetKeyDown(kInventory) || Input.GetKeyDown(kMap) || Input.GetKeyDown(kOptions))
-        {
-            switch(playerState)
-            {
-                case PlayerState.player:
-                {
-                    SwitchStatePlayer(PlayerState.internalUI);
-                    break;
-                }
-                case PlayerState.internalUI:
-                {
-                    SwitchStatePlayer(PlayerState.player);
-                    break;
-                }
-            }
-        }
-
-        if(Input.GetKeyDown(kBuild))
-        {
-            switch(playerState)
-            {
-                case PlayerState.player:
-                {
-                    SwitchStatePlayer(PlayerState.build);
-                    break;
-                }
-                case PlayerState.build:
-                {
-                    SwitchStatePlayer(PlayerState.player);
-                    break;
-                }
-            }
-        }
-
-        if(raycastController.GetCanInteract == true)
-        {
-            if(Input.GetKeyDown(kInteraction))
-            {
-                //raycastController.Interactable.Interact(GameManager, inventoryManager);
-
-            }
-
         }
     }
 
     // Make from this a cleaner Version //
-    void SwitchStatePlayer(PlayerState pPlayerState)
+    public void SwitchStatePlayer(PlayerState pPlayerState)
     {
         playerState = pPlayerState;
 
@@ -146,8 +88,8 @@ public class GameManager : MonoBehaviour
             case PlayerState.player:
             {
                 CursorModeLocked();
-                uiManager.Inventory(false);
                 SwitchCamera(playerCamera, buildCamera);
+                uiManager.StateUI(InternalUIState.none, ExternalUIState.none);
                 break;
             }
             case PlayerState.station:
@@ -156,28 +98,44 @@ public class GameManager : MonoBehaviour
                 playerController.StopMovement();
                 break;
             }
+            case PlayerState.menu:
+            {
+                CursorModeConfined();
+                playerController.StopMovement();
+
+                if(CheckIfKeyCodeIsTrue(keys.menuKey))
+                {
+                    uiManager.StateUI(InternalUIState.inventory, ExternalUIState.none);
+                }
+
+                break;
+            }
             case PlayerState.build:
             {
                 CursorModeConfined();
                 playerController.StopMovement();
                 SwitchCamera(buildCamera, playerCamera);
-                break;
-            }
-            case PlayerState.internalUI:
-            {
-                CursorModeConfined();
-                playerController.StopMovement();
-                uiManager.Inventory(true);
-                break;
-            }
-            case PlayerState.externalUI:
-            {
-                CursorModeConfined();
-                playerController.StopMovement();
-
+                uiManager.StateUI(InternalUIState.none, ExternalUIState.build);
                 break;
             }
         }
+    }
+
+    void InputForSwitchStatePlayer()
+    {
+        if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.menuKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
+        {
+            if(playerState == PlayerState.player)
+                SwitchStatePlayer(PlayerState.menu);
+        }
+
+        if(Input.GetKeyDown(keys.buildKey))
+        {
+            if(playerState == PlayerState.player)
+                SwitchStatePlayer(PlayerState.build);
+            else if(playerState == PlayerState.build)
+                SwitchStatePlayer(PlayerState.player);
+        }       
     }
 
     void SwitchCamera(GameObject camEnable, GameObject camDisable)
@@ -191,14 +149,50 @@ public class GameManager : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
 
-        Options.playerMouseSens = options.mouseSens;
+        OptionManager.playerMouseSens = optionManager.mouseSens;
     }
 
     void CursorModeConfined()
     {
         Cursor.visible = true;
         Cursor.lockState = CursorLockMode.Confined;
-
-        Options.playerMouseSens = 0;
+        
+        OptionManager.playerMouseSens = 0;
     }
+
+    public bool CheckIfKeyCodeIsTrue(KeyCode key)
+    {
+        foreach(KeyCode kCode in Enum.GetValues(typeof(KeyCode)))
+        {
+            if(kCode == key)
+            {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+
+[System.Serializable]
+public class Keys
+{
+    [Header("Player Keys")]
+    public KeyCode forwardKey;
+    public KeyCode backwardsKey;
+    public KeyCode leftKey;
+    public KeyCode rightKey;
+    public KeyCode runKey;
+    public KeyCode jumpKey;
+
+    [Header("UI Keys")]
+    public KeyCode journalKey;
+    public KeyCode menuKey;
+    public KeyCode mapKey;
+    public KeyCode optionKey;
+
+    [Header("Interaction Key")]
+    public KeyCode interactionKey;
+
+    [Header("Build Mode Key")]
+    public KeyCode buildKey;
 }

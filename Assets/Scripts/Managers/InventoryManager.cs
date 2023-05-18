@@ -36,7 +36,6 @@ public class InventoryManager : MonoBehaviour
     public int amountHolder;
     public bool cursorActive;
 
-
     void Start()
     {
         InitializeInventory();
@@ -54,13 +53,6 @@ public class InventoryManager : MonoBehaviour
         {
             cursor.position = Input.mousePosition + offset;
         }
-    }
-
-    void Cursor()
-    {
-        cursorActive = !cursorActive;
-        iconHolder.sprite = itemHolder.icon;
-        cursor.gameObject.SetActive(cursorActive);
     }
 
     void InitializeInventory()
@@ -204,6 +196,13 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+    }
+
+    void Cursor()
+    {
+        cursorActive = !cursorActive;
+        iconHolder.sprite = itemHolder.icon;
+        cursor.gameObject.SetActive(cursorActive);
     }
 
     void SetItemInCursorHolder(Item item, int amount)

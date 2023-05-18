@@ -8,7 +8,9 @@ public class PlayerController : MonoBehaviour
     public Transform orientation;
 
     [Header("Player Variables")]
-    public int playerSpeed;
+    public float playerMaxSpeed;
+    public float playerMoveSpeed;
+    public float playerRunSpeed;
     public float drag;
     public float jumpForce;
     public float airMultiplier;
@@ -26,7 +28,7 @@ public class PlayerController : MonoBehaviour
     RaycastHit groundHit;
 
     // Some Bools //
-    bool grounded;
+    public bool grounded;
     bool readyToJump;
 
     void Awake()
@@ -44,7 +46,7 @@ public class PlayerController : MonoBehaviour
         Movement();
     }
 
-    public void GetPlayerKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kJump)
+    public void GetPlayerKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kSprint ,KeyCode kJump)
     {
         if(Input.GetKeyDown(kForward))
             iForward = 1;
@@ -68,6 +70,7 @@ public class PlayerController : MonoBehaviour
 
         CalculateInputDirection();
         CheckIfJump(kJump);
+        Run(kSprint);
         SpeedControl();
         CheckIfGrounded();
     }
@@ -82,13 +85,13 @@ public class PlayerController : MonoBehaviour
     {
         if(grounded)
         {
-            rb.AddForce(moveZ * playerSpeed * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerSpeed * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * playerMaxSpeed * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * playerMaxSpeed * orientation.right.normalized, ForceMode.VelocityChange);
         }
         else if(!grounded)
         {
-            rb.AddForce(moveZ * playerSpeed * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerSpeed * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * playerMaxSpeed * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * playerMaxSpeed * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
         }
     }
 
@@ -104,6 +107,14 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    void Run(KeyCode run)
+    {
+        if(Input.GetKey(run))
+            playerMaxSpeed = playerRunSpeed;
+        else
+            playerMaxSpeed = playerMoveSpeed;
+    }
+
     void Jump()
     {
         readyToJump = false;
@@ -117,9 +128,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-        if(flatVel.magnitude > playerSpeed)
+        if(flatVel.magnitude > playerMaxSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * playerSpeed;
+            Vector3 limitedVel = flatVel.normalized * playerMaxSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
