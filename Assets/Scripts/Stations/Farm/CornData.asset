@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   type: 4
   GrowthStages:
-  - {fileID: 3027077687125478876, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
-  - {fileID: 7285252466309122471, guid: 1a8772bb37596434aa30c8d14b9fa200, type: 3}
-  - {fileID: 7699555587257628414, guid: b3daf1259137c87498ab6ca63bae3f6e, type: 3}
-  - {fileID: 2058991954393297533, guid: 7cb7595a4626a154cb41dd984200db01, type: 3}
+  - {fileID: 2463605162332981735, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
+  - {fileID: 2856997512004964222, guid: 6a0641d0e3fd5e84191fd407e9e256ab, type: 3}
+  - {fileID: 6668728290024561238, guid: 06476ee35e6efa645a55dde4490ba5fd, type: 3}
+  - {fileID: 5113647378450686393, guid: c3b9b424821c0ae469cd4ed8a14b14d5, type: 3}
   timeToGrow: 360

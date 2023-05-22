@@ -17,28 +17,28 @@ public class FarmManager : MonoBehaviour
         UnityEngine.Cursor.lockState = CursorLockMode.Confined;
         currentFarm = _farmToGrowOn;
         //check if a crop is already being grown
-        if (_farmToGrowOn.currentCrop == null)
+        if (currentFarm.currentCrop == null)
         {
-           cropListUI.SetActive(true);
+            cropListUI.SetActive(true);
             //if no crop is being grown, open a menu with different crop choices
         }
         else
         {
             //if a crop is already being grown, show crop progress
-            if (currentFarm.currentCrop.fullyGrown)
+            if (currentFarm.fullyGrown)
             {
-                
+                //toggle Harvest UI
             }
             else
             {
+                progressUI.GetComponentInChildren<Slider>().value = currentFarm.cropProgress;
                 cropListUI.SetActive(false);
                 progressUI.SetActive(true);
             }
-            
         }
     }
 
-    public void SelecCrop(int cropIndex)
+    public void SelectCrop(int cropIndex)
     {
         currentFarm.PlantCrop(cropIndex);
     }

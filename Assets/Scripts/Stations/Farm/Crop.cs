@@ -4,22 +4,12 @@ using UnityEngine;
 
 public class Crop : MonoBehaviour
 {
-    public int GrowthStage;
-    public GameObject cropObject;
-    private GameObject oldCrop;
     public CropData cropData;
-    public bool fullyGrown;
+    
 
     public void Start()
     {
         
     }
-    public void Grow()
-    {
-        if (oldCrop != null)
-        {
-            Destroy(oldCrop);
-        }
-        oldCrop = Instantiate(cropData.GrowthStages[GrowthStage]);
-    }
+   
 }
