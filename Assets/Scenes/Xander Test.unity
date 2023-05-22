@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 2158.4688, g: 2262.1484, b: 3284.5312, a: 1}
+  m_IndirectSpecularColor: {r: 2158.4219, g: 2262.0781, b: 3284.5234, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -142,11 +142,6 @@ PrefabInstance:
       objectReference: {fileID: 1433689868}
     - target: {fileID: 4963027607019267270, guid: ae871905a6effbc46984318832c8d5b6,
         type: 3}
-      propertyPath: playerState
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4963027607019267270, guid: ae871905a6effbc46984318832c8d5b6,
-        type: 3}
       propertyPath: buildManager
       value: 
       objectReference: {fileID: 1023281065}
@@ -170,11 +165,6 @@ PrefabInstance:
       propertyPath: raycastController
       value: 
       objectReference: {fileID: 157697330}
-    - target: {fileID: 4963027607019267320, guid: ae871905a6effbc46984318832c8d5b6,
-        type: 3}
-      propertyPath: keys.buildKey
-      value: 98
-      objectReference: {fileID: 0}
     - target: {fileID: 4963027607019267321, guid: ae871905a6effbc46984318832c8d5b6,
         type: 3}
       propertyPath: m_RootOrder
@@ -668,18 +658,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 814186140}
-    - target: {fileID: 3350026141751572318, guid: 39296ad4c84315b419a2958dffc03bba,
-        type: 3}
-      propertyPath: objects.Array.data[1]
-      value: 
-      objectReference: {fileID: 6149628112008582674, guid: 009b6abe3693a4d4d85a973845af339b,
-        type: 3}
-    - target: {fileID: 3350026141751572318, guid: 39296ad4c84315b419a2958dffc03bba,
-        type: 3}
-      propertyPath: objects.Array.data[2]
-      value: 
-      objectReference: {fileID: 6149628112008582674, guid: 009b6abe3693a4d4d85a973845af339b,
-        type: 3}
     - target: {fileID: 3350026141751572319, guid: 39296ad4c84315b419a2958dffc03bba,
         type: 3}
       propertyPath: m_Name

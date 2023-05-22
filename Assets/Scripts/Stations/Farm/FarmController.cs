@@ -2,12 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using Unity.VisualScripting;
+using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.UIElements;
 
 public class FarmController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private Crop[] crops;
+    [SerializeField] private GameObject[] crops;
     public Crop currentCrop;
     private int cropToGrow;
     public FarmManager farmManager;
@@ -18,10 +19,9 @@ public class FarmController : MonoBehaviour, IInteractable
     }
     public void Interact(GameManager gameManager)
     {
-        farmManager.farmUI.SetActive(true);
         FarmController farmToGrowOn = this;
         farmManager.OpenFarmUI(farmToGrowOn);
-        gameManager.SwitchStatePlayer(GameManager.PlayerState.menu);
+        gameManager.SwitchStatePlayer(GameManager.PlayerState.ui);
     }
 
     
@@ -33,8 +33,10 @@ public class FarmController : MonoBehaviour, IInteractable
     }
     private void GrowCrop()
     {
-        currentCrop = crops[cropToGrow];
-        StartCoroutine(GrowCrop(crops[cropToGrow]));
+        currentCrop = crops[cropToGrow].GetComponent<Crop>();
+        GameObject newCrop = Instantiate(currentCrop.cropData.GrowthStages[currentCrop.GrowthStage]);
+        newCrop.transform.parent = this.transform;
+        StartCoroutine(GrowCrop(crops[cropToGrow].GetComponent<Crop>()));
     }
 
     public IEnumerator GrowCrop(Crop _cropToGrow)

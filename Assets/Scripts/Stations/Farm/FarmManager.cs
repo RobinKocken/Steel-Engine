@@ -10,6 +10,7 @@ public class FarmManager : MonoBehaviour
     public GameObject farmUI;
     public GameObject progressUI;
     public GameObject cropListUI;
+    public GameObject harvestUI;
 
     public void OpenFarmUI(FarmController _farmToGrowOn)
     {
@@ -23,9 +24,17 @@ public class FarmManager : MonoBehaviour
         }
         else
         {
-            cropListUI.SetActive(false);
-            progressUI.SetActive(true);
             //if a crop is already being grown, show crop progress
+            if (currentFarm.currentCrop.fullyGrown)
+            {
+                
+            }
+            else
+            {
+                cropListUI.SetActive(false);
+                progressUI.SetActive(true);
+            }
+            
         }
     }
 

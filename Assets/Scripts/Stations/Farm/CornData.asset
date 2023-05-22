@@ -9,13 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 0}
+  m_Script: {fileID: 11500000, guid: 0533ea01bf90eaa4281b554152914d80, type: 3}
   m_Name: CornData
-  m_EditorClassIdentifier: Assembly-CSharp::CropData
+  m_EditorClassIdentifier: 
   type: 4
   GrowthStages:
   - {fileID: 3027077687125478876, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
   - {fileID: 7285252466309122471, guid: 1a8772bb37596434aa30c8d14b9fa200, type: 3}
-  - {fileID: 2058991954393297533, guid: 7cb7595a4626a154cb41dd984200db01, type: 3}
   - {fileID: 7699555587257628414, guid: b3daf1259137c87498ab6ca63bae3f6e, type: 3}
+  - {fileID: 2058991954393297533, guid: 7cb7595a4626a154cb41dd984200db01, type: 3}
   timeToGrow: 360
