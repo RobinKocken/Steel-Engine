@@ -10,10 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 0}
-  m_Name: Corn
+  m_Name: CornData
   m_EditorClassIdentifier: Assembly-CSharp::CropData
-  name: Corn
-  GrowthStage: 3
+  type: 4
   GrowthStages:
   - {fileID: 3027077687125478876, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
   - {fileID: 7285252466309122471, guid: 1a8772bb37596434aa30c8d14b9fa200, type: 3}

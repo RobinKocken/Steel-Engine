@@ -1,25 +1,30 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.UIElements;
 
-public class FarmController : MonoBehaviour
+public class FarmController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private CropData[] crops;
-    public CropData currentCrop;
+    [SerializeField] private Crop[] crops;
+    public Crop currentCrop;
     private int cropToGrow;
-    public void OpenFarmUI()
+    public FarmManager farmManager;
+
+    public void Start()
     {
-        //check if a crop is already being grown
-        if (currentCrop == null)
-        {
-            //if no crop is being grown, open a menu with different crop choices
-        }
-        else
-        {
-            //if a crop is already being grown, show crop progress
-        }
+        farmManager = GameObject.Find("FarmManager").GetComponent<FarmManager>();
     }
+    public void Interact(GameManager gameManager)
+    {
+        farmManager.farmUI.SetActive(true);
+        FarmController farmToGrowOn = this;
+        farmManager.OpenFarmUI(farmToGrowOn);
+        gameManager.SwitchStatePlayer(GameManager.PlayerState.menu);
+    }
+
+    
 
     public void PlantCrop(int _cropToGrow)
     {
@@ -32,16 +37,16 @@ public class FarmController : MonoBehaviour
         StartCoroutine(GrowCrop(crops[cropToGrow]));
     }
 
-    public IEnumerator GrowCrop(CropData _cropToGrow)
+    public IEnumerator GrowCrop(Crop _cropToGrow)
     {
-        if (_cropToGrow.GrowthStage == _cropToGrow.GrowthStages.Length)
+        if (_cropToGrow.GrowthStage == _cropToGrow.cropData.GrowthStages.Length)
         {
             StopCoroutine(GrowCrop(null));
         }
-        yield return new WaitForSeconds(_cropToGrow.timeToGrow / 4);
+        yield return new WaitForSeconds(_cropToGrow.cropData.timeToGrow / 4);
 
         _cropToGrow.GrowthStage++;
-        _cropToGrow.GetComponent<CropData>().Grow();
+        _cropToGrow.GetComponent<Crop>().Grow();
 
     }
 

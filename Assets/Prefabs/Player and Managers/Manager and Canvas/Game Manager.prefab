@@ -55,10 +55,10 @@ MonoBehaviour:
     journalKey: 106
     menuKey: 9
     mapKey: 109
-    optionKey: 27
+    optionKey: 0
     interactionKey: 102
     buildKey: 98
-  playerState: 2
+  playerState: 0
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
   optionManager: {fileID: 4963027607019267320}

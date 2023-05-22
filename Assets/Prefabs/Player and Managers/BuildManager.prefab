@@ -51,8 +51,8 @@ MonoBehaviour:
     m_Bits: 64
   objects:
   - {fileID: 6149628112008582674, guid: 009b6abe3693a4d4d85a973845af339b, type: 3}
-  - {fileID: 8840557165115002012, guid: f321936314d605443b905dc8abeb990d, type: 3}
-  - {fileID: 618522698181139192, guid: 2f954d2447bdea94aaa8342e76851c2f, type: 3}
+  - {fileID: 6149628112008582674, guid: 009b6abe3693a4d4d85a973845af339b, type: 3}
+  - {fileID: 6149628112008582674, guid: 009b6abe3693a4d4d85a973845af339b, type: 3}
   pendingObj: {fileID: 0}
   rotateAmount: 45
   canPlace: 0
@@ -73,3 +73,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedObj: {fileID: 0}
+  objText: {fileID: 0}
+  selectUI: {fileID: 0}

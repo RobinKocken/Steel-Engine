@@ -64,9 +64,19 @@ public class UIManager : MonoBehaviour
         if(Input.GetKeyDown(inventoryKey))
         {
             gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            Internal(false, false, false, false);
         }
 
         inventoryManager.InventoryUpdate();
+    }
+
+    public void ExternalUIUpdate(KeyCode interactionKey)
+    {
+        if (Input.GetKeyDown(interactionKey))
+        {
+            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            External(false, false, false);
+        }
     }
 
     public void StateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState)
