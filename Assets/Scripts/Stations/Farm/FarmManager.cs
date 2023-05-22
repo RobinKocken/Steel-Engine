@@ -42,8 +42,4 @@ public class FarmManager : MonoBehaviour
     {
         currentFarm.PlantCrop(cropIndex);
     }
-    public void Harvest()
-    {
-        currentFarm.HarvestCrops();
-    }
 }
