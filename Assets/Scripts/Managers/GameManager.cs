@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour
     {
         player,
         station,
-        menu,
+        ui,
         build,
     }
     public PlayerState playerState;
@@ -59,18 +59,18 @@ public class GameManager : MonoBehaviour
             {
                 break;
             }
-            case PlayerState.menu:
+            case PlayerState.ui:
             {
-                    if(uiManager.internalUIState != UIManager.InternalUIState.none)
-                    {
-                        uiManager.InternalUIUpdate(keys.menuKey);
-                        break;
-                    }
-                    else if(uiManager.externalUIState != UIManager.ExternalUIState.none)
-                    {
-                        uiManager.ExternalUIUpdate(keys.interactionKey);
-                        break;
-                    }
+                if(uiManager.internalUIState != UIManager.InternalUIState.none)
+                {
+                    uiManager.InternalUIUpdate(keys.menuKey);
+                    break;
+                }
+                else if(uiManager.externalUIState != UIManager.ExternalUIState.none)
+                {
+                    uiManager.ExternalUIUpdate(keys.interactionKey);
+                    break;
+                }
 
                 break;
             }
@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
                 playerController.StopMovement();
                 break;
             }
-            case PlayerState.menu:
+            case PlayerState.ui:
             {
                 CursorModeConfined();
                 playerController.StopMovement();
@@ -115,14 +115,11 @@ public class GameManager : MonoBehaviour
                 if(Input.GetKeyDown(keys.menuKey))
                 {
                     uiManager.StateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
-                        Debug.Log("Menu Key");
                 }
                 else if(Input.GetKeyDown(keys.interactionKey))
                 {
-                        uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm); ;
-                        Debug.Log("Interaction Key");
+                    uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm); ;
                 }
-
 
                 break;
             }
@@ -142,7 +139,7 @@ public class GameManager : MonoBehaviour
         if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.menuKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
         {
             if(playerState == PlayerState.player)
-                SwitchStatePlayer(PlayerState.menu);
+                SwitchStatePlayer(PlayerState.ui);
         }
 
         if(Input.GetKeyDown(keys.buildKey))
