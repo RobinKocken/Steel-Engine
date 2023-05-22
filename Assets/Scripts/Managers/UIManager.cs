@@ -6,24 +6,17 @@ using TMPro;
 public class UIManager : MonoBehaviour
 {
     public GameManager gameManager;
-    public Keys keys;
     public InventoryManager inventoryManager;
 
     public enum InternalUIState
     {
         none,
-        quest,
+        journal,
         inventory,
         map,
         option,
     }
     public InternalUIState internalUIState;
-
-    public GameObject uiInternal;
-    public GameObject uiQuest;
-    public GameObject uiInventory;
-    public GameObject uiMap;
-    public GameObject uiOption;
 
     public enum ExternalUIState
     {
@@ -34,10 +27,10 @@ public class UIManager : MonoBehaviour
     }
     public ExternalUIState externalUIState;
 
-    public GameObject uiExternal;
-    public GameObject uiBuild;
-    public GameObject uiCraft;
-    public GameObject uiFarm;
+    public GameObject uiPlayer;
+    public InternalUI internalUI;
+    public ExternalUI externalUI;
+    public AnimationUI animationUI;
 
     void Start()
     {
@@ -59,12 +52,45 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void InternalUIUpdate(KeyCode inventoryKey)
+    public void InternalUIUpdate(KeyCode journalKey ,KeyCode inventoryKey, KeyCode mapKey)
     {
+        if(Input.GetKeyDown(journalKey))
+        {
+            if(internalUIState != InternalUIState.journal)
+            {
+                StateUI(InternalUIState.journal, ExternalUIState.none);
+            }
+            else
+            {
+                StateUI(InternalUIState.none, ExternalUIState.none);
+                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            }
+        }
+
         if(Input.GetKeyDown(inventoryKey))
         {
-            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
-            Internal(false, false, false, false);
+            if(internalUIState != InternalUIState.inventory)
+            {
+                StateUI(InternalUIState.inventory, ExternalUIState.none);
+            }
+            else
+            {
+                StateUI(InternalUIState.none, ExternalUIState.none);
+                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            }
+        }
+
+        if(Input.GetKeyDown(mapKey))
+        {
+            if(internalUIState != InternalUIState.map)
+            {
+                StateUI(InternalUIState.map, ExternalUIState.none);
+            }
+            else
+            {
+                StateUI(InternalUIState.none, ExternalUIState.none);
+                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+            }
         }
 
         inventoryManager.InventoryUpdate();
@@ -74,8 +100,8 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(interactionKey))
         {
+            StateUI(InternalUIState.none, ExternalUIState.none);
             gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
-            External(false, false, false);
         }
     }
 
@@ -86,20 +112,24 @@ public class UIManager : MonoBehaviour
 
         if(internalUIState != InternalUIState.none)
         {
+            Player(false);
             switch(internalUIState)
             {
-                case InternalUIState.quest:
+                case InternalUIState.journal:
                 {
+                    StartCoroutine(BarAnimation(animationUI.questBar));
                     Internal(true, false, false, false);
                     break;
                 }
                 case InternalUIState.inventory:
                 {
+                    StartCoroutine(BarAnimation(animationUI.inventoryBar));
                     Internal(false, true, false, false);
                     break;
                 }
                 case InternalUIState.map:
                 {
+                    StartCoroutine(BarAnimation(animationUI.mapBar));
                     Internal(false, false, true, false);
                     break;
                 }
@@ -112,6 +142,7 @@ public class UIManager : MonoBehaviour
         }
         else if(externalUIState != ExternalUIState.none)
         {
+            Player(false);
             switch(externalUIState)
             {
                 case ExternalUIState.build:
@@ -135,31 +166,91 @@ public class UIManager : MonoBehaviour
         {
             Internal(false, false, false, false);
             External(false, false, false);
+            Player(true);
         }
     }
 
-    void Internal(bool questActive, bool inventoryActive, bool mapActive, bool optionActive)
+    void Internal(bool journalActive, bool inventoryActive, bool mapActive, bool optionActive)
     {
-        if(questActive || inventoryActive || mapActive || optionActive)
-            uiInternal.SetActive(true);
+        if(journalActive || inventoryActive || mapActive || optionActive)
+            internalUI.uiInternal.SetActive(true);
         else
-            uiInternal.SetActive(false);
+            internalUI.uiInternal.SetActive(false);
 
-        uiQuest.SetActive(questActive);
-        uiInventory.SetActive(inventoryActive);
-        uiMap.SetActive(mapActive);
-        uiOption.SetActive(optionActive);
+        internalUI.uiJournal.SetActive(journalActive);
+        internalUI.uiInventory.SetActive(inventoryActive);
+        internalUI.uiMap.SetActive(mapActive);
+        internalUI.uiOption.SetActive(optionActive);
     }
 
     void External(bool builActive, bool craftActive, bool farmActive)
     {
         if(builActive || craftActive || farmActive)
-            uiExternal.SetActive(true);
+            externalUI.uiExternal.SetActive(true);
         else
-            uiExternal.SetActive(false);
+            externalUI.uiExternal.SetActive(false);
 
-        uiBuild.SetActive(builActive);
-        uiCraft.SetActive(craftActive);
-        uiFarm.SetActive(farmActive);
+        externalUI.uiBuild.SetActive(builActive);
+        externalUI.uiCraft.SetActive(craftActive);
+        externalUI.uiFarm.SetActive(farmActive);
+    }
+
+    void Player(bool active)
+    {
+        uiPlayer.SetActive(active);
+    }
+
+    public void TopButtons(int stateValue)
+    {
+        StateUI((InternalUIState)stateValue, ExternalUIState.none);
+    }
+
+    IEnumerator BarAnimation(RectTransform targetBar)
+    {
+        bool run = true;
+        while(run)
+        {
+            animationUI.bar.localPosition = Vector2.MoveTowards(animationUI.bar.localPosition, targetBar.localPosition, animationUI.barSpeed * Time.deltaTime);
+            animationUI.bar.sizeDelta = Vector2.MoveTowards(animationUI.bar.sizeDelta, targetBar.sizeDelta, animationUI.barSpeed * Time.deltaTime);
+
+            if(animationUI.bar.localPosition == targetBar.localPosition && animationUI.bar.sizeDelta == targetBar.sizeDelta)
+            {
+                run = false;
+            }
+
+            yield return new WaitForEndOfFrame();
+        }
     }
 }
+
+[System.Serializable]
+public class InternalUI
+{
+    public GameObject uiInternal;
+    public GameObject uiJournal;
+    public GameObject uiInventory;
+    public GameObject uiMap;
+    public GameObject uiOption;
+}
+
+[System.Serializable]
+public class ExternalUI 
+{
+    public GameObject uiExternal;
+    public GameObject uiBuild;
+    public GameObject uiCraft;
+    public GameObject uiFarm;
+}
+
+[System.Serializable]
+public class AnimationUI 
+{
+    public RectTransform bar;
+    public float barSpeed;
+
+    public RectTransform questBar;
+    public RectTransform inventoryBar;
+    public RectTransform mapBar;
+}
+
+

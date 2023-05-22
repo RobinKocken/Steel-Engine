@@ -63,7 +63,7 @@ public class GameManager : MonoBehaviour
             {
                 if(uiManager.internalUIState != UIManager.InternalUIState.none)
                 {
-                    uiManager.InternalUIUpdate(keys.menuKey);
+                    uiManager.InternalUIUpdate(keys.journalKey, keys.inventoryKey, keys.mapKey);
                     break;
                 }
                 else if(uiManager.externalUIState != UIManager.ExternalUIState.none)
@@ -98,7 +98,6 @@ public class GameManager : MonoBehaviour
             {
                 CursorModeLocked();
                 SwitchCamera(playerCamera, buildCamera);
-                uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
                 break;
             }
             case PlayerState.station:
@@ -112,9 +111,17 @@ public class GameManager : MonoBehaviour
                 CursorModeConfined();
                 playerController.StopMovement();
 
-                if(Input.GetKeyDown(keys.menuKey))
+                if(Input.GetKeyDown(keys.journalKey))
+                {
+                    uiManager.StateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
+                }
+                else if(Input.GetKeyDown(keys.inventoryKey))
                 {
                     uiManager.StateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
+                }
+                if(Input.GetKeyDown(keys.mapKey))
+                {
+                    uiManager.StateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
                 }
                 else if(Input.GetKeyDown(keys.interactionKey))
                 {
@@ -136,7 +143,7 @@ public class GameManager : MonoBehaviour
 
     void InputForSwitchStatePlayer()
     {
-        if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.menuKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
+        if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.inventoryKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
         {
             if(playerState == PlayerState.player)
                 SwitchStatePlayer(PlayerState.ui);
@@ -200,7 +207,7 @@ public class Keys
 
     [Header("UI Keys")]
     public KeyCode journalKey;
-    public KeyCode menuKey;
+    public KeyCode inventoryKey;
     public KeyCode mapKey;
     public KeyCode optionKey;
 
