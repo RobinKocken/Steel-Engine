@@ -107,6 +107,11 @@ public class GameManager : MonoBehaviour
                 {
                     uiManager.StateUI(InternalUIState.inventory, ExternalUIState.none);
                 }
+                else if(CheckIfKeyCodeIsTrue(keys.interactionKey))
+                {
+                    uiManager.StateUI(InternalUIState.none, ExternalUIState.farm);
+                }
+
 
                 break;
             }
