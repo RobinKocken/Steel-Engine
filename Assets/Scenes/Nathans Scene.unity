@@ -732,7 +732,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 703a0ec5a0fd3e647b465553d47e61e6, type: 2}
+  - {fileID: 2100000, guid: 01140f356e028d14ea7b230cc2aa5b95, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -1167,7 +1167,7 @@ Terrain:
   m_DrawTreesAndFoliage: 1
   m_StaticShadowCaster: 0
   m_ReflectionProbeUsage: 1
-  m_MaterialTemplate: {fileID: 2100000, guid: 53e31948ff97ffc428dffd878489dd97, type: 2}
+  m_MaterialTemplate: {fileID: 2100000, guid: 01140f356e028d14ea7b230cc2aa5b95, type: 2}
   m_BakeLightProbesForTrees: 1
   m_PreserveTreePrototypeLayers: 0
   m_DeringLightProbesForTrees: 1
