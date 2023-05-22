@@ -53,7 +53,7 @@ MonoBehaviour:
     runKey: 304
     jumpKey: 32
     journalKey: 106
-    menuKey: 9
+    inventoryKey: 9
     mapKey: 109
     optionKey: 0
     interactionKey: 102

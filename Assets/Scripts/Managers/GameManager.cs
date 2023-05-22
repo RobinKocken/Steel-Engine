@@ -112,21 +112,13 @@ public class GameManager : MonoBehaviour
                 playerController.StopMovement();
 
                 if(Input.GetKeyDown(keys.journalKey))
-                {
                     uiManager.StateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
-                }
                 else if(Input.GetKeyDown(keys.inventoryKey))
-                {
-                    uiManager.StateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
-                }
+                    uiManager.StateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);                
                 if(Input.GetKeyDown(keys.mapKey))
-                {
-                    uiManager.StateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
-                }
+                    uiManager.StateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);                
                 else if(Input.GetKeyDown(keys.interactionKey))
-                {
-                    uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm); ;
-                }
+                    uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);               
 
                 break;
             }
