@@ -112,13 +112,13 @@ public class GameManager : MonoBehaviour
                 playerController.StopMovement();
 
                 if(Input.GetKeyDown(keys.journalKey))
-                    uiManager.StateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
                 else if(Input.GetKeyDown(keys.inventoryKey))
-                    uiManager.StateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);                
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);                
                 if(Input.GetKeyDown(keys.mapKey))
-                    uiManager.StateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);                
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);                
                 else if(Input.GetKeyDown(keys.interactionKey))
-                    uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);               
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);               
 
                 break;
             }
@@ -127,7 +127,8 @@ public class GameManager : MonoBehaviour
                 CursorModeConfined();
                 playerController.StopMovement();
                 SwitchCamera(buildCamera, playerCamera);
-                uiManager.StateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
+
+                uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
                 break;
             }
         }

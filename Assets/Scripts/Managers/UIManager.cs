@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Runtime.Serialization.Formatters;
 
 public class UIManager : MonoBehaviour
 {
@@ -34,7 +35,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        StateUI(InternalUIState.none, ExternalUIState.none);
+        SwitchStateUI(InternalUIState.none, ExternalUIState.none);
     }
 
     public TMP_Text fpsCounter;
@@ -54,41 +55,44 @@ public class UIManager : MonoBehaviour
 
     public void InternalUIUpdate(KeyCode journalKey ,KeyCode inventoryKey, KeyCode mapKey)
     {
+        // Journal Key //
         if(Input.GetKeyDown(journalKey))
         {
             if(internalUIState != InternalUIState.journal)
             {
-                StateUI(InternalUIState.journal, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.journal, ExternalUIState.none);
             }
             else
             {
-                StateUI(InternalUIState.none, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
                 gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
             }
         }
 
+        // Inventory Key //
         if(Input.GetKeyDown(inventoryKey))
         {
             if(internalUIState != InternalUIState.inventory)
             {
-                StateUI(InternalUIState.inventory, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.inventory, ExternalUIState.none);
             }
             else
             {
-                StateUI(InternalUIState.none, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
                 gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
             }
         }
 
+        // Map Key //
         if(Input.GetKeyDown(mapKey))
         {
             if(internalUIState != InternalUIState.map)
             {
-                StateUI(InternalUIState.map, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.map, ExternalUIState.none);
             }
             else
             {
-                StateUI(InternalUIState.none, ExternalUIState.none);
+                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
                 gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
             }
         }
@@ -100,12 +104,12 @@ public class UIManager : MonoBehaviour
     {
         if (Input.GetKeyDown(interactionKey))
         {
-            StateUI(InternalUIState.none, ExternalUIState.none);
+            SwitchStateUI(InternalUIState.none, ExternalUIState.none);
             gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
         }
     }
 
-    public void StateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState)
+    public void SwitchStateUI(InternalUIState iInternalUIState, ExternalUIState eExternalUIState)
     {
         internalUIState = iInternalUIState;
         externalUIState = eExternalUIState;
@@ -117,19 +121,25 @@ public class UIManager : MonoBehaviour
             {
                 case InternalUIState.journal:
                 {
+                    StopAllCoroutines();
                     StartCoroutine(BarAnimation(animationUI.questBar));
+                    
                     Internal(true, false, false, false);
                     break;
                 }
                 case InternalUIState.inventory:
                 {
+                    StopAllCoroutines();
                     StartCoroutine(BarAnimation(animationUI.inventoryBar));
+
                     Internal(false, true, false, false);
                     break;
                 }
                 case InternalUIState.map:
                 {
+                    StopAllCoroutines();
                     StartCoroutine(BarAnimation(animationUI.mapBar));
+
                     Internal(false, false, true, false);
                     break;
                 }
@@ -202,20 +212,24 @@ public class UIManager : MonoBehaviour
 
     public void TopButtons(int stateValue)
     {
-        StateUI((InternalUIState)stateValue, ExternalUIState.none);
+        SwitchStateUI((InternalUIState)stateValue, ExternalUIState.none);
     }
 
     IEnumerator BarAnimation(RectTransform targetBar)
     {
-        bool run = true;
-        while(run)
+        if(targetBar == null)
+            animationUI.coroutineRun = false;
+        else
+            animationUI.coroutineRun = true;
+
+        while(animationUI.coroutineRun)
         {
             animationUI.bar.localPosition = Vector2.MoveTowards(animationUI.bar.localPosition, targetBar.localPosition, animationUI.barSpeed * Time.deltaTime);
             animationUI.bar.sizeDelta = Vector2.MoveTowards(animationUI.bar.sizeDelta, targetBar.sizeDelta, animationUI.barSpeed * Time.deltaTime);
 
             if(animationUI.bar.localPosition == targetBar.localPosition && animationUI.bar.sizeDelta == targetBar.sizeDelta)
             {
-                run = false;
+                animationUI.coroutineRun = false;
             }
 
             yield return new WaitForEndOfFrame();
@@ -247,6 +261,7 @@ public class AnimationUI
 {
     public RectTransform bar;
     public float barSpeed;
+    public bool coroutineRun;
 
     public RectTransform questBar;
     public RectTransform inventoryBar;
