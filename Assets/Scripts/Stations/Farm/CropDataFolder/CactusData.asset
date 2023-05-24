@@ -13,5 +13,8 @@ MonoBehaviour:
   m_Name: CactusData
   m_EditorClassIdentifier: 
   type: 0
-  GrowthStages: []
-  timeToGrow: 0
+  GrowthStages:
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  - {fileID: 8071847532103773120, guid: 0de68f008d6a4c348af4588cffccbcd4, type: 3}
+  - {fileID: 3669182418515501187, guid: 50bab707fb22e944399814a661b9a193, type: 3}
+  timeToGrow: 30

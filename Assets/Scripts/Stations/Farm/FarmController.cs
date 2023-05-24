@@ -13,9 +13,9 @@ public class FarmController : MonoBehaviour, IInteractable
     private int cropToGrow;
     public FarmManager farmManager;
     //will only update for each growth stage
-    public int cropProgress;
+    public float cropProgress;
 
-    private int GrowthStage;
+    public int GrowthStage;
     public bool fullyGrown;
     private GameObject oldCrop;
 
@@ -59,9 +59,10 @@ public class FarmController : MonoBehaviour, IInteractable
             else
             {
                 yield return new WaitForSeconds(_cropToGrow.cropData.timeToGrow / _cropToGrow.cropData.GrowthStages.Length);
-                cropProgress = (GrowthStage / _cropToGrow.cropData.GrowthStages.Length) * 100;
-
+                
                 GrowthStage++;
+                cropProgress = (GrowthStage / (float)currentCrop.GetComponent<Crop>().cropData.GrowthStages.Length) * 100;
+                cropProgress += 100 / (float)currentCrop.GetComponent<Crop>().cropData.GrowthStages.Length;
                 if (GrowthStage != _cropToGrow.cropData.GrowthStages.Length)
                 {
                     Grow();

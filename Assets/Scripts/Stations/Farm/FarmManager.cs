@@ -1,14 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.UIElements;
 
 public class FarmManager : MonoBehaviour
 {
-    public Button button;
+    public UnityEngine.UIElements.Button button;
     private FarmController currentFarm;
     public GameObject farmUI;
     public GameObject progressUI;
+    public UnityEngine.UI.Slider progressSlider;
     public GameObject cropListUI;
     public GameObject harvestUI;
 
@@ -28,12 +30,14 @@ public class FarmManager : MonoBehaviour
             if (currentFarm.fullyGrown)
             {
                 //toggle Harvest UI
+                progressSlider.value = progressSlider.maxValue;
             }
             else
             {
-                progressUI.GetComponentInChildren<Slider>().value = currentFarm.cropProgress;
                 cropListUI.SetActive(false);
                 progressUI.SetActive(true);
+
+                progressSlider.value = currentFarm.cropProgress;
             }
         }
     }

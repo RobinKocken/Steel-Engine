@@ -1,0 +1,101 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1001 &4896362103863105931
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: -6609036739543065946, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: cropData
+      value: 
+      objectReference: {fileID: 11400000, guid: 5c9fe8a4c3c6bf349af9fa2b1e74cb41,
+        type: 2}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 568900298011263453, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3469104066249660852, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: a85d1db414afc0e4fb7e75bdb7abbc96, type: 2}
+    - target: {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2,
+        type: 3}
+      propertyPath: m_Name
+      value: CactusStage2
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+--- !u!1 &8071847532103773120 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4896362103863105931}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &3548252203174412919
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8071847532103773120}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e56736e3141461146926c332d703d1ee, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cropData: {fileID: 0}

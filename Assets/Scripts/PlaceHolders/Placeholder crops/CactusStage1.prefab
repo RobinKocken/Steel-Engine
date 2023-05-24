@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &8957451449193416319
+--- !u!1 &3744648482034119243
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,49 +8,48 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 8957451449193416194}
-  - component: {fileID: 8957451449193416195}
-  - component: {fileID: 8957451449193416192}
-  - component: {fileID: 8957451449193416193}
-  - component: {fileID: 8957451449193416318}
-  - component: {fileID: 4349491923237445925}
-  m_Layer: 7
-  m_Name: Farm
-  m_TagString: Building
+  - component: {fileID: 568900298011263453}
+  - component: {fileID: 82720460746330263}
+  - component: {fileID: 3469104066249660852}
+  - component: {fileID: 804411101885926392}
+  - component: {fileID: -6609036739543065946}
+  m_Layer: 0
+  m_Name: CactusStage1
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &8957451449193416194
+--- !u!4 &568900298011263453
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 17.999939, y: 0.05, z: -6}
-  m_LocalScale: {x: 2.5, y: 0.2, z: 2.5}
+  m_GameObject: {fileID: 3744648482034119243}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.4, y: 5, z: 0.4}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!33 &8957451449193416195
+--- !u!33 &82720460746330263
 MeshFilter:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
+  m_GameObject: {fileID: 3744648482034119243}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!23 &8957451449193416192
+--- !u!23 &3469104066249660852
 MeshRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
+  m_GameObject: {fileID: 3744648482034119243}
   m_Enabled: 1
   m_CastShadows: 1
   m_ReceiveShadows: 1
@@ -64,7 +63,7 @@ MeshRenderer:
   m_RenderingLayerMask: 257
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 999597d0329a2e64cbc566b940a1ae88, type: 2}
+  - {fileID: 2100000, guid: 305a0e07b2ca56644a2dd277cb532f9d, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -86,49 +85,29 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!65 &8957451449193416193
+--- !u!65 &804411101885926392
 BoxCollider:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
+  m_GameObject: {fileID: 3744648482034119243}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &8957451449193416318
+--- !u!114 &-6609036739543065946
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
+  m_GameObject: {fileID: 3744648482034119243}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 86efa40b1f2df0d4eb3e71915639679f, type: 3}
+  m_Script: {fileID: 11500000, guid: e56736e3141461146926c332d703d1ee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  crops:
-  - {fileID: 2463605162332981735, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
-  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
-  currentCrop: {fileID: 0}
-  farmManager: {fileID: 0}
-  cropProgress: 0
-  GrowthStage: 0
-  fullyGrown: 0
---- !u!114 &4349491923237445925
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8957451449193416319}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78fecb1f920debb4b92bf475d2d6a87e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  buildManager: {fileID: 0}
+  cropData: {fileID: 11400000, guid: 5c9fe8a4c3c6bf349af9fa2b1e74cb41, type: 2}
