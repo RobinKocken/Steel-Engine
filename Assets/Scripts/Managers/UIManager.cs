@@ -58,6 +58,7 @@ public class UIManager : MonoBehaviour
         // Journal Key //
         if(Input.GetKeyDown(journalKey))
         {
+            // Check if Journal is already active, if active close Internal UI and if not then go to Journal State // 
             if(internalUIState != InternalUIState.journal)
             {
                 SwitchStateUI(InternalUIState.journal, ExternalUIState.none);
@@ -72,6 +73,7 @@ public class UIManager : MonoBehaviour
         // Inventory Key //
         if(Input.GetKeyDown(inventoryKey))
         {
+            // Check if Invnetory is already active, if active close Internal UI and if not then go to Invnetory State // 
             if(internalUIState != InternalUIState.inventory)
             {
                 SwitchStateUI(InternalUIState.inventory, ExternalUIState.none);
@@ -86,6 +88,7 @@ public class UIManager : MonoBehaviour
         // Map Key //
         if(Input.GetKeyDown(mapKey))
         {
+            // Check if Map is already active, if active close Internal UI and if not then go to Map State // 
             if(internalUIState != InternalUIState.map)
             {
                 SwitchStateUI(InternalUIState.map, ExternalUIState.none);

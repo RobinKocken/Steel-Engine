@@ -111,6 +111,7 @@ public class GameManager : MonoBehaviour
                 CursorModeConfined();
                 playerController.StopMovement();
 
+                // Check which UI Button is pressed to Change to the correct UI State //
                 if(Input.GetKeyDown(keys.journalKey))
                     uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
                 else if(Input.GetKeyDown(keys.inventoryKey))
@@ -136,12 +137,15 @@ public class GameManager : MonoBehaviour
 
     void InputForSwitchStatePlayer()
     {
+        // Check if an UI is pressed and change to UI State //
         if(Input.GetKeyDown(keys.journalKey) || Input.GetKeyDown(keys.inventoryKey) || Input.GetKeyDown(keys.mapKey) || Input.GetKeyDown(keys.optionKey))
-        {
+        { 
+            // Change only if PLayer State is Player //
             if(playerState == PlayerState.player)
                 SwitchStatePlayer(PlayerState.ui);
         }
 
+        // Check if Build Button is pressed //
         if(Input.GetKeyDown(keys.buildKey))
         {
             if(playerState == PlayerState.player)

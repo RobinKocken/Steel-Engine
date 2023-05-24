@@ -380,7 +380,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1122240150513136534
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7198,6 +7198,7 @@ MonoBehaviour:
   animationUI:
     bar: {fileID: 1506391623406471171}
     barSpeed: 1000
+    coroutineRun: 0
     questBar: {fileID: 4832344079592173081}
     inventoryBar: {fileID: 4212928180313379214}
     mapBar: {fileID: 1999399087398319092}
@@ -9716,8 +9717,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1d0f12219920504b83f98038d4437a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  compass: {fileID: 8937203130898977565}
+  iconPrefab: {fileID: 7338850520811994588, guid: 4be9ab81337e93346bb855c808887085,
+    type: 3}
+  compassImage: {fileID: 8937203130898977565}
   player: {fileID: 0}
+  maxDistance: 200
+  one: {fileID: 0}
+  two: {fileID: 0}
+  three: {fileID: 0}
 --- !u!1 &8445179197786641737
 GameObject:
   m_ObjectHideFlags: 0
