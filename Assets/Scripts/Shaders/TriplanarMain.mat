@@ -192,7 +192,7 @@ Material:
     - _IridescenceMask: 1
     - _IridescenceThickness: 1
     - _LinkDetailsWithBase: 1
-    - _MainSmoothness: 0.59
+    - _MainSmoothness: 8
     - _MaterialID: 1
     - _Metallic: 0
     - _MetallicRemapMax: 1
@@ -211,9 +211,9 @@ Material:
     - _RefractionModel: 0
     - _RenderQueueType: 1
     - _RequireSplitLighting: 0
-    - _SecondSmoothness: 1.13
-    - _SecondTextureHeight: 2.26
-    - _SecondTextureThreshold: -1.01
+    - _SecondSmoothness: 1
+    - _SecondTextureHeight: 1
+    - _SecondTextureThreshold: 0.1
     - _Smoothness: 0.5
     - _SmoothnessRemapMax: 1
     - _SmoothnessRemapMin: 0
