@@ -237,8 +237,8 @@
     ],
     "m_VertexContext": {
         "m_Position": {
-            "x": -1.0000120401382447,
-            "y": 13.000001907348633
+            "x": 512.0,
+            "y": 16.00002670288086
         },
         "m_Blocks": [
             {
@@ -254,8 +254,8 @@
     },
     "m_FragmentContext": {
         "m_Position": {
-            "x": 0.0,
-            "y": 200.0
+            "x": 513.0001220703125,
+            "y": 203.00001525878907
         },
         "m_Blocks": [
             {
@@ -1561,7 +1561,7 @@
         "x"
     ],
     "m_Precision": 0,
-    "m_PreviewExpanded": true,
+    "m_PreviewExpanded": false,
     "m_PreviewMode": 0,
     "m_CustomColors": {
         "m_SerializableColors": []
