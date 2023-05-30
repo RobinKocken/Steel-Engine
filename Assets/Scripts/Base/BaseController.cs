@@ -2,34 +2,45 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.UIElements;
 
 public class BaseController : MonoBehaviour
 {
-    public Transform baseObject;
     public Animator animator;
+    public Transform target;
 
+    [Header("Base Movement")]
     public float maxForwardSpeed;
     public float currentSpeed;
     public float speedBuildUp;
-    public float maxRotSpeed;
 
+    [Header("Base Steering")]
+    public float maxDegreesPerSec;
+    public float currentDegreesPerSec;
+    public float degreesBuildUpPerSec;
+    public float targetDistance;
+
+    [Header("Base Height")]
     public float height;
     public float lerpSpeed;
 
+    [Header("Raycasts")]
     public Transform frontLeft, frontRight;
     public Transform rearLeft, rearRight;
     public LayerMask layerMask;
 
     // Input Value for Keys //
     int iForward, iBackwards, iLeft, iRight;
-
     // Value for direction of Base //
     int moveZ, moveX;
 
+    void Start()
+    {
+        target.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + -targetDistance);
+    }
+
     private void Update()
     {
-
-        //transform.Rotate(Vector3.up * (maxRotSpeed * Time.deltaTime));
         Movement();
         Raycasts();
     }
@@ -110,9 +121,14 @@ public class BaseController : MonoBehaviour
         Vector3 crossAD = Vector3.Cross(a, d);
 
         Vector3 newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
-        transform.up = Vector3.Lerp(transform.up, newUp , lerpSpeed * Time.deltaTime);
+        transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
 
         transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);
+
+        target.RotateAround(transform.position, transform.up, currentDegreesPerSec * Time.deltaTime);
+        Vector3 forwardDir = target.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z) , transform.up);
+
 
         Debug.DrawRay(hitFrontLeft.point, Vector3.up);
         Debug.DrawRay(hitFrontRight.point, Vector3.up);

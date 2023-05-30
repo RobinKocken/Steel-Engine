@@ -47,9 +47,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 558995377a47ef04d8108a8957370769, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  inventoryManager: {fileID: 0}
   item: {fileID: 11400000, guid: 40a769425843c5e4eac8f086e2065db0, type: 2}
   currentAmount: 10
+  destroyThisObject: 1
 --- !u!33 &1980240691153948619
 MeshFilter:
   m_ObjectHideFlags: 0

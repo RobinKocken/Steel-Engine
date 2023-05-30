@@ -2175,6 +2175,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b5102519721545833792f22c1f512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  target: {fileID: 0}
   baseObject: {fileID: 1964809334104402970}
   animator: {fileID: 2075841467248210485}
   maxForwardSpeed: 20

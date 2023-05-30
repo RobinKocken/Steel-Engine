@@ -8,7 +8,7 @@ public class BuildCam : MonoBehaviour
     [SerializeField] private float zoomSpeed = 10f;
     [SerializeField] private float minDistance = 2f;
     [SerializeField] private float maxDistance = 20f;
-    [SerializeField] private Vector3 targetOffset = Vector3.zero;
+    public Vector3 targetOffset = Vector3.zero;
 
     [SerializeField] private float yaw = 0f;
     [SerializeField] private float pitch = 0f;
