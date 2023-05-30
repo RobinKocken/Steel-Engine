@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<SavedData xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <slotItemCount>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+  </slotItemCount>
+  <OilAmount>0</OilAmount>
+  <playerPosition>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </playerPosition>
+  <playerRotation>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </playerRotation>
+  <basePostion>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </basePostion>
+  <baseRotation>
+    <x>0</x>
+    <y>0</y>
+    <z>0</z>
+  </baseRotation>
+  <buildingIndexes />
+  <buildingPosistions />
+  <buildingRotations />
+</SavedData>
