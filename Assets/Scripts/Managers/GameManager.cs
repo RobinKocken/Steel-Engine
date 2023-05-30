@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
 
     public PlayerController playerController;
     public RaycastController raycastController;
+    public BaseController baseController;
 
     public OptionManager optionManager;
     public UIManager uiManager;
@@ -51,12 +52,14 @@ public class GameManager : MonoBehaviour
             case PlayerState.player:
             {
                 InputForSwitchStatePlayer();
-                playerController.GetPlayerKeyInput(keys.forwardKey, keys.backwardsKey, keys.leftKey, keys.rightKey, keys.runKey, keys.jumpKey);
+                playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
                 raycastController.GetInteractionKeyInput(keys.interactionKey);
                 break;
             }
             case PlayerState.station:
             {
+                baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey);
+
                 break;
             }
             case PlayerState.ui:
@@ -195,12 +198,19 @@ public class GameManager : MonoBehaviour
 public class Keys
 {
     [Header("Player Keys")]
-    public KeyCode forwardKey;
-    public KeyCode backwardsKey;
-    public KeyCode leftKey;
-    public KeyCode rightKey;
-    public KeyCode runKey;
-    public KeyCode jumpKey;
+    public KeyCode playerForwardKey;
+    public KeyCode playerBackwardsKey;
+    public KeyCode playerLeftKey;
+    public KeyCode playerRightKey;
+    public KeyCode playerRunKey;
+    public KeyCode playerJumpKey;
+
+    [Header("Base Keys")]
+    public KeyCode baseForwardKey;
+    public KeyCode baseBackwardsKey;
+    public KeyCode baseLeftKey;
+    public KeyCode baseRightKey;
+    public KeyCode baseSwitchCamKey;
 
     [Header("UI Keys")]
     public KeyCode journalKey;

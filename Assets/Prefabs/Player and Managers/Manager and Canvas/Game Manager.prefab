@@ -46,12 +46,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keys:
-    forwardKey: 119
-    backwardsKey: 115
-    leftKey: 97
-    rightKey: 100
-    runKey: 304
-    jumpKey: 32
+    playerForwardKey: 119
+    playerBackwardsKey: 115
+    playerLeftKey: 97
+    playerRightKey: 100
+    playerRunKey: 304
+    playerJumpKey: 32
+    baseForwardKey: 119
+    baseBackwardsKey: 115
+    baseLeftKey: 97
+    baseRightKey: 100
+    baseSwitchCamKey: 118
     journalKey: 106
     inventoryKey: 9
     mapKey: 109
@@ -61,6 +66,7 @@ MonoBehaviour:
   playerState: 0
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
+  baseController: {fileID: 0}
   optionManager: {fileID: 4963027607019267320}
   uiManager: {fileID: 0}
   inventoryManager: {fileID: 0}

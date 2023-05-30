@@ -6,6 +6,8 @@ public class CameraController : MonoBehaviour
 {
     public Transform orientation;
 
+    public float targetDistance;
+
     // Input values of the Mouse //
     float mouseX;
     float mouseY;
@@ -16,20 +18,18 @@ public class CameraController : MonoBehaviour
 
     void Start()
     {
-        
+        targetDistance = Vector3.Distance(transform.position, orientation.transform.position);
     }
 
     void Update()
     {
-        FPSCamera();
+        FPCamera();
+        //TPCamera();
     }
 
     // FPS Camera Player //
-    void FPSCamera()
+    void FPCamera()
     {
-        //mouseX = Input.GetAxis("Mouse X") * Options.playerMouseSens * 100 * Time.deltaTime;
-        //mouseY = Input.GetAxis("Mouse Y") * Options.playerMouseSens * 100 * Time.deltaTime;        
-        
         mouseX = Input.GetAxis("Mouse X") * OptionManager.playerMouseSens;
         mouseY = Input.GetAxis("Mouse Y") * OptionManager.playerMouseSens;
 
@@ -40,5 +40,16 @@ public class CameraController : MonoBehaviour
 
         transform.localRotation = Quaternion.Euler(xRotation, yRotation, 0);
         orientation.localRotation = Quaternion.Euler(0, yRotation, 0);
+    }
+
+    void TPCamera()
+    {
+        mouseX = Input.GetAxis("Mouse X") * OptionManager.playerMouseSens;
+        mouseY += Input.GetAxis("Mouse Y") * OptionManager.playerMouseSens;
+
+        xRotation = Mathf.Clamp(mouseY, -90, 90);
+
+        transform.eulerAngles = new Vector3(-xRotation, transform.eulerAngles.y + mouseX, 0);
+        transform.position = orientation.transform.position - (transform.forward * targetDistance);
     }
 }

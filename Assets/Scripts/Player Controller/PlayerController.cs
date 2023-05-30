@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
+    public BaseController baseController;
     public Transform orientation;
 
     [Header("Player Variables")]
@@ -14,6 +15,7 @@ public class PlayerController : MonoBehaviour
     public float drag;
     public float jumpForce;
     public float airMultiplier;
+    public float baseSpeed;
 
     // Input Value for Keys //
     int iForward, iBackwards, iLeft, iRight;
@@ -83,15 +85,18 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
+        if(baseController != null)
+            baseSpeed = baseController.maxForwardSpeed;
+
         if(grounded)
         {
-            rb.AddForce(moveZ * playerMaxSpeed * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerMaxSpeed * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * (playerMaxSpeed + baseSpeed) * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * (playerMaxSpeed + baseSpeed) * orientation.right.normalized, ForceMode.VelocityChange);
         }
         else if(!grounded)
         {
-            rb.AddForce(moveZ * playerMaxSpeed * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * playerMaxSpeed * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveZ * (playerMaxSpeed + baseSpeed) * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
+            rb.AddForce(moveX * (playerMaxSpeed + baseSpeed) * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
         }
     }
 
