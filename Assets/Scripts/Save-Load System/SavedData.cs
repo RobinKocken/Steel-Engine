@@ -7,7 +7,7 @@ public class SavedData
 {
     [Header("Inventory and base resources")]
     public List<int> slotItemCount = new List<int>();
-    public List<int> hotbarItemCount = new List<int>();
+    public List<int> slotItemType = new List<int>();
     public int OilAmount;
 
     [Header("Player and Base Transforms")]

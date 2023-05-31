@@ -705,7 +705,7 @@ GameObject:
   - component: {fileID: 294378614}
   - component: {fileID: 294378613}
   m_Layer: 0
-  m_Name: GameObject
+  m_Name: Save&Load Manager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -724,9 +724,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 814186140}
+  doSave: 0
   savedData:
-    woodAmount: 1337
-    waterAmount: 0
+    slotItemCount: 
+    slotItemType: 
     OilAmount: 0
     playerPosition: {x: 0, y: 0, z: 0}
     playerRotation: {x: 0, y: 0, z: 0}

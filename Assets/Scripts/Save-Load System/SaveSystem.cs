@@ -41,14 +41,17 @@ public class SaveSystem : MonoBehaviour
         savedData = new SavedData();
 
         //saving what is in the inventory
-        for(int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
+        for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
+            savedData.slotItemType.Add((int)gameManager.inventoryManager.itemName);
             savedData.slotItemCount.Add(gameManager.inventoryManager.slots[index].GetComponent<Slot>().amount);
         }
-        //for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
-        //{
-        //    savedData.slotItemCount.Add(gameManager.inventoryManager.hotbarSlots[index].GetComponent<Slot>().amount);
-        //}
+
+        savedData.playerPosition = gameManager.playerController.transform.position;
+        savedData.playerRotation = gameManager.playerController.transform.rotation.eulerAngles;
+        savedData.basePostion = gameManager.baseController.transform.position;
+        savedData.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
+
 
         return savedData;
     }
