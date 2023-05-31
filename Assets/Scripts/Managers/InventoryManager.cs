@@ -16,6 +16,8 @@ public class InventoryManager : MonoBehaviour
     }
     public ItemName itemName;
 
+    public List<Item> itemHolders;
+
     // Parent Holder of the Slots //
     [Header("Slot Holder")]
     public Transform inventorySlotHolder;
@@ -88,8 +90,17 @@ public class InventoryManager : MonoBehaviour
     }
 
     // Add Funtion If Inventory is Full //
-    public void AddItem(Item item, int itemAmount)
+    public void AddItem(Item item, int itemAmount, int slotID)
     { 
+        if(slotID > -1)
+        {
+            if(slots[slotID].TryGetComponent<Slot>(out Slot currentSlot))
+            {
+                currentSlot.SetItem(item, itemAmount);
+                return;
+            }
+        }
+
         // Check if Item can be added to already existing Slot with the same Item //
         for(int i = 0; i < slots.Count; i++)
         {

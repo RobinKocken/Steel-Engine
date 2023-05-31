@@ -25,7 +25,23 @@ public class SaveSystem : MonoBehaviour
         {
             savedData = Load();
         }
+        
+        for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
+        {
+            if((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
+            {
+                continue;
+            }
+            else
+            {
+                gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]], savedData.slotItemCount[index], index);
+            }
+        }
 
+        gameManager.playerController.transform.position = savedData.playerPosition;
+        gameManager.playerController.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
+        gameManager.baseController.transform.position = savedData.basePostion;
+        gameManager.baseController.transform.eulerAngles = new Vector3(savedData.baseRotation.x, savedData.baseRotation.y, savedData.baseRotation.z);
     }
     private void Update()
     {

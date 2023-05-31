@@ -11,27 +11,37 @@
     <int>0</int>
     <int>0</int>
   </slotItemCount>
-  <slotItemType />
+  <slotItemType>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+  </slotItemType>
   <OilAmount>0</OilAmount>
   <playerPosition>
-    <x>0</x>
-    <y>0</y>
-    <z>0</z>
+    <x>1440.51221</x>
+    <y>384.047</y>
+    <z>1423.95581</z>
   </playerPosition>
   <playerRotation>
-    <x>0</x>
-    <y>0</y>
-    <z>0</z>
+    <x>0.3109156</x>
+    <y>7.178814E-05</y>
+    <z>0.0264582913</z>
   </playerRotation>
   <basePostion>
-    <x>0</x>
-    <y>0</y>
-    <z>0</z>
+    <x>1441</x>
+    <y>346.047333</y>
+    <z>1444</z>
   </basePostion>
   <baseRotation>
-    <x>0</x>
-    <y>0</y>
-    <z>0</z>
+    <x>0.311032265</x>
+    <y>7.17830553E-05</y>
+    <z>0.02644649</z>
   </baseRotation>
   <buildingIndexes />
   <buildingPosistions />

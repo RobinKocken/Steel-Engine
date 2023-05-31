@@ -27,7 +27,8 @@ public class BuildManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
-        pendingObj = Instantiate(objects[index], pos, transform.rotation);
+        pendingObj = Instantiate(objects[index], pos, transform.rotation, gameManager.baseController.gameObject.transform);
+        
     }
 
     void RotateObject()

@@ -15,7 +15,7 @@ public class ItemPickUp : MonoBehaviour, IInteractable
 
     void PickUp(GameManager gameManager)
     {
-        gameManager.inventoryManager.AddItem(item, currentAmount);
+        gameManager.inventoryManager.AddItem(item, currentAmount, -1);
 
         item = null;
         currentAmount = 0;
