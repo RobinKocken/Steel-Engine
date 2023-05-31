@@ -1,5 +1,36 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1567853124
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1567853125}
+  m_Layer: 0
+  m_Name: Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1567853125
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1567853124}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: -50}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1964809334104402970}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &40733763021904267
 GameObject:
   m_ObjectHideFlags: 0
@@ -2139,6 +2170,7 @@ Transform:
   - {fileID: 2075841466892571798}
   - {fileID: 4763139979744566269}
   - {fileID: 2997956152154255678}
+  - {fileID: 1567853125}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -2175,13 +2207,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a0b5102519721545833792f22c1f512, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
-  baseObject: {fileID: 1964809334104402970}
   animator: {fileID: 2075841467248210485}
+  target: {fileID: 1567853125}
   maxForwardSpeed: 20
   currentSpeed: 0
-  speedBuildUp: 0.1
-  maxRotSpeed: 0
+  speedBuildUp: 0.3
+  maxDegreesPerSec: 12
+  currentDegreesPerSec: 0
+  degreesBuildUpPerSec: 0.2
+  targetDistance: 50
   height: -1
   lerpSpeed: 10
   frontLeft: {fileID: 2075841467049808185}
@@ -2191,6 +2225,8 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
+  moveZ: 0
+  moveX: 0
 --- !u!1 &1224654113121810350
 GameObject:
   m_ObjectHideFlags: 0

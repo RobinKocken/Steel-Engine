@@ -32,17 +32,17 @@ public class BaseController : MonoBehaviour
     // Input Value for Keys //
     int iForward, iBackwards, iLeft, iRight;
     // Value for direction of Base //
-    int moveZ, moveX;
+    public int moveZ, moveX;
 
     void Start()
     {
         target.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + -targetDistance);
     }
 
-    private void Update()
+    void Update()
     {
-        Movement();
         Raycasts();
+        BaseMovement();
     }
 
     public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight)
@@ -76,7 +76,7 @@ public class BaseController : MonoBehaviour
         moveX = iLeft + iRight;
     }
 
-    void Movement()
+    void BaseMovement()
     {
         if(moveZ == 1)
         {
@@ -88,16 +88,59 @@ public class BaseController : MonoBehaviour
         else if(moveZ == -1)
         {
             if(currentSpeed > 0)
-            {
                 currentSpeed -= (speedBuildUp + currentSpeed / 6) * Time.deltaTime;
-            }
             else if(currentSpeed <= 0)
-            {
-                currentSpeed = 0;
-            }
+                currentSpeed = 0;            
         }
 
         transform.Translate(currentSpeed * Time.deltaTime * -Vector3.forward);
+    }
+
+    void BaseRotation()
+    {
+        if(moveX == 1)
+        {
+            if(target.localPosition.z == 0 && target.localPosition.x > 0 || target.localPosition.z != 0)
+            {
+                Debug.Log(1);
+                if(currentDegreesPerSec < maxDegreesPerSec)
+                    currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 5) * Time.deltaTime;
+                else if(currentDegreesPerSec >= maxDegreesPerSec)
+                    currentDegreesPerSec = maxDegreesPerSec;
+
+                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 5);
+            }
+        }
+        else if(moveX == -1)
+        {
+            if(target.localPosition.z == 0 && target.localPosition.x < 0 || target.localPosition.z != 0)
+            {
+                Debug.Log(-1);
+                if(currentDegreesPerSec > -maxDegreesPerSec)
+                    currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 5) * Time.deltaTime;
+                else if(currentDegreesPerSec <= -maxDegreesPerSec)
+                    currentDegreesPerSec = -maxDegreesPerSec;
+            }
+        }
+        else if(moveX == 0 && target.localPosition.z == 0)
+        {
+            currentDegreesPerSec = 0;
+        }
+
+            target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
+        target.position = transform.position - (target.forward * targetDistance);
+
+        Vector3 pos = target.localPosition;
+        pos.z = Mathf.Clamp(target.localPosition.z, -targetDistance, 0);
+        target.localPosition = pos;
+
+        if(target.localPosition.z == 0)
+            currentDegreesPerSec = 0;
+
+        //target.RotateAround(transform.position, transform.up, currentDegreesPerSec * Time.deltaTime);
+
+        //Vector3 forwardDir = target.position - transform.position;
+        //transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
     }
 
     void Raycasts()
@@ -123,12 +166,9 @@ public class BaseController : MonoBehaviour
         Vector3 newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
         transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
 
+        BaseRotation();
+
         transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);
-
-        target.RotateAround(transform.position, transform.up, currentDegreesPerSec * Time.deltaTime);
-        Vector3 forwardDir = target.position - transform.position;
-        transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z) , transform.up);
-
 
         Debug.DrawRay(hitFrontLeft.point, Vector3.up);
         Debug.DrawRay(hitFrontRight.point, Vector3.up);
