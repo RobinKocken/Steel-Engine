@@ -7,7 +7,9 @@ using UnityEngine.UIElements;
 public class BaseController : MonoBehaviour
 {
     public Animator animator;
+
     public Transform target;
+    public Transform wheel;
 
     [Header("Base Movement")]
     public float maxForwardSpeed;
@@ -104,11 +106,13 @@ public class BaseController : MonoBehaviour
             {
                 Debug.Log(1);
                 if(currentDegreesPerSec < maxDegreesPerSec)
-                    currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 5) * Time.deltaTime;
+                    currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
                 else if(currentDegreesPerSec >= maxDegreesPerSec)
                     currentDegreesPerSec = maxDegreesPerSec;
 
-                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 5);
+                Wheel(10);
+
+                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 8);
             }
         }
         else if(moveX == -1)
@@ -117,30 +121,38 @@ public class BaseController : MonoBehaviour
             {
                 Debug.Log(-1);
                 if(currentDegreesPerSec > -maxDegreesPerSec)
-                    currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 5) * Time.deltaTime;
+                    currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
                 else if(currentDegreesPerSec <= -maxDegreesPerSec)
                     currentDegreesPerSec = -maxDegreesPerSec;
+
+                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 8);
             }
         }
-        else if(moveX == 0 && target.localPosition.z == 0)
+        else if(moveX == 0 && target.localPosition.z == 0 || moveX == 0)
         {
             currentDegreesPerSec = 0;
         }
 
-            target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
+        target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
         target.position = transform.position - (target.forward * targetDistance);
 
         Vector3 pos = target.localPosition;
         pos.z = Mathf.Clamp(target.localPosition.z, -targetDistance, 0);
         target.localPosition = pos;
 
-        if(target.localPosition.z == 0)
-            currentDegreesPerSec = 0;
-
         //target.RotateAround(transform.position, transform.up, currentDegreesPerSec * Time.deltaTime);
 
         //Vector3 forwardDir = target.position - transform.position;
         //transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
+    }
+
+    void Wheel(float rot)
+    {
+        wheel.Rotate(wheel.eulerAngles.x, rot, wheel.eulerAngles.z);
+
+        //Vector3 clampRot = wheel.localEulerAngles;
+        //clampRot.y = Mathf.Clamp(wheel.localEulerAngles.y, -350, 350);
+        //wheel.localEulerAngles = clampRot;
     }
 
     void Raycasts()
