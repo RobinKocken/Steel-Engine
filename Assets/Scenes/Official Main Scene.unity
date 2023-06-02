@@ -169,29 +169,22 @@ MonoBehaviour:
     - {fileID: 991647173}
     - {fileID: 354252639}
   - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: cbcd25c15ccd3574eabc846d88032e38, type: 2}
+    layer: {fileID: 8574412962073106934, guid: 45884fe24a8cde04eb6b4f7b21362e46, type: 2}
     modifierStack:
-    - {fileID: 623055673}
-    - {fileID: 1037989244}
+    - {fileID: 600649691}
   - enabled: 1
     layer: {fileID: 8574412962073106934, guid: 383cd9107c36bd346a795e74c9a433e7, type: 2}
     modifierStack:
-    - {fileID: 1291816492}
-    - {fileID: 172115178}
+    - {fileID: 918949735}
   - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 33a23543f87302b44bfea03f68b0ea64, type: 2}
+    layer: {fileID: 8574412962073106934, guid: cbcd25c15ccd3574eabc846d88032e38, type: 2}
     modifierStack:
-    - {fileID: 1715681769}
-    - {fileID: 977699673}
-    - {fileID: 284872750}
+    - {fileID: 147311997}
+    - {fileID: 1332310758}
   - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: bab2d791e4e92e74da32d4612a4ea0fa, type: 2}
+    layer: {fileID: 8574412962073106934, guid: 7270d13bebeb712478c510f68eb8e684, type: 2}
     modifierStack:
-    - {fileID: 1110282401}
-    - {fileID: 825536419}
-  - enabled: 1
-    layer: {fileID: 8574412962073106934, guid: 5bbec9f5273644044b33cdef0fcc4db9, type: 2}
-    modifierStack: []
+    - {fileID: 1465407708}
   autoRepaint: 0
   terrainListeners: []
   bounds:
@@ -213,6 +206,26 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &147311997
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562637f396e4c10acd3fa9926b53a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  label: Slope
+  blendMode: 0
+  opacity: 100
+  passIndex: 1
+  minMax: {x: 1.0404624, y: 20.25}
+  minFalloff: 0.001
+  maxFalloff: 10
 --- !u!850595691 &149537120
 LightingSettings:
   m_ObjectHideFlags: 0
@@ -492,48 +505,6 @@ MonoBehaviour:
   m_PointlightHDType: 0
   m_SpotLightShape: 0
   m_AreaLightShape: 0
---- !u!114 &172115178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d046e3917e4d8580903c69758b6558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Height
-  blendMode: 0
-  opacity: 100
-  passIndex: 0
-  min: 29.73
-  minFalloff: 1
-  max: 2000
-  maxFalloff: 1
---- !u!114 &284872750
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d046e3917e4d8580903c69758b6558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Height
-  blendMode: 0
-  opacity: 100
-  passIndex: 0
-  min: 88.05
-  minFalloff: 1
-  max: 2000
-  maxFalloff: 1
 --- !u!1 &327053328
 GameObject:
   m_ObjectHideFlags: 0
@@ -761,7 +732,7 @@ MonoBehaviour:
   blendMode: 0
   opacity: 100
   passIndex: 0
-  min: 328.4
+  min: 313.8
   minFalloff: 1
   max: 2000
   maxFalloff: 1
@@ -1006,7 +977,7 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: 439f1d0989fbce740942b1afc3222489, type: 2}
---- !u!114 &623055673
+--- !u!114 &600649691
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1015,37 +986,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2562637f396e4c10acd3fa9926b53a12, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b5a4738b539472faa518e606162927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enabled: 1
-  label: Slope
-  blendMode: 2
+  label: Curvature
+  blendMode: 0
   opacity: 100
-  passIndex: 1
-  minMax: {x: 0, y: 0.5}
+  passIndex: 2
+  minMax: {x: 0.24375, y: 0.46875}
+  radius: 1
   minFalloff: 0.001
   maxFalloff: 0.001
---- !u!114 &825536419
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2562637f396e4c10acd3fa9926b53a12, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Slope
-  blendMode: 3
-  opacity: 100
-  passIndex: 1
-  minMax: {x: 0.6, y: 34.714287}
-  minFalloff: 0.001
-  maxFalloff: 0.7
 --- !u!114 &914291917
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1064,10 +1016,10 @@ MonoBehaviour:
   opacity: 100
   passIndex: 4
   noiseType: 0
-  noiseScale: 50.92
+  noiseScale: 42.3
   noiseOffset: {x: 0, y: 0}
   levels: {x: 0, y: 1}
---- !u!114 &977699673
+--- !u!114 &918949735
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1076,17 +1028,18 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2562637f396e4c10acd3fa9926b53a12, type: 3}
+  m_Script: {fileID: 11500000, guid: 7b5a4738b539472faa518e606162927c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enabled: 1
-  label: Slope
+  label: Curvature
   blendMode: 0
   opacity: 100
-  passIndex: 1
-  minMax: {x: 0, y: 0}
-  minFalloff: 10
-  maxFalloff: 1.6
+  passIndex: 2
+  minMax: {x: 0.175, y: 0.21875}
+  radius: 1
+  minFalloff: 0.001
+  maxFalloff: 0.001
 --- !u!114 &991647173
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1107,48 +1060,6 @@ MonoBehaviour:
   minMax: {x: 0, y: 0}
   minFalloff: 10
   maxFalloff: 2.8
---- !u!114 &1037989244
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b1d046e3917e4d8580903c69758b6558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Height
-  blendMode: 0
-  opacity: 100
-  passIndex: 0
-  min: 31
-  minFalloff: 1
-  max: 2000
-  maxFalloff: 1
---- !u!114 &1110282401
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e07d49e90874d70b9937cb753327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Noise
-  blendMode: 1
-  opacity: 100
-  passIndex: 4
-  noiseType: 0
-  noiseScale: 43.2
-  noiseOffset: {x: 0, y: 0}
-  levels: {x: 0, y: 0.79527557}
 --- !u!114 &1218960649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1169,7 +1080,7 @@ MonoBehaviour:
   minMax: {x: 0, y: 0}
   minFalloff: 10
   maxFalloff: 0.2
---- !u!114 &1291816492
+--- !u!114 &1332310758
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -1178,18 +1089,38 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b5a4738b539472faa518e606162927c, type: 3}
+  m_Script: {fileID: 11500000, guid: 7e07d49e90874d70b9937cb753327a2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enabled: 1
-  label: Curvature
+  label: Noise
   blendMode: 0
   opacity: 100
-  passIndex: 2
-  minMax: {x: 0, y: 0.257874}
-  radius: 1
-  minFalloff: 0.001
-  maxFalloff: 0.001
+  passIndex: 4
+  noiseType: 1
+  noiseScale: 140.2
+  noiseOffset: {x: 0, y: 0}
+  levels: {x: 0, y: 0.99999994}
+--- !u!114 &1465407708
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2562637f396e4c10acd3fa9926b53a12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enabled: 1
+  label: Slope
+  blendMode: 3
+  opacity: 100
+  passIndex: 1
+  minMax: {x: 0, y: 16.3125}
+  minFalloff: 15.9
+  maxFalloff: 10
 --- !u!1 &1556543551
 GameObject:
   m_ObjectHideFlags: 0
@@ -1317,27 +1248,6 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: d3c6f40d14593354f904c9859fc0ca5d, type: 2}
---- !u!114 &1715681769
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e07d49e90874d70b9937cb753327a2d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enabled: 1
-  label: Noise
-  blendMode: 0
-  opacity: 100
-  passIndex: 4
-  noiseType: 0
-  noiseScale: 173.2
-  noiseOffset: {x: 0, y: 0}
-  levels: {x: 0, y: 1}
 --- !u!114 &1965077071
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1355,7 +1265,7 @@ MonoBehaviour:
   blendMode: 0
   opacity: 100
   passIndex: 0
-  min: 307.1
+  min: 294.4
   minFalloff: 1
   max: 2000
   maxFalloff: 1
