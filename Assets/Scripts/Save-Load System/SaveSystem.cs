@@ -70,7 +70,7 @@ public class SaveSystem : MonoBehaviour
         savedData.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
 
 
-        Transform baseParent = gameManager.baseController.transform;
+        Transform baseParent = gameManager.buildManager.buildingParent;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
             savedData.buildingIndexes.Add(bIndex);

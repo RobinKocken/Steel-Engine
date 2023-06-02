@@ -7,6 +7,7 @@ public class BuildManager : MonoBehaviour
 {
 
     public GameManager gameManager;
+    public Transform buildingParent;
 
     [SerializeField] private LayerMask layerMask;
     [Header("Objects")]
@@ -27,7 +28,7 @@ public class BuildManager : MonoBehaviour
 
     public void SelectObject(int index)
     {
-        pendingObj = Instantiate(objects[index], pos, transform.rotation, gameManager.baseController.gameObject.transform);
+        pendingObj = Instantiate(objects[index], pos, transform.rotation, buildingParent);
         
     }
 
