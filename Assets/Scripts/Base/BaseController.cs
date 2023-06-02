@@ -110,73 +110,37 @@ public class BaseController : MonoBehaviour
     {
         if(moveX == 1)
         {
-            if(target.localPosition.z == 0 && target.localPosition.x > 0 || target.localPosition.z != 0)
-            {
-                Debug.Log(1);
-                if(currentDegreesPerSec < maxDegreesPerSec)
-                    currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
-                else if(currentDegreesPerSec >= maxDegreesPerSec)
-                    currentDegreesPerSec = maxDegreesPerSec;
+            if(currentDegreesPerSec < maxDegreesPerSec)
+                currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
+            else if(currentDegreesPerSec >= maxDegreesPerSec)
+                currentDegreesPerSec = maxDegreesPerSec;
 
-                Wheel(10);
-
-                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 8);
-            }
+            Wheel(1);
         }
         else if(moveX == -1)
         {
-            if(target.localPosition.z == 0 && target.localPosition.x < 0 || target.localPosition.z != 0)
-            {
-                Debug.Log(-1);
-                if(currentDegreesPerSec > -maxDegreesPerSec)
-                    currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
-                else if(currentDegreesPerSec <= -maxDegreesPerSec)
-                    currentDegreesPerSec = -maxDegreesPerSec;
+            if(currentDegreesPerSec > -maxDegreesPerSec)
+                currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
+            else if(currentDegreesPerSec <= -maxDegreesPerSec)
+                currentDegreesPerSec = -maxDegreesPerSec;
 
-                Debug.Log(Mathf.Abs(currentDegreesPerSec) / 8);
-            }
-        }
-        else
-        {
-            currentDegreesPerSec = 0;
+            Wheel(-1);
         }
 
         target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
-        target.position = transform.position - (target.forward * targetDistance);
+        target.position = transform.position - (target.forward * targetDistance);       
 
-        Vector3 pos = target.localPosition;
-        pos.z = Mathf.Clamp(target.localPosition.z, -targetDistance, 0);
-        target.localPosition = pos;
-
-        if(target.localPosition.z == 0)
-        {
-            if(target.localPosition.x < 0)
-            {
-                if(currentDegreesPerSec > 0)
-                {
-                    currentDegreesPerSec = 0;
-                }
-            }
-            else if(target.localPosition.x > 0)
-            {
-                if(currentDegreesPerSec < 0)
-                {
-                    currentDegreesPerSec = 0;
-                }
-            }
-        }
-
-        //Vector3 forwardDir = target.position - transform.position;
-        //transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
+        Vector3 forwardDir = target.position - transform.position;
+        transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
     }
 
     void Wheel(float rot)
     {
-        //wheel.Rotate(wheel.eulerAngles.x, rot, wheel.eulerAngles.z);
+        wheel.Rotate(0, 0, wheel.eulerAngles.z + rot * Time.deltaTime);
 
         //Vector3 clampRot = wheel.localEulerAngles;
-        //clampRot.y = Mathf.Clamp(wheel.localEulerAngles.y, -350, 350);
-        //wheel.localEulerAngles = clampRot;
+        //clampRot.z = Mathf.Clamp(wheel.localEulerAngles.z, -350, 350);
+        //wheel.localEulerAngles = new Vector3(0, 0, clampRot.z);
     }
 
     void Raycasts()
