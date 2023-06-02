@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
+using Unity.VisualScripting;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -25,10 +26,10 @@ public class SaveSystem : MonoBehaviour
         {
             savedData = Load();
         }
-        
+
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
-            if((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
+            if ((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
             {
                 continue;
             }
@@ -38,9 +39,9 @@ public class SaveSystem : MonoBehaviour
             }
         }
 
-        gameManager.playerController.transform.position = savedData.playerPosition;
+        gameManager.playerController.transform.position = new Vector3(savedData.playerPosition.x, savedData.playerPosition.y + 12, savedData.playerPosition.z);
         gameManager.playerController.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
-        gameManager.baseController.transform.position = savedData.basePostion;
+        gameManager.baseController.transform.position = new Vector3(savedData.basePostion.x, savedData.basePostion.y, savedData.basePostion.z);
         gameManager.baseController.transform.eulerAngles = new Vector3(savedData.baseRotation.x, savedData.baseRotation.y, savedData.baseRotation.z);
     }
     private void Update()
@@ -57,16 +58,25 @@ public class SaveSystem : MonoBehaviour
         savedData = new SavedData();
 
         //saving what is in the inventory
-        for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
+        for (int sIndex = 0; sIndex < gameManager.inventoryManager.slots.Count; sIndex++)
         {
             savedData.slotItemType.Add((int)gameManager.inventoryManager.itemName);
-            savedData.slotItemCount.Add(gameManager.inventoryManager.slots[index].GetComponent<Slot>().amount);
+            savedData.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
         }
 
         savedData.playerPosition = gameManager.playerController.transform.position;
         savedData.playerRotation = gameManager.playerController.transform.rotation.eulerAngles;
         savedData.basePostion = gameManager.baseController.transform.position;
         savedData.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
+
+
+        Transform baseParent = gameManager.baseController.transform;
+        for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
+        {
+            savedData.buildingIndexes.Add(bIndex);
+            savedData.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
+            savedData.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
+        }
 
 
         return savedData;
