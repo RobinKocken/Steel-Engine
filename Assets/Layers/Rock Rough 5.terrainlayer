@@ -6,15 +6,15 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Rock Rough 3
-  m_DiffuseTexture: {fileID: 2800000, guid: b80b99ef246ef6847b644f35be19997a, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 3954b5ca5596e6049be085ec00d6966d, type: 3}
+  m_Name: Rock Rough 5
+  m_DiffuseTexture: {fileID: 2800000, guid: 4257bd576c2c9dc43a62ae712877f964, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 7abffb8f1e86a2e4baf13b805c5f57e4, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: -30, y: -30}
+  m_TileSize: {x: 20, y: 20}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
-  m_Smoothness: 0
+  m_Smoothness: 0.207
   m_NormalScale: 1
   m_DiffuseRemapMin: {x: 0, y: 0, z: 0, w: 0}
   m_DiffuseRemapMax: {x: 1, y: 1, z: 1, w: 1}

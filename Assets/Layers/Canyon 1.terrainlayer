@@ -6,11 +6,11 @@ TerrainLayer:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Grass Cut
-  m_DiffuseTexture: {fileID: 2800000, guid: b2f5c836d729136488f56664042deb42, type: 3}
-  m_NormalMapTexture: {fileID: 2800000, guid: 3440fa130946d4e4badeb153d3dcd834, type: 3}
+  m_Name: Canyon 1
+  m_DiffuseTexture: {fileID: 2800000, guid: e3332734840de8240b46d305390a245c, type: 3}
+  m_NormalMapTexture: {fileID: 2800000, guid: 3b4dc750f391df049af1005e30f4558d, type: 3}
   m_MaskMapTexture: {fileID: 0}
-  m_TileSize: {x: -20, y: -20}
+  m_TileSize: {x: 20, y: 20}
   m_TileOffset: {x: 0, y: 0}
   m_Specular: {r: 0, g: 0, b: 0, a: 0}
   m_Metallic: 0
