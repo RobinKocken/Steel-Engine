@@ -24,26 +24,73 @@
   </slotItemType>
   <OilAmount>0</OilAmount>
   <playerPosition>
-    <x>576.1378</x>
-    <y>42.9240646</y>
-    <z>9271.124</z>
+    <x>581.3413</x>
+    <y>39.6922531</y>
+    <z>9282.902</z>
   </playerPosition>
   <playerRotation>
-    <x>-0</x>
-    <y>0</y>
+    <x>0</x>
+    <y>226.75795</y>
     <z>0</z>
   </playerRotation>
   <basePostion>
-    <x>576.027832</x>
+    <x>575.8897</x>
     <y>16.8000488</y>
-    <z>9290.794</z>
+    <z>9290.878</z>
   </basePostion>
   <baseRotation>
     <x>-0</x>
-    <y>0</y>
-    <z>0</z>
+    <y>67.80797</y>
+    <z>-0</z>
   </baseRotation>
-  <buildingIndexes />
-  <buildingPosistions />
-  <buildingRotations />
+  <buildingIndexes>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+  </buildingIndexes>
+  <buildingPosistions>
+    <Vector3>
+      <x>574.2521</x>
+      <y>39.92005</y>
+      <z>9284.303</z>
+    </Vector3>
+    <Vector3>
+      <x>572.7413</x>
+      <y>39.92005</y>
+      <z>9288.006</z>
+    </Vector3>
+    <Vector3>
+      <x>572.7413</x>
+      <y>39.92005</y>
+      <z>9288.006</z>
+    </Vector3>
+    <Vector3>
+      <x>576.444946</x>
+      <y>39.92005</y>
+      <z>9289.517</z>
+    </Vector3>
+  </buildingPosistions>
+  <buildingRotations>
+    <Vector3>
+      <x>-0</x>
+      <y>67.80797</y>
+      <z>-0</z>
+    </Vector3>
+    <Vector3>
+      <x>-0</x>
+      <y>157.807968</y>
+      <z>-0</z>
+    </Vector3>
+    <Vector3>
+      <x>-0</x>
+      <y>67.80797</y>
+      <z>-0</z>
+    </Vector3>
+    <Vector3>
+      <x>-0</x>
+      <y>157.807968</y>
+      <z>-0</z>
+    </Vector3>
+  </buildingRotations>
 </SavedData>

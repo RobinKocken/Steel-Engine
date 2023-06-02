@@ -18,7 +18,6 @@ public class GameManager : MonoBehaviour
     public PlayerState playerState;
 
     public PlayerController playerController;
-    public CameraController cameraController;
     public RaycastController raycastController;
     public BaseController baseController;
 

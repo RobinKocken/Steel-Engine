@@ -5,10 +5,11 @@ using UnityEngine;
 public class CheckPlacement : MonoBehaviour
 {
     [SerializeField] private BuildManager buildManager;
+    public int buildingID;
     // Start is called before the first frame update
     void Start()
     {
-        buildManager = GameObject.Find("BuildManager").GetComponent<BuildManager>();
+        buildManager = GameObject.Find("Buildings").GetComponent<BuildManager>();
         buildManager.canPlace = true;
     }
     //If the Object colides with another object, make it unable to be placed

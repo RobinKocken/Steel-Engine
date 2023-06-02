@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -28,6 +29,7 @@ public class BuildManager : MonoBehaviour
     public void SelectObject(int index)
     {
         pendingObj = Instantiate(objects[index], pos, transform.rotation, buildingParent);
+        pendingObj.GetComponent<CheckPlacement>().buildingID = index;
         Debug.Log("building object");
     }
 
@@ -43,19 +45,19 @@ public class BuildManager : MonoBehaviour
             //check if grid is on, and snap objects if its on
             if(gridOn)
             {
-                pendingObj.transform.position = new Vector3(
+                pendingObj.transform.localPosition = new Vector3(
                 RoundToNearestGrid(pos.x),
                 yPos + offset,
                 RoundToNearestGrid(pos.z));
             }
             else
             {
-                pendingObj.transform.position = new Vector3(pos.x, yPos + offset, pos.z);
+                pendingObj.transform.localPosition = new Vector3(pos.x, yPos + offset, pos.z);
             }
 
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                yPos++;
+                yPos += 2;
             }
             if(Input.GetKeyDown(KeyCode.R))
             {
@@ -63,7 +65,7 @@ public class BuildManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.E))
             {
-                yPos--;
+                yPos += 2;
             }
 
             if(Input.GetMouseButton(0) && canPlace)
@@ -86,6 +88,7 @@ public class BuildManager : MonoBehaviour
         if(Physics.Raycast(ray, out hit, 1000, layerMask))
         {
             pos = new Vector3(hit.point.x, hit.point.y + offset , hit.point.z);
+            pos -= transform.position;
         }
     }
 
@@ -95,10 +98,11 @@ public class BuildManager : MonoBehaviour
         //Changeable grid system
         float xDiff = pos % gridSize;
         pos -= xDiff;
-        if(xDiff > (gridSize/2))
+        if (xDiff > (gridSize / 2))
         {
             pos += gridSize;
         }
+        //pos = Mathf.RoundToInt(pos);
         return pos;
     }
 }

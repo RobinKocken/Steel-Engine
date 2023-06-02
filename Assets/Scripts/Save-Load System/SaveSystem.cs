@@ -7,6 +7,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using Unity.VisualScripting;
+using System.Linq;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -50,15 +51,15 @@ public class SaveSystem : MonoBehaviour
         }
 
         savedData.playerPosition = gameManager.playerController.transform.position;
-        savedData.playerRotation = gameManager.playerController.transform.rotation.eulerAngles;
-        savedData.basePostion = gameManager.baseController.transform.position;
+        savedData.playerRotation = gameManager.playerController.gameObject.transform.eulerAngles;
+        savedData.basePostion = gameManager.baseController.gameObject.transform.position;
         savedData.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
 
 
         Transform baseParent = gameManager.buildManager.buildingParent;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
-            savedData.buildingIndexes.Add(bIndex);
+            savedData.buildingIndexes.Add(baseParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID);
             savedData.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
             savedData.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
         }
@@ -87,6 +88,7 @@ public class SaveSystem : MonoBehaviour
 
     public void LoadData()
     {
+        Debug.Log("Refilling Inventory");
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
             if ((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
@@ -99,10 +101,23 @@ public class SaveSystem : MonoBehaviour
             }
         }
 
+        Debug.Log("Adjusting Player Transform");
         gameManager.playerController.transform.position = new Vector3(savedData.playerPosition.x, savedData.playerPosition.y, savedData.playerPosition.z);
-        gameManager.playerController.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
-        gameManager.baseController.transform.position = new Vector3(savedData.basePostion.x, savedData.basePostion.y, savedData.basePostion.z);
+        gameManager.playerController.gameObject.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
+
+        Debug.Log("Adjusting Base Transform");
+        gameManager.baseController.gameObject.transform.position = new Vector3(savedData.basePostion.x, savedData.basePostion.y, savedData.basePostion.z);
         gameManager.baseController.transform.eulerAngles = new Vector3(savedData.baseRotation.x, savedData.baseRotation.y, savedData.baseRotation.z);
+
+        Transform baseParent = gameManager.buildManager.buildingParent;
+        for (int bIndex = 0; bIndex < savedData.buildingIndexes.Count; bIndex++)
+        {
+            Debug.Log("Rebuilding Base");
+            GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[savedData.buildingIndexes[bIndex]], baseParent);
+            newBuilding.transform.position = savedData.buildingPosistions[bIndex];
+            newBuilding.transform.eulerAngles = new Vector3(savedData.buildingRotations[bIndex].x, savedData.buildingRotations[bIndex].y, savedData.buildingRotations[bIndex].z);
+        }
+
     }
 }
 
