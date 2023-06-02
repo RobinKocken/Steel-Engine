@@ -7216,9 +7216,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   itemName: 0
-  items:
-  - {fileID: 11400000, guid: 40a769425843c5e4eac8f086e2065db0, type: 2}
-  - {fileID: 11400000, guid: d5545a0b56512534ea62d14d527b7eb4, type: 2}
+  itemHolders: []
   inventorySlotHolder: {fileID: 5321287674920411829}
   hotbarSlotHolder: {fileID: 5321287675108206995}
   slots: []

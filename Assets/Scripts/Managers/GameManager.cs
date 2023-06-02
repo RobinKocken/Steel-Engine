@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
             }
             case PlayerState.station:
             {
-                baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey);
+                baseController.GetBaseKeyInput(keys.baseForwardKey, keys.baseBackwardsKey, keys.baseLeftKey, keys.baseRightKey, keys.baseSwitchCamKey, keys.interactionKey);
 
                 break;
             }

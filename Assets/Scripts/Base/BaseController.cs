@@ -2,14 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
-using UnityEngine.UIElements;
 
 public class BaseController : MonoBehaviour
 {
+    public GameManager gameManager;
+
     public Animator animator;
 
     public Transform target;
     public Transform wheel;
+
+    public bool letRot;
 
     [Header("Base Movement")]
     public float maxForwardSpeed;
@@ -43,11 +46,13 @@ public class BaseController : MonoBehaviour
 
     void Update()
     {
-        Raycasts();
+        if(letRot)
+            Raycasts();
+        
         BaseMovement();
     }
 
-    public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight)
+    public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kCamSwitch, KeyCode kInteraction)
     {
         if(Input.GetKeyDown(kForward))
             iForward = 1;
@@ -68,6 +73,9 @@ public class BaseController : MonoBehaviour
             iRight = 1;
         else if(Input.GetKeyUp(kRight))
             iRight = 0;
+
+        if(Input.GetKeyDown(kInteraction))
+            gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
 
         CalculateInputDirection();
     }
@@ -128,7 +136,7 @@ public class BaseController : MonoBehaviour
                 Debug.Log(Mathf.Abs(currentDegreesPerSec) / 8);
             }
         }
-        else if(moveX == 0 && target.localPosition.z == 0 || moveX == 0)
+        else
         {
             currentDegreesPerSec = 0;
         }
@@ -140,7 +148,23 @@ public class BaseController : MonoBehaviour
         pos.z = Mathf.Clamp(target.localPosition.z, -targetDistance, 0);
         target.localPosition = pos;
 
-        //target.RotateAround(transform.position, transform.up, currentDegreesPerSec * Time.deltaTime);
+        if(target.localPosition.z == 0)
+        {
+            if(target.localPosition.x < 0)
+            {
+                if(currentDegreesPerSec > 0)
+                {
+                    currentDegreesPerSec = 0;
+                }
+            }
+            else if(target.localPosition.x > 0)
+            {
+                if(currentDegreesPerSec < 0)
+                {
+                    currentDegreesPerSec = 0;
+                }
+            }
+        }
 
         //Vector3 forwardDir = target.position - transform.position;
         //transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
@@ -148,7 +172,7 @@ public class BaseController : MonoBehaviour
 
     void Wheel(float rot)
     {
-        wheel.Rotate(wheel.eulerAngles.x, rot, wheel.eulerAngles.z);
+        //wheel.Rotate(wheel.eulerAngles.x, rot, wheel.eulerAngles.z);
 
         //Vector3 clampRot = wheel.localEulerAngles;
         //clampRot.y = Mathf.Clamp(wheel.localEulerAngles.y, -350, 350);

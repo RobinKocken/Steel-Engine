@@ -49,6 +49,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   orientation: {fileID: 1341215676613248772}
+  targetDistance: 0
 --- !u!114 &3663772453147258122
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -292,6 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 706e5c1589066174f9054ae93bab6a33, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  baseController: {fileID: 0}
   orientation: {fileID: 1341215676613248772}
   playerMaxSpeed: 0
   playerMoveSpeed: 2.5
@@ -299,6 +301,7 @@ MonoBehaviour:
   drag: 15
   jumpForce: 10.5
   airMultiplier: 0.1
+  baseSpeed: 0
   sphereRadius: 0.48
   rayDistance: 0.53
   grounded: 0
