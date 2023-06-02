@@ -3355,6 +3355,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  buildingParent: {fileID: 6602118243825281305}
   layerMask:
     serializedVersion: 2
     m_Bits: 0

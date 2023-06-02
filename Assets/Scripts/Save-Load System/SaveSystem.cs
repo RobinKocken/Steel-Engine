@@ -27,22 +27,7 @@ public class SaveSystem : MonoBehaviour
             savedData = Load();
         }
 
-        for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
-        {
-            if ((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
-            {
-                continue;
-            }
-            else
-            {
-                gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]], savedData.slotItemCount[index], index);
-            }
-        }
-
-        gameManager.playerController.transform.position = new Vector3(savedData.playerPosition.x, savedData.playerPosition.y + 12, savedData.playerPosition.z);
-        gameManager.playerController.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
-        gameManager.baseController.transform.position = new Vector3(savedData.basePostion.x, savedData.basePostion.y, savedData.basePostion.z);
-        gameManager.baseController.transform.eulerAngles = new Vector3(savedData.baseRotation.x, savedData.baseRotation.y, savedData.baseRotation.z);
+        LoadData();
     }
     private void Update()
     {
@@ -98,6 +83,26 @@ public class SaveSystem : MonoBehaviour
         var container = serializer.Deserialize(stream) as SavedData;
         stream.Close();
         return container;
+    }
+
+    public void LoadData()
+    {
+        for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
+        {
+            if ((int)gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]].itemName == 0)
+            {
+                continue;
+            }
+            else
+            {
+                gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[savedData.slotItemType[index]], savedData.slotItemCount[index], index);
+            }
+        }
+
+        gameManager.playerController.transform.position = new Vector3(savedData.playerPosition.x, savedData.playerPosition.y, savedData.playerPosition.z);
+        gameManager.playerController.transform.eulerAngles = new Vector3(savedData.playerRotation.x, savedData.playerRotation.y, savedData.playerRotation.z);
+        gameManager.baseController.transform.position = new Vector3(savedData.basePostion.x, savedData.basePostion.y, savedData.basePostion.z);
+        gameManager.baseController.transform.eulerAngles = new Vector3(savedData.baseRotation.x, savedData.baseRotation.y, savedData.baseRotation.z);
     }
 }
 

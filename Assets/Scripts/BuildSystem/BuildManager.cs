@@ -20,8 +20,7 @@ public class BuildManager : MonoBehaviour
     public float offset;
     public float gridSize;
     public int yPos;
-    bool gridOn = true;
-    [SerializeField] private Toggle gridToggle;
+    private bool gridOn = true;
     private Vector3 pos;
 
     private RaycastHit hit;
@@ -29,7 +28,7 @@ public class BuildManager : MonoBehaviour
     public void SelectObject(int index)
     {
         pendingObj = Instantiate(objects[index], pos, transform.rotation, buildingParent);
-        
+        Debug.Log("building object");
     }
 
     void RotateObject()
@@ -88,14 +87,6 @@ public class BuildManager : MonoBehaviour
         {
             pos = new Vector3(hit.point.x, hit.point.y + offset , hit.point.z);
         }
-    }
-
-    public void ToggleGrid()
-    {
-        if(gridToggle.isOn) {
-            gridOn = true;
-        }
-        else {  gridOn = false; }
     }
 
     //snap cords of object to nearest int

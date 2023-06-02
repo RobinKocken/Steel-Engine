@@ -24,84 +24,26 @@
   </slotItemType>
   <OilAmount>0</OilAmount>
   <playerPosition>
-    <x>1452.90942</x>
-    <y>380.555084</y>
-    <z>1445.831</z>
+    <x>576.1378</x>
+    <y>42.9240646</y>
+    <z>9271.124</z>
   </playerPosition>
   <playerRotation>
-    <x>1.55474234</x>
-    <y>0.0017942969</y>
-    <z>0.132287443</z>
+    <x>-0</x>
+    <y>0</y>
+    <z>0</z>
   </playerRotation>
   <basePostion>
-    <x>1441</x>
-    <y>346.047333</y>
-    <z>1444</z>
+    <x>576.027832</x>
+    <y>16.8000488</y>
+    <z>9290.794</z>
   </basePostion>
   <baseRotation>
-    <x>0.3110324</x>
-    <y>7.17831063E-05</y>
-    <z>0.0264464971</z>
+    <x>-0</x>
+    <y>0</y>
+    <z>0</z>
   </baseRotation>
-  <buildingIndexes>
-    <int>0</int>
-    <int>1</int>
-    <int>2</int>
-    <int>3</int>
-    <int>4</int>
-  </buildingIndexes>
-  <buildingPosistions>
-    <Vector3>
-      <x>1452.90942</x>
-      <y>380.555084</y>
-      <z>1445.831</z>
-    </Vector3>
-    <Vector3>
-      <x>1440.98389</x>
-      <y>381.0468</y>
-      <z>1444.19</z>
-    </Vector3>
-    <Vector3>
-      <x>1440.97668</x>
-      <y>378.147125</y>
-      <z>1444.17432</z>
-    </Vector3>
-    <Vector3>
-      <x>1441</x>
-      <y>346.047333</y>
-      <z>1444</z>
-    </Vector3>
-    <Vector3>
-      <x>1440.99988</x>
-      <y>346.047333</y>
-      <z>1394</z>
-    </Vector3>
-  </buildingPosistions>
-  <buildingRotations>
-    <Vector3>
-      <x>1.55474234</x>
-      <y>0.0017942969</y>
-      <z>0.132287443</z>
-    </Vector3>
-    <Vector3>
-      <x>0.3110324</x>
-      <y>7.17831063E-05</y>
-      <z>0.0264464971</z>
-    </Vector3>
-    <Vector3>
-      <x>359.972321</x>
-      <y>90.2255</y>
-      <z>0.3109259</z>
-    </Vector3>
-    <Vector3>
-      <x>0.3110324</x>
-      <y>7.17831063E-05</y>
-      <z>0.0264464971</z>
-    </Vector3>
-    <Vector3>
-      <x>1.646345E-16</x>
-      <y>7.178312E-05</y>
-      <z>-2.628156E-10</z>
-    </Vector3>
-  </buildingRotations>
+  <buildingIndexes />
+  <buildingPosistions />
+  <buildingRotations />
 </SavedData>
