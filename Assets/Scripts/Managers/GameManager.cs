@@ -131,6 +131,7 @@ public class GameManager : MonoBehaviour
             {
                 CursorModeConfined();
                 playerController.StopMovement();
+                buildCamera.GetComponent<BuildCam>().targetOffset = buildManager.transform.position;
                 SwitchCamera(buildCamera, playerCamera);
 
                 uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
