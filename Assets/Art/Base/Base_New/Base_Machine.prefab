@@ -2020,7 +2020,7 @@ MonoBehaviour:
   speedBuildUp: 0.3
   maxDegreesPerSec: 12
   currentDegreesPerSec: 0
-  degreesBuildUpPerSec: 0.2
+  degreesBuildUpPerSec: 0.4
   targetDistance: 50
   height: 10
   lerpSpeed: 10
