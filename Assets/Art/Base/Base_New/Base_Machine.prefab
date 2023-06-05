@@ -2020,8 +2020,9 @@ MonoBehaviour:
   speedBuildUp: 0.3
   maxDegreesPerSec: 12
   currentDegreesPerSec: 0
-  degreesBuildUpPerSec: 0.4
+  degreesBuildUpPerSec: 2
   targetDistance: 50
+  wheelRot: 0
   height: 10
   lerpSpeed: 10
   frontLeft: {fileID: 8208095241191722861}

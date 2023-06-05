@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Animations;
+using UnityEngine.iOS;
 
 public class BaseController : MonoBehaviour
 {
@@ -24,6 +25,9 @@ public class BaseController : MonoBehaviour
     public float currentDegreesPerSec;
     public float degreesBuildUpPerSec;
     public float targetDistance;
+
+    [Header("Wheel")]
+    public float wheelRotSpeed;
 
     [Header("Base Height")]
     public float height;
@@ -111,20 +115,22 @@ public class BaseController : MonoBehaviour
         if(moveX == 1)
         {
             if(currentDegreesPerSec < maxDegreesPerSec)
-                currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
+                currentDegreesPerSec += (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 10) * Time.deltaTime;
             else if(currentDegreesPerSec >= maxDegreesPerSec)
                 currentDegreesPerSec = maxDegreesPerSec;
 
-            Wheel(1);
+            if(currentDegreesPerSec != maxDegreesPerSec)
+                Wheel();
         }
         else if(moveX == -1)
         {
             if(currentDegreesPerSec > -maxDegreesPerSec)
-                currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 8) * Time.deltaTime;
+                currentDegreesPerSec -= (degreesBuildUpPerSec + Mathf.Abs(currentDegreesPerSec) / 10) * Time.deltaTime;
             else if(currentDegreesPerSec <= -maxDegreesPerSec)
                 currentDegreesPerSec = -maxDegreesPerSec;
 
-            Wheel(-1);
+            if(currentDegreesPerSec != -maxDegreesPerSec)
+                Wheel();
         }
 
         target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
@@ -134,13 +140,17 @@ public class BaseController : MonoBehaviour
         transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
     }
 
-    void Wheel(float rot)
+    void Wheel()
     {
-        wheel.Rotate(0, 0, wheel.eulerAngles.z + rot * Time.deltaTime);
+        float degreesPercantage = currentDegreesPerSec / maxDegreesPerSec * 100;
+        float wheelPercantageApplied = degreesPercantage * 350 / 100;
 
-        //Vector3 clampRot = wheel.localEulerAngles;
-        //clampRot.z = Mathf.Clamp(wheel.localEulerAngles.z, -350, 350);
-        //wheel.localEulerAngles = new Vector3(0, 0, clampRot.z);
+        float rotDif = wheelPercantageApplied - wheel.localEulerAngles.z;
+
+        Debug.Log($"{(int)degreesPercantage} , {(int)wheelPercantageApplied} , {wheel.localEulerAngles.z} , {rotDif}");
+
+        wheel.Rotate(0, 0, rotDif);
+
     }
 
     void Raycasts()
