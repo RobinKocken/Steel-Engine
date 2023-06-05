@@ -1,29 +1,30 @@
 using UnityEngine;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.Serialization.Formatters.Binary;
 using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
-using Unity.VisualScripting;
-using System.Linq;
+using System.Collections.Generic;
 
 public class SaveSystem : MonoBehaviour
 {
-    public bool doSave;
     public GameManager gameManager;
-
-    public SavedData savedData;
-    public DataSlot curSaveData;
+    public bool doSave;
+    public DataSlots dataSlots;
     private string path;
-    
 
-    private void Start()
+    // Start is called before the first frame update
+
+    public void Start()
     {
         path = Application.dataPath + "/DataXml.data";
-    }
+        print(path);
 
+        if (File.Exists(path))
+        {
+            dataSlots = Load();
+        }
+
+        LoadData(0);
+    }
     private void Update()
     {
         if (doSave)
@@ -32,98 +33,86 @@ public class SaveSystem : MonoBehaviour
             doSave = false;
         }
     }
-    public void SaveButton(int _saveIndex)
+    public void Save(int _saveIndex)
     {
-        Save(_saveIndex);
-    }
-
-    public void LoadButton(int _loadIndex)
-    {
-        if (File.Exists(path))
-        {
-            curSaveData = Load();
-
-            LoadData();
-        }
-    }
-    public void Save(int _saveSlot)
-    {
-        curSaveData = SetDataToSave(_saveSlot);
-        var serializer = new XmlSerializer(typeof(DataSlot));
+        dataSlots.savedData[_saveIndex] = SetDataToSave(_saveIndex);
+        var serializer = new XmlSerializer(typeof(DataSlots));
         var stream = new FileStream(path, FileMode.Create);
-        serializer.Serialize(stream, curSaveData);
+        serializer.Serialize(stream, dataSlots);
         stream.Close();
     }
-    public DataSlot SetDataToSave(int _saveInSlot)
+
+    public SavedData SetDataToSave(int _saveInSlot)
     {
-        var DataSlot = savedData.DataSlots[_saveInSlot];
-        savedData.DataSlots[_saveInSlot] = new DataSlot();
+        dataSlots.savedData[_saveInSlot] = new SavedData();
+        var dataSlot = dataSlots.savedData[_saveInSlot];
 
         //saving what is in the inventory
         for (int sIndex = 0; sIndex < gameManager.inventoryManager.slots.Count; sIndex++)
         {
-            DataSlot.slotItemType.Add((int)gameManager.inventoryManager.itemName);
-            DataSlot.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
+            dataSlot.slotItemType.Add((int)gameManager.inventoryManager.itemName);
+            dataSlot.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
         }
 
-        DataSlot.playerPosition = gameManager.playerController.transform.position;
-        DataSlot.playerRotation = gameManager.playerController.gameObject.transform.eulerAngles;
-        DataSlot.basePostion = gameManager.baseController.gameObject.transform.position;
-        DataSlot.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
+        dataSlot.playerPosition = gameManager.playerController.transform.position;
+        dataSlot.playerRotation = gameManager.playerController.gameObject.transform.eulerAngles;
+        dataSlot.basePostion = gameManager.baseController.gameObject.transform.position;
+        dataSlot.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
 
 
         Transform baseParent = gameManager.buildManager.buildingParent;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
-            DataSlot.buildingIndexes.Add(baseParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID);
-            DataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
-            DataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
+            dataSlot.buildingIndexes.Add(baseParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID);
+            dataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
+            dataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
         }
 
 
-        return savedData.DataSlots[_saveInSlot];
+        return dataSlots.savedData[_saveInSlot];
     }
-    public DataSlot Load()
+
+    //load all save files
+    public DataSlots Load()
     {
-        var serializer = new XmlSerializer(typeof(DataSlot));
+        var serializer = new XmlSerializer(typeof(DataSlots));
         var stream = new FileStream(path, FileMode.Open);
-        var container = serializer.Deserialize(stream) as DataSlot;
+        DataSlots container = serializer.Deserialize(stream) as DataSlots;
         stream.Close();
         return container;
     }
 
-    public void LoadData()
+    public void LoadData(int _LoadSlot)
     {
         Debug.Log("Refilling Inventory");
+        var _dataSlot = dataSlots.savedData[_LoadSlot];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
-            if ((int)gameManager.inventoryManager.itemHolders[curSaveData.slotItemType[index]].itemName == 0)
+            if ((int)gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]].itemName == 0)
             {
                 continue;
             }
             else
             {
-                gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[curSaveData.slotItemType[index]], curSaveData.slotItemCount[index], index);
+                gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]], _dataSlot.slotItemCount[index], index);
             }
         }
-
         Debug.Log("Adjusting Player Transform");
-        gameManager.playerController.transform.position = new Vector3(curSaveData.playerPosition.x, curSaveData.playerPosition.y, curSaveData.playerPosition.z);
-        gameManager.playerController.gameObject.transform.eulerAngles = new Vector3(curSaveData.playerRotation.x, curSaveData.playerRotation.y, curSaveData.playerRotation.z);
+        gameManager.playerController.transform.position = new Vector3(_dataSlot.playerPosition.x, _dataSlot.playerPosition.y, _dataSlot.playerPosition.z);
+        gameManager.playerController.gameObject.transform.eulerAngles = new Vector3(_dataSlot.playerRotation.x, _dataSlot.playerRotation.y, _dataSlot.playerRotation.z);
 
         Debug.Log("Adjusting Base Transform");
-        gameManager.baseController.gameObject.transform.position = new Vector3(curSaveData.basePostion.x, curSaveData.basePostion.y, curSaveData.basePostion.z);
-        gameManager.baseController.transform.eulerAngles = new Vector3(curSaveData.baseRotation.x, curSaveData.baseRotation.y, curSaveData.baseRotation.z);
+        gameManager.baseController.gameObject.transform.position = new Vector3(_dataSlot.basePostion.x, _dataSlot.basePostion.y, _dataSlot.basePostion.z);
+        gameManager.baseController.transform.eulerAngles = new Vector3(_dataSlot.baseRotation.x, _dataSlot.baseRotation.y, _dataSlot.baseRotation.z);
 
         Transform baseParent = gameManager.buildManager.buildingParent;
-        for (int bIndex = 0; bIndex < curSaveData.buildingIndexes.Count; bIndex++)
+        for (int bIndex = 0; bIndex < _dataSlot.buildingIndexes.Count; bIndex++)
         {
             Debug.Log("Rebuilding Base");
-            GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[curSaveData.buildingIndexes[bIndex]], baseParent);
-            newBuilding.transform.position = curSaveData.buildingPosistions[bIndex];
-            newBuilding.transform.eulerAngles = new Vector3(curSaveData.buildingRotations[bIndex].x, curSaveData.buildingRotations[bIndex].y, curSaveData.buildingRotations[bIndex].z);
+            GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], baseParent);
+            newBuilding.transform.position = _dataSlot.buildingPosistions[bIndex];
+            newBuilding.transform.eulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
         }
 
     }
 }
-

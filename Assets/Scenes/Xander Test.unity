@@ -273,6 +273,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 557457556632056986, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
+      propertyPath: target
+      value: 
+      objectReference: {fileID: 351823917}
+    - target: {fileID: 557457556632056986, guid: 5c6052bb4ca46a846a38bb36e799c536,
+        type: 3}
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1105406162}
@@ -385,6 +390,37 @@ MonoBehaviour:
   blendDistance: 0
   weight: 1
   sharedProfile: {fileID: 11400000, guid: d3c6f40d14593354f904c9859fc0ca5d, type: 2}
+--- !u!1 &351823916
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 351823917}
+  m_Layer: 0
+  m_Name: Base Target
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &351823917
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 351823916}
+  m_LocalRotation: {x: -0, y: -0.5659027, z: 0, w: 0.824472}
+  m_LocalPosition: {x: 622.68494, y: 16.800049, z: 9272.818}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 11
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &359257093 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7748948324105537386, guid: 5c6052bb4ca46a846a38bb36e799c536,
@@ -1450,6 +1486,16 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1105406162}
+    - target: {fileID: 3384129586219972854, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
+        type: 3}
+      propertyPath: dataSlots.savedData.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 3384129586219972854, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
+        type: 3}
+      propertyPath: savedData.dataSlots.Array.size
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3384129586219972855, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
         type: 3}
       propertyPath: m_Name
