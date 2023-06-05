@@ -224,9 +224,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensitivity: 1
-  zoomSpeed: 10
-  minDistance: 2
-  maxDistance: 50
+  yawSpeed: 1
+  zoomSpeed: 100
+  minDistance: 10
+  maxDistance: 75
   targetOffset: {x: 0, y: 0, z: 0}
   yaw: 0
   pitch: 34.75
