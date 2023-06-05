@@ -3357,8 +3357,11 @@ MonoBehaviour:
   buildingParent: {fileID: 6602118243825281305}
   layerMask:
     serializedVersion: 2
-    m_Bits: 0
-  objects: []
+    m_Bits: 64
+  objects:
+  - {fileID: 708079187579743949, guid: 622cc88ee80698346abc14e2acd65669, type: 3}
+  - {fileID: 552631416601946751, guid: d9b9f09a26e7b7641835186e4ecdd22a, type: 3}
+  - {fileID: 7204281897970480837, guid: ecad3fb724026a74f90c920aab2a25a9, type: 3}
   pendingObj: {fileID: 0}
   rotateAmount: 0
   canPlace: 0
