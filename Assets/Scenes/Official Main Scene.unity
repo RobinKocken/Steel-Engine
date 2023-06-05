@@ -1611,6 +1611,11 @@ PrefabInstance:
       objectReference: {fileID: 246686671}
     - target: {fileID: 7748948324105537386, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
+      propertyPath: layerMask.m_Bits
+      value: 64
+      objectReference: {fileID: 0}
+    - target: {fileID: 7748948324105537386, guid: 5c6052bb4ca46a846a38bb36e799c536,
+        type: 3}
       propertyPath: objects.Array.size
       value: 3
       objectReference: {fileID: 0}
