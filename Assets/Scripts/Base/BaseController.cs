@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.iOS;
+using static UnityEditor.PlayerSettings;
 
 public class BaseController : MonoBehaviour
 {
@@ -10,8 +12,8 @@ public class BaseController : MonoBehaviour
 
     public Animator animator;
 
-    public Transform target;
     public Transform wheel;
+    public Transform target;
 
     public bool letRot;
 
@@ -43,17 +45,26 @@ public class BaseController : MonoBehaviour
     // Value for direction of Base //
     public int moveZ, moveX;
 
+    Vector3 newUp;
+
     void Start()
     {
-        target.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + -targetDistance);
+        InitializeTarget();
     }
 
     void Update()
     {
-        if(letRot)
-            Raycasts();
-        
+        Raycasts();
         BaseMovement();
+    }
+
+    void InitializeTarget()
+    {
+        GameObject newTarget = new GameObject();
+        newTarget.name = "Base Target";
+        target = newTarget.transform;
+
+        target.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + -targetDistance);
     }
 
     public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kCamSwitch, KeyCode kInteraction)
@@ -136,8 +147,20 @@ public class BaseController : MonoBehaviour
         target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
         target.position = transform.position - (target.forward * targetDistance);       
 
+        Debug.Log(transform.eulerAngles);
+        Debug.DrawRay(transform.position, transform.up * 1000, Color.green);
+
         Vector3 forwardDir = target.position - transform.position;
-        transform.rotation = Quaternion.LookRotation(-new Vector3(forwardDir.x, 0, forwardDir.z), transform.up);
+        RaycastHit hit2;
+        Physics.Raycast(transform.position, Vector3.down, out hit2, 1000);
+        transform.LookAt(target);
+        transform.rotation = Quaternion.LookRotation(transform.forward, hit2.normal);
+        transform.rotation = Quaternion.LookRotation(forwardDir, hit2.normal);
+
+        //Vector3 forwardDir = target.position - transform.position;
+        //Quaternion targetRotation = Quaternion.LookRotation(-forwardDir, transform.up);
+        //targetRotation.eulerAngles = new Vector3(transform.eulerAngles.x, targetRotation.eulerAngles.y, transform.eulerAngles.z);
+        //transform.rotation = targetRotation;
     }
 
     void Wheel()
@@ -147,7 +170,7 @@ public class BaseController : MonoBehaviour
 
         float rotDif = wheelPercantageApplied - wheel.localEulerAngles.z;
 
-        Debug.Log($"{(int)degreesPercantage} , {(int)wheelPercantageApplied} , {wheel.localEulerAngles.z} , {rotDif}");
+        //Debug.Log($"{(int)degreesPercantage} , {(int)wheelPercantageApplied} , {wheel.localEulerAngles.z} , {rotDif}")
 
         wheel.Rotate(0, 0, rotDif);
 
@@ -158,10 +181,8 @@ public class BaseController : MonoBehaviour
         Physics.Raycast(frontLeft.position + Vector3.up, Vector3.down, out RaycastHit hitFrontLeft, layerMask);
         Physics.Raycast(frontRight.position + Vector3.up, Vector3.down, out RaycastHit hitFrontRight, layerMask);
 
-        Physics.Raycast(rearLeft.position + Vector3.up, Vector3.down, out RaycastHit hitRearLeft,layerMask);
+        Physics.Raycast(rearLeft.position + Vector3.up, Vector3.down, out RaycastHit hitRearLeft, layerMask);
         Physics.Raycast(rearRight.position + Vector3.up, Vector3.down, out RaycastHit hitRearRight, layerMask);
-
-        Vector3 center = (hitFrontLeft.point + hitFrontRight.point + hitRearLeft.point + hitRearRight.point) / 4;
 
         Vector3 a = hitRearRight.point - hitRearLeft.point;
         Vector3 b = hitFrontRight.point - hitRearRight.point;
@@ -173,11 +194,12 @@ public class BaseController : MonoBehaviour
         Vector3 crossDC = Vector3.Cross(d, c);
         Vector3 crossAD = Vector3.Cross(a, d);
 
-        Vector3 newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
+        newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
         transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
 
         BaseRotation();
 
+        Vector3 center = (hitFrontLeft.point + hitFrontRight.point + hitRearLeft.point + hitRearRight.point) / 4;
         transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);
 
         Debug.DrawRay(hitFrontLeft.point, Vector3.up);
