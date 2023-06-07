@@ -65,7 +65,7 @@ public class BuildManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.E))
             {
-                yPos += 2;
+                yPos -= 2;
             }
 
             if(Input.GetMouseButton(0) && canPlace)

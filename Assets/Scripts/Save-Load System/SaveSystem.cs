@@ -19,12 +19,12 @@ public class SaveSystem : MonoBehaviour
         path = Application.dataPath + "/DataXml.data";
         print(path);
 
-        if (File.Exists(path))
-        {
-            dataSlots = Load();
-        }
+        //if (File.Exists(path))
+        //{
+        //    dataSlots = Load();
+        //}
 
-        LoadData(0);
+        //LoadData(0);
     }
     private void Update()
     {
