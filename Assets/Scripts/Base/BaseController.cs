@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Animations;
 using UnityEngine.iOS;
+using UnityEngine.UIElements;
 using static UnityEditor.PlayerSettings;
 
 public class BaseController : MonoBehaviour
@@ -64,7 +67,7 @@ public class BaseController : MonoBehaviour
         newTarget.name = "Base Target";
         target = newTarget.transform;
 
-        target.position = new Vector3(transform.position.x, transform.position.y, transform.position.z + -targetDistance);
+        target.position = transform.TransformPoint(-Vector3.forward * targetDistance);
     }
 
     public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kCamSwitch, KeyCode kInteraction)
@@ -144,23 +147,20 @@ public class BaseController : MonoBehaviour
                 Wheel();
         }
 
-        target.eulerAngles = new Vector3(0, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, 0);
-        target.position = transform.position - (target.forward * targetDistance);       
 
-        Debug.Log(transform.eulerAngles);
-        Debug.DrawRay(transform.position, transform.up * 1000, Color.green);
+        //target.eulerAngles = new Vector3(target.eulerAngles.x, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, transform.eulerAngles.z);
+        //target.position = transform.position - (target.forward * targetDistance);
+
+        //target.position = transform.TransformPoint(-Vector3.forward);
+
+        //target.position = transform.position + new Vector3(Mathf.Sin(Time.time * currentDegreesPerSec), 0f, Mathf.Cos(Time.time * currentDegreesPerSec)) * targetDistance;;
+
+        Debug.DrawRay(transform.position, -transform.right * targetDistance, Color.red);
+        Debug.DrawRay(transform.position, transform.up * targetDistance, Color.green);
+        Debug.DrawRay(transform.position, -transform.forward * targetDistance, Color.blue);
 
         Vector3 forwardDir = target.position - transform.position;
-        RaycastHit hit2;
-        Physics.Raycast(transform.position, Vector3.down, out hit2, 1000);
-        transform.LookAt(target);
-        transform.rotation = Quaternion.LookRotation(transform.forward, hit2.normal);
-        transform.rotation = Quaternion.LookRotation(forwardDir, hit2.normal);
-
-        //Vector3 forwardDir = target.position - transform.position;
-        //Quaternion targetRotation = Quaternion.LookRotation(-forwardDir, transform.up);
-        //targetRotation.eulerAngles = new Vector3(transform.eulerAngles.x, targetRotation.eulerAngles.y, transform.eulerAngles.z);
-        //transform.rotation = targetRotation;
+        //transform.rotation = Quaternion.LookRotation(-forwardDir, transform.up);
     }
 
     void Wheel()
@@ -195,12 +195,12 @@ public class BaseController : MonoBehaviour
         Vector3 crossAD = Vector3.Cross(a, d);
 
         newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
-        transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
+        //transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
 
         BaseRotation();
 
         Vector3 center = (hitFrontLeft.point + hitFrontRight.point + hitRearLeft.point + hitRearRight.point) / 4;
-        transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);
+        //transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);
 
         Debug.DrawRay(hitFrontLeft.point, Vector3.up);
         Debug.DrawRay(hitFrontRight.point, Vector3.up);
