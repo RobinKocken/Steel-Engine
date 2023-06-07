@@ -20,4 +20,10 @@ public class SavedData
     public List<int> buildingIndexes = new List<int>();
     public List<Vector3> buildingPosistions = new List<Vector3>();
     public List<Vector3> buildingRotations = new List<Vector3>();
+
+    [Header("Farming info")]
+    public List<int> cropIndex;
+    public List<bool> fullyGrown;
+    public List<float> cropProgess;
+    public List<int> cropStage;
 }

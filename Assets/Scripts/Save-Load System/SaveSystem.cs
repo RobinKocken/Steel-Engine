@@ -3,6 +3,7 @@ using System.IO;
 using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
+using System.Data;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -61,14 +62,37 @@ public class SaveSystem : MonoBehaviour
 
 
         Transform baseParent = gameManager.buildManager.buildingParent;
+        int farmAmount = 0;
         for (int bIndex = 0; bIndex < baseParent.childCount; bIndex++)
         {
+            if (baseParent.GetChild(bIndex).TryGetComponent(out FarmController farmController))
+            {
+                int _cropIndex = 0;
+                for (int fIndex = 0; fIndex < farmController.crops.Length; fIndex++)
+                {
+                    if (farmController.currentCrop == farmController.crops[fIndex])
+                    {
+                        _cropIndex = fIndex;
+                        break;
+                    }
+                }
+                dataSlot.cropIndex[farmAmount] = _cropIndex;
+                dataSlot.fullyGrown[farmAmount] = farmController.fullyGrown;
+                if (farmController.fullyGrown)
+                {
+                    dataSlot.cropProgess[farmAmount] = 100;
+                }
+                else
+                {
+                    dataSlot.cropProgess[farmAmount] = farmController.cropProgress;
+                }
+                dataSlot.cropStage[farmAmount] = farmController.GrowthStage;
+                farmAmount++;
+            }
             dataSlot.buildingIndexes.Add(baseParent.GetChild(bIndex).GetComponent<CheckPlacement>().buildingID);
             dataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
             dataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
         }
-
-
         return dataSlots.savedData[_saveInSlot];
     }
 
@@ -112,6 +136,20 @@ public class SaveSystem : MonoBehaviour
             GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], baseParent);
             newBuilding.transform.position = _dataSlot.buildingPosistions[bIndex];
             newBuilding.transform.eulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
+            if(newBuilding.TryGetComponent(out FarmController farm))
+            {
+                for(int _fIndex = 0;  _fIndex < _dataSlot.cropIndex.Count; _fIndex++)
+                {
+                    farm.currentCrop = farm.crops[_dataSlot.cropIndex[_fIndex]];
+                    farm.fullyGrown = _dataSlot.fullyGrown[_fIndex];
+                    farm.cropProgress = _dataSlot.cropProgess[_fIndex];
+                    farm.GrowthStage = _dataSlot.cropStage[_fIndex];
+                    if(!farm.fullyGrown)
+                    {
+                        farm.StartCoroutine(farm.GrowCrop(farm.crops[_dataSlot.cropIndex[_fIndex]].GetComponent<Crop>()));
+                    }
+                }
+            }
         }
 
     }

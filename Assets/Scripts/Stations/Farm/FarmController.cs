@@ -6,7 +6,7 @@ using UnityEngine.UIElements;
 
 public class FarmController : MonoBehaviour, IInteractable
 {
-    [SerializeField] private GameObject[] crops;
+    public GameObject[] crops;
     public GameObject currentCrop;
     private int cropToGrow;
     public FarmManager farmManager;
