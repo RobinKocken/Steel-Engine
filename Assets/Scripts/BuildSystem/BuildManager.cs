@@ -20,6 +20,7 @@ public class BuildManager : MonoBehaviour
     [Header("Grid Stuff")]
     public float offset;
     public float gridSize;
+    public int gridHeight;
     public int yPos;
     private bool gridOn = true;
     private Vector3 pos;
@@ -57,7 +58,7 @@ public class BuildManager : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Q))
             {
-                yPos += 2;
+                yPos += gridHeight;
             }
             if(Input.GetKeyDown(KeyCode.R))
             {
@@ -65,7 +66,7 @@ public class BuildManager : MonoBehaviour
             }
             if(Input.GetKeyDown(KeyCode.E))
             {
-                yPos -= 2;
+                yPos -= gridHeight;
             }
 
             if(Input.GetMouseButton(0) && canPlace)

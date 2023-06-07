@@ -458,7 +458,7 @@ GameObject:
   - component: {fileID: 4885306074175025446}
   - component: {fileID: 6280877265888541293}
   - component: {fileID: 3969654614333758586}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Floor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3335,7 +3335,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2190387568605384150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 21.35, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -3360,14 +3360,18 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   objects:
-  - {fileID: 708079187579743949, guid: 622cc88ee80698346abc14e2acd65669, type: 3}
-  - {fileID: 552631416601946751, guid: d9b9f09a26e7b7641835186e4ecdd22a, type: 3}
-  - {fileID: 7204281897970480837, guid: ecad3fb724026a74f90c920aab2a25a9, type: 3}
+  - {fileID: 7973366317365562898, guid: 9e95c6c1e564ddc4b9e95d6a4faec1f0, type: 3}
+  - {fileID: 978790948485361319, guid: 6777c8908c4e7f14baddb2352aa5f021, type: 3}
+  - {fileID: 5584538199776059411, guid: a6a257708c492ab4ab02076976bab264, type: 3}
+  - {fileID: 1351986083109945942, guid: 73874c27bc286d5479acbee6415448ab, type: 3}
+  - {fileID: 2156813253458799611, guid: da643f2bb5622b54ea5513a252282ccc, type: 3}
+  - {fileID: 8355172827367785701, guid: f2495b266b242fb49808eb64cd673768, type: 3}
+  - {fileID: 8957451449193416319, guid: 4d7db976f0833c84183b3bdc29ccecb8, type: 3}
   pendingObj: {fileID: 0}
-  rotateAmount: 0
+  rotateAmount: 90
   canPlace: 0
-  offset: 0
-  gridSize: 0
+  offset: 0.5
+  gridSize: 1.57
   yPos: 0
 --- !u!1 &2229290542942004836
 GameObject:

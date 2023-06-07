@@ -11,9 +11,11 @@ GameObject:
   - component: {fileID: 8698801394300264031}
   - component: {fileID: 5699167145934426618}
   - component: {fileID: 7562516958293222704}
+  - component: {fileID: -3370679472017261550}
+  - component: {fileID: 2063745943683436635}
   m_Layer: 0
   m_Name: Balcony
-  m_TagString: Untagged
+  m_TagString: Building
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -83,3 +85,30 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-3370679472017261550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355172827367785701}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fecb1f920debb4b92bf475d2d6a87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildManager: {fileID: 0}
+  buildingID: 5
+--- !u!65 &2063745943683436635
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8355172827367785701}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.4999998, y: 4.4, z: 9}
+  m_Center: {x: -1.7499999, y: 1.76, z: -0.00000023841858}
