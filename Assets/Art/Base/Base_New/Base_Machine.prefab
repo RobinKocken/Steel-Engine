@@ -3320,6 +3320,8 @@ GameObject:
   m_Component:
   - component: {fileID: 6602118243825281305}
   - component: {fileID: 7748948324105537386}
+  - component: {fileID: 1669766397}
+  - component: {fileID: 1669766398}
   m_Layer: 0
   m_Name: Buildings
   m_TagString: Untagged
@@ -3372,7 +3374,40 @@ MonoBehaviour:
   canPlace: 0
   offset: 0.5
   gridSize: 1.57
+  gridHeight: 0
   yPos: 0
+--- !u!114 &1669766397
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2190387568605384150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84165a259c13e7344bc0064d0c5a48b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObj: {fileID: 0}
+  objText: {fileID: 0}
+  selectUI: {fileID: 0}
+--- !u!114 &1669766398
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2190387568605384150}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2aa250313981c0c498824e923ddb3ca4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  farmUI: {fileID: 0}
+  progressUI: {fileID: 0}
+  progressSlider: {fileID: 0}
+  cropListUI: {fileID: 0}
+  harvestUI: {fileID: 0}
 --- !u!1 &2229290542942004836
 GameObject:
   m_ObjectHideFlags: 0

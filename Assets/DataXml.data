@@ -26,76 +26,86 @@
       </slotItemType>
       <OilAmount>0</OilAmount>
       <playerPosition>
-        <x>594.673</x>
-        <y>40.98375</y>
-        <z>9284.474</z>
+        <x>574.577637</x>
+        <y>41.1110229</y>
+        <z>9310.461</z>
       </playerPosition>
       <playerRotation>
-        <x>-6.40330256E-07</x>
-        <y>291.07016</y>
-        <z>358.486755</z>
+        <x>-0</x>
+        <y>180</y>
+        <z>357.137421</z>
       </playerRotation>
       <basePostion>
         <x>576.027832</x>
-        <y>14.8719053</y>
+        <y>15.0268841</y>
         <z>9290.794</z>
       </basePostion>
       <baseRotation>
         <x>-0</x>
-        <y>291.0702</y>
-        <z>358.487183</z>
+        <y>180</y>
+        <z>357.137421</z>
       </baseRotation>
-      <buildingIndexes />
-      <buildingPosistions />
-      <buildingRotations />
-    </SavedData>
-    <SavedData>
-      <slotItemCount>
+      <buildingIndexes>
+        <int>6</int>
+        <int>3</int>
+        <int>2</int>
+        <int>1</int>
         <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-      </slotItemCount>
-      <slotItemType>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-        <int>0</int>
-      </slotItemType>
-      <OilAmount>0</OilAmount>
-      <playerPosition>
-        <x>594.672852</x>
-        <y>40.9837</y>
-        <z>9284.477</z>
-      </playerPosition>
-      <playerRotation>
-        <x>9.071345E-07</x>
-        <y>291.0702</y>
-        <z>358.4866</z>
-      </playerRotation>
-      <basePostion>
-        <x>576.027832</x>
-        <y>14.8719053</y>
-        <z>9290.794</z>
-      </basePostion>
-      <baseRotation>
-        <x>-1.06721707E-07</x>
-        <y>291.0702</y>
-        <z>358.487183</z>
-      </baseRotation>
-      <buildingIndexes />
-      <buildingPosistions />
-      <buildingRotations />
+      </buildingIndexes>
+      <buildingPosistions>
+        <Vector3>
+          <x>574.936646</x>
+          <y>36.849617</y>
+          <z>9290.794</z>
+        </Vector3>
+        <Vector3>
+          <x>574.936646</x>
+          <y>36.849617</y>
+          <z>9295.504</z>
+        </Vector3>
+        <Vector3>
+          <x>571.800537</x>
+          <y>36.6928024</y>
+          <z>9289.224</z>
+        </Vector3>
+        <Vector3>
+          <x>573.3686</x>
+          <y>36.77121</y>
+          <z>9287.654</z>
+        </Vector3>
+        <Vector3>
+          <x>576.5047</x>
+          <y>36.9280243</y>
+          <z>9289.224</z>
+        </Vector3>
+      </buildingPosistions>
+      <buildingRotations>
+        <Vector3>
+          <x>-0</x>
+          <y>180</y>
+          <z>357.137421</z>
+        </Vector3>
+        <Vector3>
+          <x>-0</x>
+          <y>180</y>
+          <z>357.137421</z>
+        </Vector3>
+        <Vector3>
+          <x>-0</x>
+          <y>180</y>
+          <z>357.137421</z>
+        </Vector3>
+        <Vector3>
+          <x>-0</x>
+          <y>180</y>
+          <z>357.137421</z>
+        </Vector3>
+        <Vector3>
+          <x>-0</x>
+          <y>180</y>
+          <z>357.137421</z>
+        </Vector3>
+      </buildingRotations>
     </SavedData>
     <SavedData>
       <slotItemCount />
@@ -124,6 +134,42 @@
       <buildingIndexes />
       <buildingPosistions />
       <buildingRotations />
+      <cropIndex />
+      <fullyGrown />
+      <cropProgess />
+      <cropStage />
+    </SavedData>
+    <SavedData>
+      <slotItemCount />
+      <slotItemType />
+      <OilAmount>0</OilAmount>
+      <playerPosition>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerPosition>
+      <playerRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerRotation>
+      <basePostion>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </basePostion>
+      <baseRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </baseRotation>
+      <buildingIndexes />
+      <buildingPosistions />
+      <buildingRotations />
+      <cropIndex />
+      <fullyGrown />
+      <cropProgess />
+      <cropStage />
     </SavedData>
   </savedData>
 </DataSlots>

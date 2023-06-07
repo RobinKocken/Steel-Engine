@@ -136,15 +136,15 @@ public class SaveSystem : MonoBehaviour
             GameObject newBuilding = Instantiate(baseParent.GetComponent<BuildManager>().objects[_dataSlot.buildingIndexes[bIndex]], baseParent);
             newBuilding.transform.position = _dataSlot.buildingPosistions[bIndex];
             newBuilding.transform.eulerAngles = new Vector3(_dataSlot.buildingRotations[bIndex].x, _dataSlot.buildingRotations[bIndex].y, _dataSlot.buildingRotations[bIndex].z);
-            if(newBuilding.TryGetComponent(out FarmController farm))
+            if (newBuilding.TryGetComponent(out FarmController farm))
             {
-                for(int _fIndex = 0;  _fIndex < _dataSlot.cropIndex.Count; _fIndex++)
+                for (int _fIndex = 0; _fIndex < _dataSlot.cropIndex.Count; _fIndex++)
                 {
                     farm.currentCrop = farm.crops[_dataSlot.cropIndex[_fIndex]];
                     farm.fullyGrown = _dataSlot.fullyGrown[_fIndex];
                     farm.cropProgress = _dataSlot.cropProgess[_fIndex];
                     farm.GrowthStage = _dataSlot.cropStage[_fIndex];
-                    if(!farm.fullyGrown)
+                    if (!farm.fullyGrown)
                     {
                         farm.StartCoroutine(farm.GrowCrop(farm.crops[_dataSlot.cropIndex[_fIndex]].GetComponent<Crop>()));
                     }

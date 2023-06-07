@@ -19,13 +19,12 @@ public class FarmController : MonoBehaviour, IInteractable
 
     public void Start()
     {
-        farmManager = GameObject.Find("FarmManager").GetComponent<FarmManager>();
+        farmManager = gameObject.GetComponentInParent<FarmManager>();
     }
     //if the player interacts with a farm, tell the farm manager which farm the player wants to interact with
     public void Interact(GameManager gameManager)
     {
-        FarmController farmToGrowOn = this;
-        farmManager.OpenFarmUI(farmToGrowOn);
+        farmManager.OpenFarmUI(this);
         gameManager.SwitchStatePlayer(GameManager.PlayerState.ui);
     }
 
