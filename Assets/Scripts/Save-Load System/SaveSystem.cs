@@ -99,7 +99,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         SceneManager.LoadScene("Main Scene");
-
+        
         LoadData(_sceneToLoad);
     }
 

@@ -45,8 +45,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  savedData:
-    DataSlots:
+  doSave: 0
+  dataSlots:
+    savedData:
     - slotItemCount: 
       slotItemType: 
       OilAmount: 0
@@ -57,6 +58,9 @@ MonoBehaviour:
       buildingIndexes: 
       buildingPosistions: []
       buildingRotations: []
+      cropIndex: 
+      cropProgess: []
+      cropStage: 
     - slotItemCount: 
       slotItemType: 
       OilAmount: 0
@@ -67,6 +71,9 @@ MonoBehaviour:
       buildingIndexes: 
       buildingPosistions: []
       buildingRotations: []
+      cropIndex: 
+      cropProgess: []
+      cropStage: 
     - slotItemCount: 
       slotItemType: 
       OilAmount: 0
@@ -77,14 +84,6 @@ MonoBehaviour:
       buildingIndexes: 
       buildingPosistions: []
       buildingRotations: []
-  curSaveData:
-    slotItemCount: 
-    slotItemType: 
-    OilAmount: 0
-    playerPosition: {x: 0, y: 0, z: 0}
-    playerRotation: {x: 0, y: 0, z: 0}
-    basePostion: {x: 0, y: 0, z: 0}
-    baseRotation: {x: 0, y: 0, z: 0}
-    buildingIndexes: 
-    buildingPosistions: []
-    buildingRotations: []
+      cropIndex: 
+      cropProgess: []
+      cropStage: 
