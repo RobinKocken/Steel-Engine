@@ -53,54 +53,65 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    public void InternalUIUpdate(KeyCode journalKey ,KeyCode inventoryKey, KeyCode mapKey)
+    public void InternalUIUpdate(KeyCode journalKey ,KeyCode inventoryKey, KeyCode mapKey, KeyCode optionkey)
     {
-        // Journal Key //
-        if(Input.GetKeyDown(journalKey))
+        if(internalUIState != InternalUIState.option) 
         {
-            // Check if Journal is already active, if active close Internal UI and if not then go to Journal State // 
-            if(internalUIState != InternalUIState.journal)
+            // Journal Key //
+            if(Input.GetKeyDown(journalKey))
             {
-                SwitchStateUI(InternalUIState.journal, ExternalUIState.none);
+                // Check if Journal is already active, if active close Internal UI and if not then go to Journal State // 
+                if(internalUIState != InternalUIState.journal)
+                {
+                    SwitchStateUI(InternalUIState.journal, ExternalUIState.none);
+                }
+                else
+                {
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
+                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                }
             }
-            else
+
+            // Inventory Key //
+            if(Input.GetKeyDown(inventoryKey))
+            {
+                // Check if Invnetory is already active, if active close Internal UI and if not then go to Invnetory State // 
+                if(internalUIState != InternalUIState.inventory)
+                {
+                    SwitchStateUI(InternalUIState.inventory, ExternalUIState.none);
+                }
+                else
+                {
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
+                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                }
+            }
+
+            // Map Key //
+            if(Input.GetKeyDown(mapKey))
+            {
+                // Check if Map is already active, if active close Internal UI and if not then go to Map State // 
+                if(internalUIState != InternalUIState.map)
+                {
+                    SwitchStateUI(InternalUIState.map, ExternalUIState.none);
+                }
+                else
+                {
+                    SwitchStateUI(InternalUIState.none, ExternalUIState.none);
+                    gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                }
+            }
+
+            inventoryManager.InventoryUpdate();
+        }      
+        else if(internalUIState == InternalUIState.option)
+        {
+            if(Input.GetKeyDown(optionkey))
             {
                 SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);                
             }
-        }
-
-        // Inventory Key //
-        if(Input.GetKeyDown(inventoryKey))
-        {
-            // Check if Invnetory is already active, if active close Internal UI and if not then go to Invnetory State // 
-            if(internalUIState != InternalUIState.inventory)
-            {
-                SwitchStateUI(InternalUIState.inventory, ExternalUIState.none);
-            }
-            else
-            {
-                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
-            }
-        }
-
-        // Map Key //
-        if(Input.GetKeyDown(mapKey))
-        {
-            // Check if Map is already active, if active close Internal UI and if not then go to Map State // 
-            if(internalUIState != InternalUIState.map)
-            {
-                SwitchStateUI(InternalUIState.map, ExternalUIState.none);
-            }
-            else
-            {
-                SwitchStateUI(InternalUIState.none, ExternalUIState.none);
-                gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
-            }
-        }
-
-        inventoryManager.InventoryUpdate();
+        } 
     }
 
     public void ExternalUIUpdate(KeyCode interactionKey)
@@ -190,6 +201,11 @@ public class UIManager : MonoBehaviour
         else
             internalUI.uiInternal.SetActive(false);
 
+        if(!optionActive)
+            internalUI.topBar.SetActive(true);
+        else if(optionActive)
+            internalUI.topBar.SetActive(false);
+
         internalUI.uiJournal.SetActive(journalActive);
         internalUI.uiInventory.SetActive(inventoryActive);
         internalUI.uiMap.SetActive(mapActive);
@@ -243,6 +259,7 @@ public class UIManager : MonoBehaviour
 [System.Serializable]
 public class InternalUI
 {
+    public GameObject topBar;
     public GameObject uiInternal;
     public GameObject uiJournal;
     public GameObject uiInventory;
