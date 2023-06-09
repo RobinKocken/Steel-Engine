@@ -66,7 +66,7 @@ public class GameManager : MonoBehaviour
             {
                 if(uiManager.internalUIState != UIManager.InternalUIState.none)
                 {
-                    uiManager.InternalUIUpdate(keys.journalKey, keys.inventoryKey, keys.mapKey);
+                    uiManager.InternalUIUpdate(keys.journalKey, keys.inventoryKey, keys.mapKey, keys.optionKey);
                     break;
                 }
                 else if(uiManager.externalUIState != UIManager.ExternalUIState.none)
@@ -118,11 +118,13 @@ public class GameManager : MonoBehaviour
                 if(Input.GetKeyDown(keys.journalKey))
                     uiManager.SwitchStateUI(UIManager.InternalUIState.journal, UIManager.ExternalUIState.none);
                 else if(Input.GetKeyDown(keys.inventoryKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);                
-                if(Input.GetKeyDown(keys.mapKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);                
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.inventory, UIManager.ExternalUIState.none);
+                else if(Input.GetKeyDown(keys.mapKey))
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.map, UIManager.ExternalUIState.none);
+                else if(Input.GetKeyDown(keys.optionKey))
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.option, UIManager.ExternalUIState.none);
                 else if(Input.GetKeyDown(keys.interactionKey))
-                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm);               
+                    uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.farm); 
 
                 break;
             }
