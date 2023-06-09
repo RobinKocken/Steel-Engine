@@ -60,7 +60,7 @@ MonoBehaviour:
     journalKey: 106
     inventoryKey: 9
     mapKey: 109
-    optionKey: 0
+    optionKey: 27
     interactionKey: 102
     buildKey: 98
   playerState: 0

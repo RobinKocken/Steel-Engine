@@ -124,7 +124,7 @@ public class BaseController : MonoBehaviour
         transform.Translate(currentSpeed * Time.deltaTime * -Vector3.forward);
     }
 
-    void BaseRotation()
+    void BaseRotation(Vector3 newUp)
     {
         if(moveX == 1)
         {
@@ -148,12 +148,16 @@ public class BaseController : MonoBehaviour
         }
 
 
-        //target.eulerAngles = new Vector3(target.eulerAngles.x, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, transform.eulerAngles.z);
-        //target.position = transform.position - (target.forward * targetDistance);
-
-        //target.position = transform.TransformPoint(-Vector3.forward);
+        target.eulerAngles = new Vector3(target.eulerAngles.x, target.eulerAngles.y + currentDegreesPerSec * Time.deltaTime, transform.eulerAngles.z);
+        Vector3 newY = transform.TransformPoint(-Vector3.forward * targetDistance);
+        Vector3 newPos = transform.position - (target.forward * targetDistance);
+        target.position = new Vector3(newPos.x, newY.y, newPos.z);
 
         //target.position = transform.position + new Vector3(Mathf.Sin(Time.time * currentDegreesPerSec), 0f, Mathf.Cos(Time.time * currentDegreesPerSec)) * targetDistance;;
+
+        //target.RotateAround(transform.transform.position, newUp, currentDegreesPerSec * Time.deltaTime);
+
+
 
         Debug.DrawRay(transform.position, -transform.right * targetDistance, Color.red);
         Debug.DrawRay(transform.position, transform.up * targetDistance, Color.green);
@@ -178,16 +182,18 @@ public class BaseController : MonoBehaviour
 
     void Raycasts()
     {
-        Physics.Raycast(frontLeft.position + Vector3.up, Vector3.down, out RaycastHit hitFrontLeft, layerMask);
-        Physics.Raycast(frontRight.position + Vector3.up, Vector3.down, out RaycastHit hitFrontRight, layerMask);
+        Physics.Raycast(frontLeft.position, Vector3.down, out RaycastHit hitFrontLeft, layerMask);
+        Physics.Raycast(frontRight.position, Vector3.down, out RaycastHit hitFrontRight, layerMask);
 
-        Physics.Raycast(rearLeft.position + Vector3.up, Vector3.down, out RaycastHit hitRearLeft, layerMask);
-        Physics.Raycast(rearRight.position + Vector3.up, Vector3.down, out RaycastHit hitRearRight, layerMask);
+        Physics.Raycast(rearLeft.position, Vector3.down, out RaycastHit hitRearLeft, layerMask);
+        Physics.Raycast(rearRight.position, Vector3.down, out RaycastHit hitRearRight, layerMask);
 
         Vector3 a = hitRearRight.point - hitRearLeft.point;
         Vector3 b = hitFrontRight.point - hitRearRight.point;
         Vector3 c = hitFrontLeft.point - hitFrontRight.point;
         Vector3 d = hitRearRight.point - hitFrontLeft.point;
+
+        Debug.Log($"{a} , {b} , {c} , {d}");
 
         Vector3 crossBA = Vector3.Cross(b, a);
         Vector3 crossCB = Vector3.Cross(c, b);
@@ -195,9 +201,9 @@ public class BaseController : MonoBehaviour
         Vector3 crossAD = Vector3.Cross(a, d);
 
         newUp = (crossBA + crossCB + crossDC + crossAD).normalized;
-        //transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
+        transform.up = Vector3.Lerp(transform.up, newUp, lerpSpeed * Time.deltaTime);
 
-        BaseRotation();
+        BaseRotation(newUp);
 
         Vector3 center = (hitFrontLeft.point + hitFrontRight.point + hitRearLeft.point + hitRearRight.point) / 4;
         //transform.position = new Vector3(transform.position.x, height + center.y, transform.position.z);

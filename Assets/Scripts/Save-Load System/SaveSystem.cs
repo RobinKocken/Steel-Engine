@@ -98,6 +98,11 @@ public class SaveSystem : MonoBehaviour
         return dataSlots.savedData[_saveInSlot];
     }
 
+    public void LoadButton()
+    {
+        dataSlots = Load();
+    }
+
     //load all save files
     public DataSlots Load()
     {

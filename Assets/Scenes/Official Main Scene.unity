@@ -534,11 +534,6 @@ PrefabInstance:
       objectReference: {fileID: 1275245005}
     - target: {fileID: 4963027607019267270, guid: ae871905a6effbc46984318832c8d5b6,
         type: 3}
-      propertyPath: cameraController
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 4963027607019267270, guid: ae871905a6effbc46984318832c8d5b6,
-        type: 3}
       propertyPath: inventoryManager
       value: 
       objectReference: {fileID: 691632529}
@@ -1362,7 +1357,7 @@ PrefabInstance:
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.91481876
       objectReference: {fileID: 0}
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
@@ -1372,7 +1367,7 @@ PrefabInstance:
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.40386468
       objectReference: {fileID: 0}
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
@@ -1387,7 +1382,7 @@ PrefabInstance:
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 47.64
       objectReference: {fileID: 0}
     - target: {fileID: 299574416368517786, guid: 5c6052bb4ca46a846a38bb36e799c536,
         type: 3}
