@@ -20,7 +20,7 @@ public class OptionManager : MonoBehaviour
         
     }
 
-    void LoadSceneButton(int i)
+    public void LoadSceneButton(int i)
     {
         SceneManager.LoadScene(i);
     }
