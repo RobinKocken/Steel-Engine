@@ -52,8 +52,6 @@ public class BaseController : MonoBehaviour
 
     void Update()
     {
-        animator.SetFloat("walkingSpeed", walkAnimationSpeed);
-
         Raycasts();
         BaseMovement();
     }
@@ -115,6 +113,9 @@ public class BaseController : MonoBehaviour
         }
 
         transform.Translate(currentSpeed * Time.deltaTime * -Vector3.forward);
+
+        walkAnimationSpeed = currentSpeed / 2;
+        animator.SetFloat("walkSpeed", walkAnimationSpeed);
     }
 
     void BaseRotation()
