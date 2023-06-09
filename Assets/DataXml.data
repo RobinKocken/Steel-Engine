@@ -26,86 +26,75 @@
       </slotItemType>
       <OilAmount>0</OilAmount>
       <playerPosition>
-        <x>574.577637</x>
-        <y>41.1110229</y>
-        <z>9310.461</z>
+        <x>575.827</x>
+        <y>43.6243172</y>
+        <z>9272.102</z>
       </playerPosition>
       <playerRotation>
-        <x>-0</x>
-        <y>180</y>
-        <z>357.137421</z>
+        <x>2.09383655</x>
+        <y>0.0121905794</y>
+        <z>0.667084634</z>
       </playerRotation>
       <basePostion>
         <x>576.027832</x>
-        <y>15.0268841</y>
+        <y>16.8000488</y>
         <z>9290.794</z>
       </basePostion>
       <baseRotation>
-        <x>-0</x>
-        <y>180</y>
-        <z>357.137421</z>
+        <x>2.09353232</x>
+        <y>0.0121891471</y>
+        <z>0.6671032</z>
       </baseRotation>
       <buildingIndexes>
         <int>6</int>
-        <int>3</int>
-        <int>2</int>
-        <int>1</int>
-        <int>0</int>
+        <int>6</int>
+        <int>6</int>
       </buildingIndexes>
       <buildingPosistions>
         <Vector3>
-          <x>574.936646</x>
-          <y>36.849617</y>
-          <z>9290.794</z>
+          <x>574.203735</x>
+          <y>38.61572</y>
+          <z>9291.592</z>
         </Vector3>
         <Vector3>
-          <x>574.936646</x>
-          <y>36.849617</y>
-          <z>9295.504</z>
+          <x>577.3435</x>
+          <y>38.6522522</y>
+          <z>9291.593</z>
         </Vector3>
         <Vector3>
-          <x>571.800537</x>
-          <y>36.6928024</y>
-          <z>9289.224</z>
-        </Vector3>
-        <Vector3>
-          <x>573.3686</x>
-          <y>36.77121</y>
-          <z>9287.654</z>
-        </Vector3>
-        <Vector3>
-          <x>576.5047</x>
-          <y>36.9280243</y>
-          <z>9289.224</z>
+          <x>571.0639</x>
+          <y>38.5791855</y>
+          <z>9291.591</z>
         </Vector3>
       </buildingPosistions>
       <buildingRotations>
         <Vector3>
-          <x>-0</x>
-          <y>180</y>
-          <z>357.137421</z>
+          <x>2.09353232</x>
+          <y>0.0121891471</y>
+          <z>0.6671032</z>
         </Vector3>
         <Vector3>
-          <x>-0</x>
-          <y>180</y>
-          <z>357.137421</z>
+          <x>2.09353232</x>
+          <y>0.0121891471</y>
+          <z>0.6671032</z>
         </Vector3>
         <Vector3>
-          <x>-0</x>
-          <y>180</y>
-          <z>357.137421</z>
-        </Vector3>
-        <Vector3>
-          <x>-0</x>
-          <y>180</y>
-          <z>357.137421</z>
-        </Vector3>
-        <Vector3>
-          <x>-0</x>
-          <y>180</y>
-          <z>357.137421</z>
+          <x>2.09353232</x>
+          <y>0.0121891471</y>
+          <z>0.6671032</z>
         </Vector3>
       </buildingRotations>
+      <cropIndex />
+      <cropProgess>
+        <float>0</float>
+        <float>0</float>
+        <float>0</float>
+      </cropProgess>
+      <cropStage>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+      </cropStage>
     </SavedData>
     <SavedData>
       <slotItemCount />
@@ -135,7 +124,6 @@
       <buildingPosistions />
       <buildingRotations />
       <cropIndex />
-      <fullyGrown />
       <cropProgess />
       <cropStage />
     </SavedData>
@@ -167,7 +155,6 @@
       <buildingPosistions />
       <buildingRotations />
       <cropIndex />
-      <fullyGrown />
       <cropProgess />
       <cropStage />
     </SavedData>

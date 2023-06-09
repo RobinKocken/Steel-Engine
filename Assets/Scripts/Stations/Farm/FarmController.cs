@@ -13,7 +13,7 @@ public class FarmController : MonoBehaviour, IInteractable
     //will only update for each growth stage
     public float cropProgress;
 
-    public int GrowthStage;
+    public int growthStage;
     public bool fullyGrown;
     private GameObject oldCrop;
 
@@ -47,7 +47,7 @@ public class FarmController : MonoBehaviour, IInteractable
         bool run = true;
         while(run)
         {
-            if (GrowthStage == _cropToGrow.cropData.GrowthStages.Length - 1)
+            if (growthStage == _cropToGrow.cropData.GrowthStages.Length - 1)
             {
                 run = false;
                 fullyGrown = true;
@@ -57,10 +57,10 @@ public class FarmController : MonoBehaviour, IInteractable
             {
                 yield return new WaitForSeconds(_cropToGrow.cropData.timeToGrow / _cropToGrow.cropData.GrowthStages.Length);
                 
-                GrowthStage++;
-                cropProgress = (GrowthStage / (float)currentCrop.GetComponent<Crop>().cropData.GrowthStages.Length) * 100;
+                growthStage++;
+                cropProgress = (growthStage / (float)currentCrop.GetComponent<Crop>().cropData.GrowthStages.Length) * 100;
                 cropProgress += 100 / (float)currentCrop.GetComponent<Crop>().cropData.GrowthStages.Length;
-                if (GrowthStage != _cropToGrow.cropData.GrowthStages.Length)
+                if (growthStage != _cropToGrow.cropData.GrowthStages.Length)
                 {
                     Grow();
                 }
@@ -74,7 +74,7 @@ public class FarmController : MonoBehaviour, IInteractable
         {
             Destroy(oldCrop);
         }
-        oldCrop = Instantiate(currentCrop.GetComponent<Crop>().cropData.GrowthStages[GrowthStage], this.transform);
+        oldCrop = Instantiate(currentCrop.GetComponent<Crop>().cropData.GrowthStages[growthStage], this.transform);
         currentCrop = oldCrop;
     }
     //harvest the crop and put it in the inventory

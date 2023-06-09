@@ -22,8 +22,7 @@ public class SavedData
     public List<Vector3> buildingRotations = new List<Vector3>();
 
     [Header("Farming info")]
-    public List<int> cropIndex;
-    public List<bool> fullyGrown;
-    public List<float> cropProgess;
-    public List<int> cropStage;
+    public List<int> cropIndex = new List<int>();
+    public List<float> cropProgess = new List<float>();
+    public List<int> cropStage = new List<int>();
 }
