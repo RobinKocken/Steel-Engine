@@ -98,7 +98,7 @@ public class SaveSystem : MonoBehaviour
         return dataSlots.savedData[_saveInSlot];
     }
 
-    public void LoadButton()
+    public void LoadButton(int _sceneToLoad)
     {
         dataSlots = Load();
     }
