@@ -31,11 +31,17 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        
+        SaveSystem.instance.gameManager = this;
+        if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        {
+            Debug.Log(SaveSystem.instance.Datastate);
+            SaveSystem.instance.LoadData();
+        }
     }
 
     void Start()
     {
+        
         SwitchStatePlayer(PlayerState.player);
     }
 

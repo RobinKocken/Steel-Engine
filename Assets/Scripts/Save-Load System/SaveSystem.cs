@@ -5,13 +5,22 @@ using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Data;
 using UnityEngine.SceneManagement;
+using System.Collections;
 
 public class SaveSystem : MonoBehaviour
 {
+    public enum SystemState
+    {
+        Waiting,
+        Saving,
+        Loading
+    }
+    public SystemState Datastate;
+    public static SaveSystem instance;
     public GameManager gameManager;
-    public bool doSave;
     public DataSlots dataSlots;
     private string path;
+    int slotToLoad;
 
     // Start is called before the first frame update
 
@@ -19,22 +28,10 @@ public class SaveSystem : MonoBehaviour
     {
         path = Application.dataPath + "/DataXml.data";
 
-
+        if (instance)
+            Destroy(this);
+        instance = this;
         DontDestroyOnLoad(gameObject);
-        //if (File.Exists(path))
-        //{
-        //    dataSlots = Load();
-        //}
-
-        //LoadData(0);
-    }
-    private void Update()
-    {
-        if (doSave)
-        {
-            Save(0);
-            doSave = false;
-        }
     }
     public void Save(int _saveIndex)
     {
@@ -47,6 +44,8 @@ public class SaveSystem : MonoBehaviour
 
     public SavedData SetDataToSave(int _saveInSlot)
     {
+        Datastate = SystemState.Saving;
+
         dataSlots.savedData[_saveInSlot] = new SavedData();
         var dataSlot = dataSlots.savedData[_saveInSlot];
 
@@ -58,7 +57,7 @@ public class SaveSystem : MonoBehaviour
         }
 
         //saving player transform and base transform
-        dataSlot.playerPosition = gameManager.playerController.transform.position;
+        dataSlot.playerPosition = gameManager.playerController.transform.localPosition;
         dataSlot.playerRotation = gameManager.playerController.gameObject.transform.eulerAngles;
         dataSlot.basePostion = gameManager.baseController.gameObject.transform.position;
         dataSlot.baseRotation = gameManager.baseController.transform.rotation.eulerAngles;
@@ -88,19 +87,16 @@ public class SaveSystem : MonoBehaviour
             dataSlot.buildingPosistions.Add(baseParent.GetChild(bIndex).transform.position);
             dataSlot.buildingRotations.Add(baseParent.GetChild(bIndex).transform.eulerAngles);
         }
+        Datastate = SystemState.Waiting;
         return dataSlots.savedData[_saveInSlot];
     }
 
     public void LoadButton(int _sceneToLoad)
     {
-        if (File.Exists(path))
-        {
-            dataSlots = Load();
-        }
-
+        Datastate = SystemState.Loading;
         SceneManager.LoadScene("Main Scene");
-        
-        LoadData(_sceneToLoad);
+
+        slotToLoad = _sceneToLoad;
     }
 
     //load all save files
@@ -113,11 +109,11 @@ public class SaveSystem : MonoBehaviour
         return container;
     }
 
-    public void LoadData(int _LoadSlot)
+    public void LoadData()
     {
         //loading every inventory slot and what was inside of them
         Debug.Log("Refilling Inventory");
-        var _dataSlot = dataSlots.savedData[_LoadSlot];
+        var _dataSlot = dataSlots.savedData[slotToLoad];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
             if ((int)gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]].itemName == 0)
@@ -131,7 +127,7 @@ public class SaveSystem : MonoBehaviour
         }
         //loading the player transform
         Debug.Log("Adjusting Player Transform");
-        gameManager.playerController.transform.position = new Vector3(_dataSlot.playerPosition.x, _dataSlot.playerPosition.y, _dataSlot.playerPosition.z);
+        gameManager.playerController.transform.localPosition = new Vector3(_dataSlot.playerPosition.x, _dataSlot.playerPosition.y, _dataSlot.playerPosition.z);
         gameManager.playerController.gameObject.transform.eulerAngles = new Vector3(_dataSlot.playerRotation.x, _dataSlot.playerRotation.y, _dataSlot.playerRotation.z);
 
         //loading the base transofrm
@@ -167,6 +163,6 @@ public class SaveSystem : MonoBehaviour
                 }
             }
         }
-
+        Datastate = SystemState.Waiting;
     }
 }

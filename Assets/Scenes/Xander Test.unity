@@ -1025,6 +1025,16 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 359257093}
+    - target: {fileID: 1627611007434633918, guid: b064c28e59fa8ad479bedee6470a0160,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1952755817663270491, guid: b064c28e59fa8ad479bedee6470a0160,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5220040577338130391, guid: b064c28e59fa8ad479bedee6470a0160,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -1143,6 +1153,11 @@ PrefabInstance:
     - target: {fileID: 5321287674051809905, guid: b064c28e59fa8ad479bedee6470a0160,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5383374344360114464, guid: b064c28e59fa8ad479bedee6470a0160,
+        type: 3}
+      propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6112835059280484818, guid: b064c28e59fa8ad479bedee6470a0160,
@@ -1531,16 +1546,6 @@ PrefabInstance:
       propertyPath: gameManager
       value: 
       objectReference: {fileID: 1105406162}
-    - target: {fileID: 3384129586219972854, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
-        type: 3}
-      propertyPath: dataSlots.savedData.Array.size
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 3384129586219972854, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
-        type: 3}
-      propertyPath: savedData.dataSlots.Array.size
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 3384129586219972855, guid: dd294c0ae2f98fc408f9c7c9a88a6ad9,
         type: 3}
       propertyPath: m_Name
