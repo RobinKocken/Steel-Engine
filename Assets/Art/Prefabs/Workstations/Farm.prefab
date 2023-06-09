@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 1600304902891490412}
   - component: {fileID: 2421449243008353225}
   - component: {fileID: 467881815356880643}
+  - component: {fileID: 5145897833483463224}
+  - component: {fileID: -5688297543211641827}
   m_Layer: 0
   m_Name: Farm
   m_TagString: Untagged
@@ -83,3 +85,41 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &5145897833483463224
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125343298009274070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 78fecb1f920debb4b92bf475d2d6a87e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildManager: {fileID: 0}
+  buildingID: 0
+--- !u!114 &-5688297543211641827
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2125343298009274070}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86efa40b1f2df0d4eb3e71915639679f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  crops:
+  - {fileID: 2463605162332981735, guid: 8e264b0c333745c44b39b7c122bb42dd, type: 3}
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
+  currentCrop: {fileID: 0}
+  farmManager: {fileID: 0}
+  cropProgress: 0
+  growthStage: 0
+  fullyGrown: 0

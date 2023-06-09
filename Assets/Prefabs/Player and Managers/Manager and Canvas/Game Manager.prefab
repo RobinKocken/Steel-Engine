@@ -70,5 +70,6 @@ MonoBehaviour:
   uiManager: {fileID: 0}
   inventoryManager: {fileID: 0}
   buildManager: {fileID: 0}
+  dataManager: {fileID: 0}
   playerCamera: {fileID: 0}
   buildCamera: {fileID: 0}

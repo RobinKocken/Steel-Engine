@@ -44,6 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fee4436a234a0654fa1693cbb5f5dedd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Datastate: 0
   gameManager: {fileID: 0}
   dataSlots:
     savedData:
@@ -86,3 +87,4 @@ MonoBehaviour:
       cropIndex: 
       cropProgess: []
       cropStage: 
+  slotToLoad: 0

@@ -2052,8 +2052,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 64
-  moveZ: 0
-  moveX: 0
+  walkAnimationSpeed: 0
   yRot: 0
 --- !u!1 &1140038367719874771
 GameObject:
@@ -3383,19 +3382,26 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 64
   objects:
-  - {fileID: 7973366317365562898, guid: 9e95c6c1e564ddc4b9e95d6a4faec1f0, type: 3}
-  - {fileID: 978790948485361319, guid: 6777c8908c4e7f14baddb2352aa5f021, type: 3}
-  - {fileID: 5584538199776059411, guid: a6a257708c492ab4ab02076976bab264, type: 3}
-  - {fileID: 1351986083109945942, guid: 73874c27bc286d5479acbee6415448ab, type: 3}
-  - {fileID: 2156813253458799611, guid: da643f2bb5622b54ea5513a252282ccc, type: 3}
-  - {fileID: 8355172827367785701, guid: f2495b266b242fb49808eb64cd673768, type: 3}
-  - {fileID: 8957451449193416319, guid: 4d7db976f0833c84183b3bdc29ccecb8, type: 3}
+  - {fileID: 1703848034163224179, guid: 5e3edd7fb159bea4fa695b25e4a09f9c, type: 3}
+  - {fileID: 4379054519489821858, guid: 8a9903cfd1e8c3241bc2464bdb37e5b4, type: 3}
+  - {fileID: 699303020179694208, guid: 589a3bef44b985547957a7a50f23b471, type: 3}
+  - {fileID: 4502788631259682647, guid: beda60679fcc9cf4eab1d2bb48304448, type: 3}
+  - {fileID: 8189245398819224179, guid: f29048ef646643e4a88feffaea271771, type: 3}
+  - {fileID: 7280856209840597724, guid: 8953ad313d4b1484cb61bc2b46cea3f8, type: 3}
+  - {fileID: 2125343298009274070, guid: 80bccf8f2776fa64cb0fb5ce509d138f, type: 3}
+  - {fileID: 5345726723627908660, guid: 2796e6477f8c4bd46a80c68bc7850034, type: 3}
+  - {fileID: 5099498772590394454, guid: 2fa6dfbb654c4ad478d4c0924ef879fc, type: 3}
+  - {fileID: 7590099363741434131, guid: 796d3f26dcf87ff45af0cc35de52fb30, type: 3}
+  - {fileID: 8407773696967422573, guid: 58650b8747449a94a84aa192c2e1a511, type: 3}
+  - {fileID: 3936561359288333745, guid: 5c4fafe68101810419139fa551404927, type: 3}
+  - {fileID: 8156230284482626634, guid: 584a2c2085cef6949a8c5204eb662667, type: 3}
+  - {fileID: 4090357881655419753, guid: c9412bf54771ed944aa39ee9347929a7, type: 3}
   pendingObj: {fileID: 0}
   rotateAmount: 90
   canPlace: 0
   offset: 0.5
   gridSize: 1.57
-  gridHeight: 0
+  gridHeight: 2
   yPos: 0
 --- !u!114 &1669766397
 MonoBehaviour:

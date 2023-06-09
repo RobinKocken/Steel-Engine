@@ -20,7 +20,7 @@ public class SaveSystem : MonoBehaviour
     public GameManager gameManager;
     public DataSlots dataSlots;
     private string path;
-    int slotToLoad;
+    public int slotToLoad;
 
     // Start is called before the first frame update
 
