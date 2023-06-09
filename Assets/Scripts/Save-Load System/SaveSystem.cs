@@ -4,6 +4,7 @@ using System.Xml;
 using System.Xml.Serialization;
 using System.Collections.Generic;
 using System.Data;
+using UnityEngine.SceneManagement;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -101,6 +102,10 @@ public class SaveSystem : MonoBehaviour
     public void LoadButton(int _sceneToLoad)
     {
         dataSlots = Load();
+
+        SceneManager.LoadScene("Main Scene");
+
+        LoadData(_sceneToLoad);
     }
 
     //load all save files
