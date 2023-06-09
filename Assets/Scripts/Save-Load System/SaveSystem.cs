@@ -19,6 +19,8 @@ public class SaveSystem : MonoBehaviour
         path = Application.dataPath + "/DataXml.data";
         print(path);
 
+
+        DontDestroyOnLoad(gameObject);
         //if (File.Exists(path))
         //{
         //    dataSlots = Load();
