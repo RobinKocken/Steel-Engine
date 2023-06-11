@@ -5,11 +5,11 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Rigidbody rb;
-    public BaseController baseController;
     public Transform orientation;
+    Vector3 moveDir;
 
     [Header("Player Variables")]
-    public float playerMaxSpeed;
+    public float playerCurrentSpeed;
     public float playerMoveSpeed;
     public float playerRunSpeed;
     public float drag;
@@ -29,8 +29,12 @@ public class PlayerController : MonoBehaviour
     public float rayDistance;
     RaycastHit groundHit;
 
+    [Header("Raycast")]
+    public float raycastDistance;
+    RaycastHit slopHit;
+
     // Some Bools //
-    public bool grounded;
+    bool grounded;
     bool readyToJump;
 
     void Awake()
@@ -71,10 +75,10 @@ public class PlayerController : MonoBehaviour
             iRight = 0;
 
         CalculateInputDirection();
+        CheckIfGrounded();
         CheckIfJump(kJump);
         Run(kSprint);
         SpeedControl();
-        CheckIfGrounded();
     }
 
     void CalculateInputDirection()
@@ -85,18 +89,15 @@ public class PlayerController : MonoBehaviour
 
     void Movement()
     {
-        if(baseController != null)
-            baseSpeed = baseController.maxForwardSpeed;
+        moveDir = orientation.forward * moveZ + orientation.right * moveX;        
 
         if(grounded)
         {
-            rb.AddForce(moveZ * (playerMaxSpeed + baseSpeed) * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * (playerMaxSpeed + baseSpeed) * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(playerCurrentSpeed * GetSlopeDir(), ForceMode.VelocityChange);
         }
         else if(!grounded)
         {
-            rb.AddForce(moveZ * (playerMaxSpeed + baseSpeed) * airMultiplier * orientation.forward.normalized, ForceMode.VelocityChange);
-            rb.AddForce(moveX * (playerMaxSpeed + baseSpeed) * airMultiplier * orientation.right.normalized, ForceMode.VelocityChange);
+            rb.AddForce(playerCurrentSpeed * airMultiplier * moveDir.normalized, ForceMode.VelocityChange);
         }
     }
 
@@ -115,9 +116,9 @@ public class PlayerController : MonoBehaviour
     void Run(KeyCode run)
     {
         if(Input.GetKey(run))
-            playerMaxSpeed = playerRunSpeed;
+            playerCurrentSpeed = playerRunSpeed;
         else
-            playerMaxSpeed = playerMoveSpeed;
+            playerCurrentSpeed = playerMoveSpeed;
     }
 
     void Jump()
@@ -133,9 +134,9 @@ public class PlayerController : MonoBehaviour
     {
         Vector3 flatVel = new Vector3(rb.velocity.x, 0, rb.velocity.z);
 
-        if(flatVel.magnitude > playerMaxSpeed)
+        if(flatVel.magnitude > playerCurrentSpeed)
         {
-            Vector3 limitedVel = flatVel.normalized * playerMaxSpeed;
+            Vector3 limitedVel = flatVel.normalized * playerCurrentSpeed;
             rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
         }
     }
@@ -143,6 +144,12 @@ public class PlayerController : MonoBehaviour
     void InitializePlayer()
     {
         rb.drag = drag;
+    }
+
+    Vector3 GetSlopeDir()
+    {
+        Physics.Raycast(transform.position, Vector3.down, out slopHit, raycastDistance);
+        return Vector3.ProjectOnPlane(moveDir, slopHit.normal).normalized;
     }
 
     void CheckIfGrounded()
@@ -174,5 +181,7 @@ public class PlayerController : MonoBehaviour
         Gizmos.color = Color.red;
         Debug.DrawRay(transform.position, -transform.up * rayDistance);
         Gizmos.DrawWireSphere(transform.position + -transform.up * rayDistance, sphereRadius);
+
+        Debug.DrawRay(transform.position, Vector3.down * raycastDistance, Color.green);
     }
 }
