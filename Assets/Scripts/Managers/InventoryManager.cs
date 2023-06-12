@@ -6,16 +6,6 @@ using TMPro;
 
 public class InventoryManager : MonoBehaviour
 {
-    public enum ItemName
-    {
-        none,
-        wood,
-        stone,
-        metal,
-        corn,
-    }
-    public ItemName itemName;
-
     public List<Item> itemHolders;
 
     // Parent Holder of the Slots //
@@ -44,6 +34,7 @@ public class InventoryManager : MonoBehaviour
     {
         InitializeInventory();
         SetSlotID();
+        SyncHotBar();
     }
 
     public void InventoryUpdate()

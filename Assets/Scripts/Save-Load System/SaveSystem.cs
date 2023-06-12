@@ -56,7 +56,7 @@ public class SaveSystem : MonoBehaviour
         //saving what is in each inventory slot
         for (int sIndex = 0; sIndex < gameManager.inventoryManager.slots.Count; sIndex++)
         {
-            dataSlot.slotItemType.Add((int)gameManager.inventoryManager.itemName);
+            dataSlot.slotItemType.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().item.itemID);
             dataSlot.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
         }
 
