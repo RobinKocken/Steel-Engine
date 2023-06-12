@@ -7,9 +7,9 @@ public class Item : ScriptableObject
 {
     public int itemID;
     public string itemName;
+    public int maxStack;
 
     public Sprite icon;
-    public int maxStack;
 
     public GameObject prefab;
 }

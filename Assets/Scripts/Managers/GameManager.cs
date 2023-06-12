@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        SaveSystem.instance.gameManager = this;
-        dataManager = SaveSystem.instance;
-        if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
-        {
-            Debug.Log(SaveSystem.instance.Datastate);
-            SaveSystem.instance.LoadData();
-        }
+        //SaveSystem.instance.gameManager = this;
+        //dataManager = SaveSystem.instance;
+        //if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        //{
+        //    Debug.Log(SaveSystem.instance.Datastate);
+        //    SaveSystem.instance.LoadData();
+        //}
     }
 
     //small save system part
