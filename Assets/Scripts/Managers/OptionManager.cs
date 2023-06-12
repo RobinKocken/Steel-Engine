@@ -24,4 +24,9 @@ public class OptionManager : MonoBehaviour
     {
         SceneManager.LoadScene(i);
     }
+
+    public void Quit()
+    {
+        Application.Quit();
+    }
 }

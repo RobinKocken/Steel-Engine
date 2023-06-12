@@ -22,12 +22,14 @@ public class InventoryManager : MonoBehaviour
     [Header("Slot Holder")]
     public Transform inventorySlotHolder;
     public Transform hotbarSlotHolder;
+    public Transform playerHotbarSlotHolder;
 
     // List for the Inventory Slots //
     [Header("Slots")]
     public List<Transform> slots;
     public List<Transform> inventorySlots;
     public List<Transform> hotbarSlots;
+    public List<Transform> playerHotbarSlots;
 
     [Header("Mouse")]
     public Transform cursor;
@@ -72,6 +74,11 @@ public class InventoryManager : MonoBehaviour
             slots.Add(hotbarSlotHolder.GetChild(i));
             hotbarSlots.Add(hotbarSlotHolder.GetChild(i));
         }
+
+        for(int i = 0; i < playerHotbarSlotHolder.childCount; i++)
+        {
+            playerHotbarSlots.Add(playerHotbarSlotHolder.GetChild(i));
+        }
     }
 
     void SetSlotID()
@@ -87,6 +94,33 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+
+        for(int i = 0; i < playerHotbarSlots.Count; i++)
+        {
+            if(playerHotbarSlots[i].TryGetComponent<Slot>(out Slot currentSlot) && hotbarSlots[i].TryGetComponent<Slot>(out Slot currentHotBarSlot))
+            {
+                currentSlot.slotID = currentHotBarSlot.slotID;
+            }
+        }
+    }
+
+    // Get the total Amount of an Item in the whole Inventory //
+    public int GetTotalAmount(Item item)
+    {
+        int totalAmount = 0;
+
+        for(int i = 0; i < slots.Count; i++)
+        {
+            if(slots[i].TryGetComponent<Slot>(out Slot currentSlot))
+            {
+                if(currentSlot.item.name == item.name)
+                {
+                    totalAmount += currentSlot.amount;
+                }
+            }
+        }
+
+        return totalAmount;
     }
 
     // Add Funtion If Inventory is Full //
@@ -142,6 +176,8 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+
+        SyncHotBar();
     }
 
     public void RemoveItem(Item item, int itemAmount)
@@ -163,6 +199,8 @@ public class InventoryManager : MonoBehaviour
                 }
             }
         }
+
+        SyncHotBar();
     }
 
     public void PickUpDropItems(int slotID)
@@ -205,6 +243,24 @@ public class InventoryManager : MonoBehaviour
                     }
                     
                 }
+            }
+        }
+
+        SyncHotBar();
+    }
+
+    void SyncHotBar()
+    {
+        for(int i = 0; i < hotbarSlots.Count; i++)
+        {
+            if(playerHotbarSlots[i].TryGetComponent<Slot>(out Slot currentSlot) && hotbarSlots[i].TryGetComponent<Slot>(out Slot currentHotBarSlot))
+            {
+                if(currentSlot.amount == 0 && currentHotBarSlot.amount != 0)
+                    currentSlot.SetItem(currentHotBarSlot.item, currentHotBarSlot.amount);
+                else if(currentSlot.amount != 0 && currentHotBarSlot.amount != 0)
+                    currentSlot.amount = currentHotBarSlot.amount;
+                else if(currentSlot.amount != 0 && currentHotBarSlot.amount == 0)
+                    currentSlot.DeleteItem();
             }
         }
     }
