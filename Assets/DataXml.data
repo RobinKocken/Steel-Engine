@@ -1,0 +1,118 @@
+<?xml version="1.0"?>
+<DataSlots xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <savedData>
+    <SavedData>
+      <slotItemCount>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+      </slotItemCount>
+      <slotItemType>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+        <int>0</int>
+      </slotItemType>
+      <OilAmount>0</OilAmount>
+      <playerPosition>
+        <x>0.1083827</x>
+        <y>26.1240425</y>
+        <z>-19.4417782</z>
+      </playerPosition>
+      <playerRotation>
+        <x>5.841394</x>
+        <y>302.72</y>
+        <z>0.3276811</z>
+      </playerRotation>
+      <basePostion>
+        <x>421.196045</x>
+        <y>27.9275169</y>
+        <z>9779.61</z>
+      </basePostion>
+      <baseRotation>
+        <x>5.841382</x>
+        <y>302.72</y>
+        <z>0.327702969</z>
+      </baseRotation>
+      <buildingIndexes />
+      <buildingPosistions />
+      <buildingRotations />
+      <cropIndex />
+      <cropProgess />
+      <cropStage />
+    </SavedData>
+    <SavedData>
+      <slotItemCount />
+      <slotItemType />
+      <OilAmount>0</OilAmount>
+      <playerPosition>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerPosition>
+      <playerRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerRotation>
+      <basePostion>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </basePostion>
+      <baseRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </baseRotation>
+      <buildingIndexes />
+      <buildingPosistions />
+      <buildingRotations />
+      <cropIndex />
+      <cropProgess />
+      <cropStage />
+    </SavedData>
+    <SavedData>
+      <slotItemCount />
+      <slotItemType />
+      <OilAmount>0</OilAmount>
+      <playerPosition>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerPosition>
+      <playerRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </playerRotation>
+      <basePostion>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </basePostion>
+      <baseRotation>
+        <x>0</x>
+        <y>0</y>
+        <z>0</z>
+      </baseRotation>
+      <buildingIndexes />
+      <buildingPosistions />
+      <buildingRotations />
+      <cropIndex />
+      <cropProgess />
+      <cropStage />
+    </SavedData>
+  </savedData>
+</DataSlots>

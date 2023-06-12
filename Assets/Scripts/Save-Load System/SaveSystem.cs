@@ -29,9 +29,13 @@ public class SaveSystem : MonoBehaviour
         path = Application.dataPath + "/DataXml.data";
 
         if (instance)
-            Destroy(this);
+        {
+            Destroy(instance.gameObject);
+        }
         instance = this;
+        dataSlots = Load();
         DontDestroyOnLoad(gameObject);
+        
     }
     public void Save(int _saveIndex)
     {
