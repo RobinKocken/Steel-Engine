@@ -1,7 +1,9 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -34,11 +36,7 @@ public class GameManager : MonoBehaviour
     {
         SaveSystem.instance.gameManager = this;
         dataManager = SaveSystem.instance;
-        if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
-        {
-            Debug.Log(SaveSystem.instance.Datastate);
-            SaveSystem.instance.LoadData();
-        }
+        
     }
 
     //small save system part
@@ -49,7 +47,11 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        
+        if (SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        {
+            Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
+            SaveSystem.instance.LoadData();
+        }
         SwitchStatePlayer(PlayerState.player);
     }
 
