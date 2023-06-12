@@ -32,13 +32,13 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        //SaveSystem.instance.gameManager = this;
-        //dataManager = SaveSystem.instance;
-        //if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
-        //{
-        //    Debug.Log(SaveSystem.instance.Datastate);
-        //    SaveSystem.instance.LoadData();
-        //}
+        SaveSystem.instance.gameManager = this;
+        dataManager = SaveSystem.instance;
+        if(SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        {
+            Debug.Log(SaveSystem.instance.Datastate);
+            SaveSystem.instance.LoadData();
+        }
     }
 
     //small save system part
@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
                 InputForSwitchStatePlayer();
                 playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
                 raycastController.GetInteractionKeyInput(keys.interactionKey);
+
                 break;
             }
             case PlayerState.station:

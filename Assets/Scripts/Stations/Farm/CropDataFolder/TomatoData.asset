@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533ea01bf90eaa4281b554152914d80, type: 3}
   m_Name: TomatoData
   m_EditorClassIdentifier: 
-  type: 0
+  item: {fileID: 11400000, guid: c31130b744098834e93d9da24d71e80c, type: 2}
   GrowthStages: []
   timeToGrow: 0

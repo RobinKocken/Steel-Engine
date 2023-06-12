@@ -7,6 +7,7 @@ using TMPro;
 public class InventoryManager : MonoBehaviour
 {
     public List<Item> itemHolders;
+    public Slot selectedSlot;
 
     // Parent Holder of the Slots //
     [Header("Slot Holder")]
@@ -30,16 +31,28 @@ public class InventoryManager : MonoBehaviour
     public int amountHolder;
     public bool cursorActive;
 
+    [Header("Scrollwheel")]
+    public float scrollWheel;
+    float oldScroll = 1;
+    public Color defaultColor;
+    public Color selectedColor;
+
     void Start()
     {
         InitializeInventory();
         SetSlotID();
         SyncHotBar();
     }
+    
+    public void PlayerUpdate()
+    {
+        Scrollbar();
+    }
 
     public void InventoryUpdate()
     {
         MouseItemTracking();
+        InteractWithSelectedItem();
     }
 
     void MouseItemTracking()
@@ -48,6 +61,26 @@ public class InventoryManager : MonoBehaviour
         {
             cursor.position = Input.mousePosition + offset;
         }
+    }
+
+    void Scrollbar()
+    {
+        scrollWheel += Input.mouseScrollDelta.y;
+        scrollWheel = Mathf.Clamp(scrollWheel, -playerHotbarSlots.Count + 1, 0);
+
+        if(oldScroll != scrollWheel)
+        {
+            playerHotbarSlots[Mathf.Abs((int)oldScroll)].GetComponent<Image>().color = defaultColor;
+            playerHotbarSlots[Mathf.Abs((int)scrollWheel)].GetComponent<Image>().color = selectedColor;
+            selectedSlot = hotbarSlots[Mathf.Abs((int)scrollWheel)].GetComponent<Slot>();
+
+            oldScroll = scrollWheel;
+        }
+    }
+
+    void InteractWithSelectedItem()
+    {
+
     }
 
     void InitializeInventory()

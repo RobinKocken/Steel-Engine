@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0533ea01bf90eaa4281b554152914d80, type: 3}
   m_Name: CactusData
   m_EditorClassIdentifier: 
-  type: 0
+  item: {fileID: 11400000, guid: a32eb067078fab3458ce5101c75bdb14, type: 2}
   GrowthStages:
   - {fileID: 3744648482034119243, guid: 903cacd88070342449648eb274d27ef2, type: 3}
   - {fileID: 8071847532103773120, guid: 0de68f008d6a4c348af4588cffccbcd4, type: 3}
