@@ -33,7 +33,11 @@ public class SaveSystem : MonoBehaviour
             Destroy(instance.gameObject);
         }
         instance = this;
-        dataSlots = Load();
+        if(File.Exists(path))
+        {
+            dataSlots = Load();
+        }
+        
         DontDestroyOnLoad(gameObject);
         
     }
