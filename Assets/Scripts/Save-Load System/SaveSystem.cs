@@ -120,7 +120,7 @@ public class SaveSystem : MonoBehaviour
         var _dataSlot = dataSlots.savedData[slotToLoad];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
-            if ((int)gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]].itemName == 0)
+            if (gameManager.inventoryManager.inventorySlots[index].GetComponent<Slot>().item.itemID == 0)
             {
                 continue;
             }
