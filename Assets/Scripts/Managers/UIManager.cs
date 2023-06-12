@@ -224,7 +224,7 @@ public class UIManager : MonoBehaviour
         externalUI.uiFarm.SetActive(farmActive);
     }
 
-    void Player(bool active)
+    public void Player(bool active)
     {
         uiPlayer.SetActive(active);
     }

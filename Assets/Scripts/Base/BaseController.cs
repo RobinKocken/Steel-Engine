@@ -9,6 +9,9 @@ public class BaseController : MonoBehaviour
 
     public Animator animator;
 
+    public GameObject baseCamera;
+    public Transform player;
+    public Transform respawnPoint;
     public Transform wheel;
 
     [Header("Base Movement")]
@@ -54,11 +57,18 @@ public class BaseController : MonoBehaviour
     {
         Raycasts();
         BaseMovement();
+        CheckPlayerPos();
     }
 
     void InitializeBase()
     {
         yRot = transform.eulerAngles.y;
+    }
+
+    void CheckPlayerPos()
+    {
+        if(player.transform.position.y < transform.position.y)
+            player.transform.position = respawnPoint.position;
     }
 
     public void GetBaseKeyInput(KeyCode kForward, KeyCode kBackwards, KeyCode kLeft, KeyCode kRight, KeyCode kCamSwitch, KeyCode kInteraction)
@@ -83,10 +93,24 @@ public class BaseController : MonoBehaviour
         else if(Input.GetKeyUp(kRight))
             iRight = 0;
 
+        if(Input.GetKeyDown(kCamSwitch))
+            CamSwitch();
+
         if(Input.GetKeyDown(kInteraction))
+        {
+            if(baseCamera.activeSelf)
+                CamSwitch();
+
             gameManager.SwitchStatePlayer(GameManager.PlayerState.player);
+        }
 
         CalculateInputDirection();
+    }
+
+    void CamSwitch()
+    {
+        player.GetChild(0).gameObject.SetActive(!player.GetChild(0).gameObject.activeSelf);
+        baseCamera.SetActive(!baseCamera.activeSelf);
     }
 
     void CalculateInputDirection()
