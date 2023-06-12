@@ -9910,7 +9910,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &2979245232378899819
 RectTransform:
   m_ObjectHideFlags: 0
@@ -12208,7 +12208,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7afabe50d816a94285f25bdd77abd36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemName: 0
   itemHolders: []
   inventorySlotHolder: {fileID: 5321287674920411829}
   hotbarSlotHolder: {fileID: 5321287675108206995}
@@ -12224,6 +12223,9 @@ MonoBehaviour:
   itemHolder: {fileID: 0}
   amountHolder: 0
   cursorActive: 0
+  scrollWheel: 0
+  defaultColor: {r: 1, g: 1, b: 1, a: 1}
+  selectedColor: {r: 1, g: 0, b: 0, a: 1}
 --- !u!1 &5321287674051809901
 GameObject:
   m_ObjectHideFlags: 0
