@@ -68,6 +68,7 @@ public class GameManager : MonoBehaviour
                 InputForSwitchStatePlayer();
                 playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
                 raycastController.GetInteractionKeyInput(keys.interactionKey);
+                inventoryManager.PlayerUpdate();
 
                 break;
             }
