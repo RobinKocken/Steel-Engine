@@ -182,7 +182,7 @@ MonoBehaviour:
       AOMaximumRadiusPixels: 180000002000000020000000
       AOBilateralUpsample: 000000
       AODirectionCount: 010000000100000002000000
-      ContactShadowSampleCount: 04000000060000000a000000
+      ContactShadowSampleCount: 04000000040000000a000000
       SSRMaxRaySteps: 080000001000000020000000
       SSGIRaySteps: 200000004000000080000000
       SSGIDenoise: 010101
@@ -247,7 +247,7 @@ MonoBehaviour:
       - 0.5
       Fog_DepthRatio:
       - 0.5
-      - 0.5
+      - 0
       - 0.5
     m_ObsoleteLightLayerName0: Light LayerDefault
     m_ObsoleteLightLayerName1: InteriorOnly
