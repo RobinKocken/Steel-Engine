@@ -303,7 +303,7 @@ MonoBehaviour:
   baseSpeed: 0
   sphereRadius: 0.48
   rayDistance: 0.53
-  raycastDistance: 1.3
+  raycastDistance: 2
 --- !u!33 &6561028067468424488
 MeshFilter:
   m_ObjectHideFlags: 0

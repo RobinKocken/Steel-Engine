@@ -56,8 +56,16 @@ public class SaveSystem : MonoBehaviour
         //saving what is in each inventory slot
         for (int sIndex = 0; sIndex < gameManager.inventoryManager.slots.Count; sIndex++)
         {
-            dataSlot.slotItemType.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().item.itemID);
-            dataSlot.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
+            if (gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount <= 0)
+            {
+                dataSlot.slotItemType.Add(-1);
+                dataSlot.slotItemCount.Add(0);
+            }
+            else
+            {
+                dataSlot.slotItemType.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().item.itemID);
+                dataSlot.slotItemCount.Add(gameManager.inventoryManager.slots[sIndex].GetComponent<Slot>().amount);
+            }
         }
 
         //saving player transform and base transform
@@ -120,7 +128,7 @@ public class SaveSystem : MonoBehaviour
         var _dataSlot = dataSlots.savedData[slotToLoad];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
-            if (gameManager.inventoryManager.inventorySlots[index].GetComponent<Slot>().item.itemID == 0)
+            if (gameManager.inventoryManager.inventorySlots[index].GetComponent<Slot>().item.itemID == -1)
             {
                 continue;
             }

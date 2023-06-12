@@ -116,12 +116,17 @@ public class GameManager : MonoBehaviour
             {
                 CursorModeLocked();
                 SwitchCamera(playerCamera, buildCamera);
+
+                uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
+                uiManager.Player(true);
                 break;
             }
             case PlayerState.station:
             {
                 CursorModeLocked();
                 playerController.StopMovement();
+
+                uiManager.Player(false);
                 break;
             }
             case PlayerState.ui:
