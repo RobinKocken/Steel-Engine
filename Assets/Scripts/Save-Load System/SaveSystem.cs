@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine.SceneManagement;
 using System.Collections;
+using TMPro;
 
 public class SaveSystem : MonoBehaviour
 {
@@ -132,12 +133,13 @@ public class SaveSystem : MonoBehaviour
         var _dataSlot = dataSlots.savedData[slotToLoad];
         for (int index = 0; index < gameManager.inventoryManager.slots.Count; index++)
         {
-            if (gameManager.inventoryManager.inventorySlots[index].GetComponent<Slot>().item.itemID == -1)
+            if (_dataSlot.slotItemType[index] == -1)
             {
-                continue;
+                gameManager.inventoryManager.AddItem(null, 0, index);
             }
             else
             {
+                Debug.Log("adding: " + gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]]);
                 gameManager.inventoryManager.AddItem(gameManager.inventoryManager.itemHolders[_dataSlot.slotItemType[index]], _dataSlot.slotItemCount[index], index);
             }
         }
