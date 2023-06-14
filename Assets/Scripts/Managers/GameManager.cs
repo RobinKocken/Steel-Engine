@@ -96,6 +96,8 @@ public class GameManager : MonoBehaviour
             case PlayerState.build:
             {
                 InputForSwitchStatePlayer();
+                playerController.GetPlayerKeyInput(keys.playerForwardKey, keys.playerBackwardsKey, keys.playerLeftKey, keys.playerRightKey, keys.playerRunKey, keys.playerJumpKey);
+
                 // Delete Later //
                 if(buildManager != null)
                 {
