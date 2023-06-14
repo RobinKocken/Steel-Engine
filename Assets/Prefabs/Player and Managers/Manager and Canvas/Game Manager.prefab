@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4963027607019267321}
   - component: {fileID: 4963027607019267270}
+  - component: {fileID: 3489476523331116375}
   m_Layer: 0
   m_Name: Game Manager
   m_TagString: Untagged
@@ -44,24 +45,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: be141a9946e40024fba4f1faea7094e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keys:
-    playerForwardKey: 119
-    playerBackwardsKey: 115
-    playerLeftKey: 97
-    playerRightKey: 100
-    playerRunKey: 304
-    playerJumpKey: 32
-    baseForwardKey: 119
-    baseBackwardsKey: 115
-    baseLeftKey: 97
-    baseRightKey: 100
-    baseSwitchCamKey: 118
-    journalKey: 106
-    inventoryKey: 9
-    mapKey: 109
-    optionKey: 27
-    interactionKey: 102
-    buildKey: 98
+  keys: {fileID: 3489476523331116375}
   playerState: 0
   playerController: {fileID: 0}
   raycastController: {fileID: 0}
@@ -73,3 +57,32 @@ MonoBehaviour:
   dataManager: {fileID: 0}
   playerCamera: {fileID: 0}
   buildCamera: {fileID: 0}
+--- !u!114 &3489476523331116375
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4963027607019267323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5deab8cd4ce06a4e95cab3414796ce5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerForwardKey: 119
+  playerBackwardsKey: 115
+  playerLeftKey: 97
+  playerRightKey: 100
+  playerRunKey: 304
+  playerJumpKey: 32
+  baseForwardKey: 119
+  baseBackwardsKey: 115
+  baseLeftKey: 97
+  baseRightKey: 100
+  baseSwitchCamKey: 118
+  journalKey: 106
+  inventoryKey: 9
+  mapKey: 109
+  optionKey: 27
+  interactionKey: 102
+  buildKey: 98

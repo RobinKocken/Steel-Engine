@@ -219,33 +219,33 @@ public class GameManager : MonoBehaviour
     }
 }
 
-[System.Serializable]
-public class Keys
-{
-    [Header("Player Keys")]
-    public KeyCode playerForwardKey;
-    public KeyCode playerBackwardsKey;
-    public KeyCode playerLeftKey;
-    public KeyCode playerRightKey;
-    public KeyCode playerRunKey;
-    public KeyCode playerJumpKey;
+//[System.Serializable]
+//public class Keys
+//{
+//    [Header("Player Keys")]
+//    public KeyCode playerForwardKey;
+//    public KeyCode playerBackwardsKey;
+//    public KeyCode playerLeftKey;
+//    public KeyCode playerRightKey;
+//    public KeyCode playerRunKey;
+//    public KeyCode playerJumpKey;
 
-    [Header("Base Keys")]
-    public KeyCode baseForwardKey;
-    public KeyCode baseBackwardsKey;
-    public KeyCode baseLeftKey;
-    public KeyCode baseRightKey;
-    public KeyCode baseSwitchCamKey;
+//    [Header("Base Keys")]
+//    public KeyCode baseForwardKey;
+//    public KeyCode baseBackwardsKey;
+//    public KeyCode baseLeftKey;
+//    public KeyCode baseRightKey;
+//    public KeyCode baseSwitchCamKey;
 
-    [Header("UI Keys")]
-    public KeyCode journalKey;
-    public KeyCode inventoryKey;
-    public KeyCode mapKey;
-    public KeyCode optionKey;
+//    [Header("UI Keys")]
+//    public KeyCode journalKey;
+//    public KeyCode inventoryKey;
+//    public KeyCode mapKey;
+//    public KeyCode optionKey;
 
-    [Header("Interaction Key")]
-    public KeyCode interactionKey;
+//    [Header("Interaction Key")]
+//    public KeyCode interactionKey;
 
-    [Header("Build Mode Key")]
-    public KeyCode buildKey;
-}
+//    [Header("Build Mode Key")]
+//    public KeyCode buildKey;
+//}

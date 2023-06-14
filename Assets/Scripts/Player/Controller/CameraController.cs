@@ -9,8 +9,8 @@ public class CameraController : MonoBehaviour
     public float targetDistance;
 
     // Input values of the Mouse //
-    float mouseX;
-    float mouseY;
+    public float mouseX;
+    public float mouseY;
 
     // Rotation Values //
     float xRotation;

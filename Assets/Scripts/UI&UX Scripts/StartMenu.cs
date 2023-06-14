@@ -5,16 +5,28 @@ using UnityEngine.SceneManagement;
 
 public class StartMenu : MonoBehaviour
 {
-    // Start is called before the first frame update
+    public OptionManager option;
+
+    public GameObject startUI;
+    public GameObject settingsUI;
+
     void Start()
     {
-        
+        StartMenuButton();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void SettingsButton()
     {
-        
+        settingsUI.SetActive(true);
+        startUI.SetActive(false);
+        option.state = OptionManager.OptionState.gameplay;
+    }
+
+    public void StartMenuButton()
+    {
+        startUI.SetActive(true);
+        settingsUI.SetActive(false);
+        option.state = OptionManager.OptionState.none;
     }
 
     public void LoadSceneButton()
