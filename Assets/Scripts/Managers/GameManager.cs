@@ -34,7 +34,12 @@ public class GameManager : MonoBehaviour
     {
         SaveSystem.instance.gameManager = this;
         dataManager = SaveSystem.instance;
-        
+
+        if (SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        {
+            Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
+            SaveSystem.instance.LoadData();
+        }
     }
 
     //small save system part
@@ -45,11 +50,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        if (SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
-        {
-            Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
-            SaveSystem.instance.LoadData();
-        }
+        
         SwitchStatePlayer(PlayerState.player);
     }
 
@@ -152,8 +153,6 @@ public class GameManager : MonoBehaviour
             case PlayerState.build:
             {
                 CursorModeConfined();
-                playerController.StopMovement();
-                buildCamera.GetComponent<BuildCam>().targetOffset = buildManager.transform.position;
                 SwitchCamera(buildCamera, playerCamera);
 
                 uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);

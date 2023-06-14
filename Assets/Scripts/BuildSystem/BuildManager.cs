@@ -84,9 +84,7 @@ public class BuildManager : MonoBehaviour
     private void FixedUpdate()
     {
         //update objects position to screenpoint posistion
-        Ray ray = gameManager.buildCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
-
-        if(Physics.Raycast(ray, out hit, 1000, layerMask))
+        if(Physics.Raycast(gameManager.buildCamera.transform.position, gameManager.buildCamera.GetComponent<Camera>().transform.forward, out hit, 1000, layerMask))
         {
             pos = new Vector3(hit.point.x, hit.point.y + offset , hit.point.z);
             pos -= transform.position;
