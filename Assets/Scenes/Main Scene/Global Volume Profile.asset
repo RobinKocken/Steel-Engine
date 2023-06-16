@@ -151,13 +151,13 @@ MonoBehaviour:
   active: 1
   shadows:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.302439}
+    m_Value: {x: 1, y: 1, z: 1, w: -0.004878049}
   midtones:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: -0.14634146}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.048780493}
   highlights:
     m_OverrideState: 1
-    m_Value: {x: 1, y: 1, z: 1, w: 1}
+    m_Value: {x: 1, y: 1, z: 1, w: 0.36097562}
   shadowsStart:
     m_OverrideState: 0
     m_Value: 0
@@ -194,7 +194,7 @@ MonoBehaviour:
     m_Value: {x: 0.5, y: 0.5}
   intensity:
     m_OverrideState: 1
-    m_Value: 0.315
+    m_Value: 0.254
   smoothness:
     m_OverrideState: 1
     m_Value: 0.605
@@ -234,16 +234,16 @@ MonoBehaviour:
     m_Value: 4
   cascadeShadowSplit0:
     m_OverrideState: 1
-    m_Value: 0.11616
+    m_Value: 0.32886
   cascadeShadowSplit1:
     m_OverrideState: 1
-    m_Value: 0.52158
+    m_Value: 0.47528
   cascadeShadowSplit2:
     m_OverrideState: 1
-    m_Value: 0.53326
+    m_Value: 0.92757154
   cascadeShadowBorder0:
     m_OverrideState: 1
-    m_Value: 0.53031176
+    m_Value: 0.5149271
   cascadeShadowBorder1:
     m_OverrideState: 1
     m_Value: 0
