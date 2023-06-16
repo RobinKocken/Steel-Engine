@@ -18,7 +18,7 @@ public class SelectionManager : MonoBehaviour
     {
         if(Input.GetMouseButtonDown(0))
         {
-            Ray ray = gameManager.buildCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+            Ray ray = gameManager.playerCamera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
             RaycastHit hit;
             if(Physics.Raycast(ray, out hit, 1000))
             {

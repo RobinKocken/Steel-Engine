@@ -28,7 +28,6 @@ public class GameManager : MonoBehaviour
     public SaveSystem dataManager;
 
     public GameObject playerCamera;
-    public GameObject buildCamera;
 
     void Awake()
     {
@@ -122,7 +121,6 @@ public class GameManager : MonoBehaviour
             case PlayerState.player:
             {
                 CursorModeLocked();
-                SwitchCamera(playerCamera, buildCamera);
 
                 uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.none);
                 uiManager.Player(true);
@@ -158,7 +156,6 @@ public class GameManager : MonoBehaviour
             case PlayerState.build:
             {
                 CursorModeConfined();
-                SwitchCamera(buildCamera, playerCamera);
 
                 uiManager.SwitchStateUI(UIManager.InternalUIState.none, UIManager.ExternalUIState.build);
                 break;
@@ -184,12 +181,6 @@ public class GameManager : MonoBehaviour
             else if(playerState == PlayerState.build)
                 SwitchStatePlayer(PlayerState.player);
         }       
-    }
-
-    void SwitchCamera(GameObject camEnable, GameObject camDisable)
-    {
-        camEnable.SetActive(true);
-        camDisable.SetActive(false);
     }
 
     void CursorModeLocked()
