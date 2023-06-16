@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +11,7 @@ public class OptionManager : MonoBehaviour
         none,
         gameplay,
         graphics,
-        sounds,
+        sound,
         controls,
     }
 
@@ -21,6 +22,10 @@ public class OptionManager : MonoBehaviour
     public Texture2D tex;
 
     public TopUI topUI;
+    public GameplayUI gameplayUI;
+    public GraphicsUI graphicsUI;
+    public SoundUI soundUI;
+    public ControlsUI controlsUI;
 
     void Start()
     {
@@ -39,15 +44,57 @@ public class OptionManager : MonoBehaviour
             TopButtonSelect(topUI.currentTargetIndex + 1);
     }
 
+    void State(int stateIndex)
+    {
+        state = (OptionState)stateIndex + 1;
+
+        switch(state)
+        {
+            case OptionState.none:
+            {
+                SettingsChange(false, false, false, false);
+                break;
+            }
+            case OptionState.gameplay:
+            {
+                SettingsChange(true, false, false, false);
+                break;
+            }
+            case OptionState.graphics:
+            {
+                SettingsChange(false, true, false, false);
+                break;
+            }
+            case OptionState.sound:
+            {
+                SettingsChange(false, false, true, false);
+                break;
+            }
+            case OptionState.controls:
+            {
+                SettingsChange(false, false, false, true);
+                break;
+            }
+        }
+    }
+
+    public void SettingsChange(bool gameplayActive, bool graphicsActive, bool soundActive, bool controlsActive)
+    {
+        gameplayUI.gameplayUIParent.SetActive(gameplayActive);
+        graphicsUI.graphicsUIParent.SetActive(graphicsActive);
+        soundUI.soundUIParent.SetActive(soundActive);
+        controlsUI.controlsUIParent.SetActive(controlsActive);
+    }
+
     public void TopButtonSelect(int targetIndex)
     {
         if(targetIndex < 0 || targetIndex > topUI.barTarget.Length - 1)
             return;
         else
         {
-            state = (OptionState)targetIndex + 1;
+            State(targetIndex);
 
-            StopAllCoroutines();
+            StopCoroutine(BarAnimation(-1));
             StartCoroutine(BarAnimation(targetIndex));
         }
     }
@@ -93,4 +140,28 @@ public class TopUI
     public bool coroutineRun;
 
     public RectTransform[] barTarget;
+}
+
+[System.Serializable]
+public class GameplayUI 
+{
+    public GameObject gameplayUIParent;
+}
+
+[System.Serializable]
+public class GraphicsUI 
+{
+    public GameObject graphicsUIParent;
+}
+
+[System.Serializable]
+public class SoundUI
+{
+    public GameObject soundUIParent;
+}
+
+[System.Serializable]
+public class ControlsUI
+{
+    public GameObject controlsUIParent;
 }
