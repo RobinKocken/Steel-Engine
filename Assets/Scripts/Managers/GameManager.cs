@@ -32,13 +32,16 @@ public class GameManager : MonoBehaviour
 
     void Awake()
     {
-        SaveSystem.instance.gameManager = this;
-        dataManager = SaveSystem.instance;
-
-        if (SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+        if (SaveSystem.instance != null)
         {
-            Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
-            SaveSystem.instance.LoadData();
+            SaveSystem.instance.gameManager = this;
+            dataManager = SaveSystem.instance;
+
+            if (SaveSystem.instance.Datastate == SaveSystem.SystemState.Loading)
+            {
+                Debug.Log(SaveSystem.instance.Datastate + " in Scene: " + SceneManager.GetActiveScene().name);
+                SaveSystem.instance.LoadData();
+            }
         }
     }
 

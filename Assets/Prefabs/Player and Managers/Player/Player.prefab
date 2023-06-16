@@ -427,8 +427,8 @@ GameObject:
   - component: {fileID: 96363807186306714}
   - component: {fileID: 7262474242889727231}
   - component: {fileID: 8919138839846278215}
-  - component: {fileID: 8192139870047427701}
   - component: {fileID: 1933216298525432202}
+  - component: {fileID: 7486880307715871239}
   m_Layer: 0
   m_Name: Build Camera
   m_TagString: MainCamera
@@ -508,14 +508,6 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!81 &8192139870047427701
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8343733626710139118}
-  m_Enabled: 1
 --- !u!114 &1933216298525432202
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,3 +633,20 @@ MonoBehaviour:
       enableFptlForForwardOpaque: 0
       enableBigTilePrepass: 0
       isFptlEnabled: 0
+--- !u!114 &7486880307715871239
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8343733626710139118}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c02c0ec7d52f3804f98dc0f3f2793348, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gameManager: {fileID: 0}
+  rayDistance: 3
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 0
