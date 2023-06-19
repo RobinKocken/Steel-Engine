@@ -8,7 +8,7 @@ public class StartMenu : MonoBehaviour
     public OptionManager option;
 
     public GameObject startUI;
-    public GameObject settingsUI;
+    public GameObject optionsUI;
 
     void Start()
     {
@@ -17,7 +17,7 @@ public class StartMenu : MonoBehaviour
 
     public void SettingsButton()
     {
-        settingsUI.SetActive(true);
+        optionsUI.SetActive(true);
         startUI.SetActive(false);
         option.state = OptionManager.OptionState.gameplay;
     }
@@ -25,7 +25,7 @@ public class StartMenu : MonoBehaviour
     public void StartMenuButton()
     {
         startUI.SetActive(true);
-        settingsUI.SetActive(false);
+        optionsUI.SetActive(false);
         option.state = OptionManager.OptionState.none;
     }
 
